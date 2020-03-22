@@ -23,7 +23,7 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import iteracion2.Alohandes.negocio.Visitan;
+import iteracion2.Alohandes.negocio.HabitacionTiempoOcupada;
 
 /**
  * Clase que encapsula los métodos que hacen acceso a la base de datos para el concepto VISITAN de Parranderos
@@ -135,11 +135,11 @@ class SQLVisitan
 	 * @param pm - El manejador de persistencia
 	 * @return Una lista de objetos VISITAN
 	 */
-	public List<Visitan> darVisitan (PersistenceManager pm)
+	public List<HabitacionTiempoOcupada> darVisitan (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaVisitan ());
-		q.setResultClass(Visitan.class);
-		return (List<Visitan>) q.execute();
+		q.setResultClass(HabitacionTiempoOcupada.class);
+		return (List<HabitacionTiempoOcupada>) q.execute();
 	}
 
 	/* ****************************************************************
@@ -152,10 +152,10 @@ class SQLVisitan
 	 * @param pm - El manejador de persistencia
 	 * @return Una lista de objetos VISITAN
 	 */
-	private List<Visitan> darVisitan_V2 (PersistenceManager pm)
+	private List<HabitacionTiempoOcupada> darVisitan_V2 (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT idBebedor, idBar, fechaVisita, horario FROM " + pp.darTablaVisitan ());
-		List<Visitan> resp = new LinkedList<>();
+		List<HabitacionTiempoOcupada> resp = new LinkedList<>();
 		List results = q.executeList();
 		for (Object obj : results)
 		{
@@ -164,7 +164,7 @@ class SQLVisitan
 			long idBar = ((BigDecimal) datos [1]).longValue();
 			Timestamp fecha = (Timestamp) datos [2];
 			String horario = (String) datos [3];
-			resp.add (new Visitan (idBebedor, idBar, fecha, horario));
+			resp.add (new HabitacionTiempoOcupada (idBebedor, idBar, fecha, horario));
 		}
 		return resp;		
 	}

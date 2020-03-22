@@ -47,7 +47,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import iteracion2.Alohandes.negocio.Parranderos;
-import iteracion2.Alohandes.negocio.VOTipoBebida;
+import iteracion2.Alohandes.negocio.VOHabitacionServicio;
 
 /**
  * Clase principal de la interfaz
@@ -250,7 +250,7 @@ public class InterfazParranderosApp extends JFrame implements ActionListener
     		String nombreTipo = JOptionPane.showInputDialog (this, "Nombre del tipo de bedida?", "Adicionar tipo de bebida", JOptionPane.QUESTION_MESSAGE);
     		if (nombreTipo != null)
     		{
-        		VOTipoBebida tb = parranderos.adicionarTipoBebida (nombreTipo);
+        		VOHabitacionServicio tb = parranderos.adicionarTipoBebida (nombreTipo);
         		if (tb == null)
         		{
         			throw new Exception ("No se pudo crear un tipo de bebida con nombre: " + nombreTipo);
@@ -280,7 +280,7 @@ public class InterfazParranderosApp extends JFrame implements ActionListener
     {
     	try 
     	{
-			List <VOTipoBebida> lista = parranderos.darVOTiposBebida();
+			List <VOHabitacionServicio> lista = parranderos.darVOTiposBebida();
 
 			String resultado = "En listarTipoBebida";
 			resultado +=  "\n" + listarTiposBebida (lista);
@@ -337,7 +337,7 @@ public class InterfazParranderosApp extends JFrame implements ActionListener
     		String nombreTb = JOptionPane.showInputDialog (this, "Nombre del tipo de bedida?", "Buscar tipo de bebida por nombre", JOptionPane.QUESTION_MESSAGE);
     		if (nombreTb != null)
     		{
-    			VOTipoBebida tipoBebida = parranderos.darTipoBebidaPorNombre (nombreTb);
+    			VOHabitacionServicio tipoBebida = parranderos.darTipoBebidaPorNombre (nombreTb);
     			String resultado = "En buscar Tipo Bebida por nombre\n\n";
     			if (tipoBebida != null)
     			{
@@ -528,11 +528,11 @@ public class InterfazParranderosApp extends JFrame implements ActionListener
      * @param lista - La lista con los tipos de bebida
      * @return La cadena con una líea para cada tipo de bebida recibido
      */
-    private String listarTiposBebida(List<VOTipoBebida> lista) 
+    private String listarTiposBebida(List<VOHabitacionServicio> lista) 
     {
     	String resp = "Los tipos de bebida existentes son:\n";
     	int i = 1;
-        for (VOTipoBebida tb : lista)
+        for (VOHabitacionServicio tb : lista)
         {
         	resp += i++ + ". " + tb.toString() + "\n";
         }

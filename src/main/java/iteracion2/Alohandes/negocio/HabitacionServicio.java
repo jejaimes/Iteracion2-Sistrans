@@ -20,7 +20,7 @@ package iteracion2.Alohandes.negocio;
  *
  * @author Germán Bravo
  */
-public class TipoBebida implements VOTipoBebida
+public class HabitacionServicio implements VOHabitacionServicio
 {
 	/* ****************************************************************
 	 * 			Atributos
@@ -41,7 +41,7 @@ public class TipoBebida implements VOTipoBebida
 	/**
 	 * Constructor por defecto
 	 */
-	public TipoBebida() 
+	public HabitacionServicio() 
 	{
 		this.id = 0;
 		this.nombre = "Default";
@@ -52,7 +52,7 @@ public class TipoBebida implements VOTipoBebida
 	 * @param id - El identificador del tipo de bebida
 	 * @param nombre - El nombre del tipo de bebida
 	 */
-	public TipoBebida(long id, String nombre) 
+	public HabitacionServicio(long id, String nombre) 
 	{
 		this.id = id;
 		this.nombre = nombre;
@@ -106,7 +106,7 @@ public class TipoBebida implements VOTipoBebida
 	 */
 	public boolean equals(Object tipo) 
 	{
-		TipoBebida tb = (TipoBebida) tipo;
+		HabitacionServicio tb = (HabitacionServicio) tipo;
 		return id == tb.id && nombre.equalsIgnoreCase (tb.nombre);
 	}
 

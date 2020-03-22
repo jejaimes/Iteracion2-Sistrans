@@ -25,7 +25,7 @@ package iteracion2.Alohandes.negocio;
  * 
  * @author Germán Bravo
  */
-public class Sirven implements VOSirven
+public class Habitacion implements VOHabitacion
 {
 	/* ****************************************************************
 	 * 			Atributos
@@ -51,7 +51,7 @@ public class Sirven implements VOSirven
 	/**
 	 * Constructor por defecto
 	 */
-	public Sirven () 
+	public Habitacion () 
 	{
 		this.idBar = 0;
 		this.idBebida = 0;
@@ -64,7 +64,7 @@ public class Sirven implements VOSirven
 	 * @param idBebida - El identificador de la bebida. Debe existir una bebida con dicho identificador
 	 * @param horario - El horario en el que el bar sirve la bebida (DIURNO, NOCTURNO, TODOS)
 	 */
-	public Sirven (long idBar, long idBebida, String horario) 
+	public Habitacion (long idBar, long idBebida, String horario) 
 	{
 		this.idBar = idBar;
 		this.idBebida = idBebida;

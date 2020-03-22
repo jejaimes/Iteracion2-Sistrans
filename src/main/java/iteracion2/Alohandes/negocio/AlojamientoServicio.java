@@ -20,34 +20,30 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Clase para modelar el concepto BEBEDOR del negocio de los Parranderos
+ * Clase para modelar el concepto ALOJAMIENTOSERVICIO del negocio de ALOHANDES
  *
  * @author Germán Bravo
  */
-public class Bebedor implements VOBebedor
+public class AlojamientoServicio implements VOAlojamientoServicio
 {
 	/* ****************************************************************
 	 * 			Atributos
 	 *****************************************************************/
 	/**
-	 * El identificador ÚNICO del bebedor
+	 * El identificador ÚNICO del alojamiento
 	 */
-	private long id;	
+	private long idAlojamiento;	
 	
 	/**
 	 * El nombre del bebedor
 	 */
-	private String nombre;
+	private String nombreServicio;
 	
 	/**
 	 * La ciudad del bebedor
 	 */
-	private String ciudad;
+	private int costo;
 	
-	/**
-	 * El presupuesto del bebedor (ALTO, MEDIO, BAJO)
-	 */
-	private String presupuesto;
 	
 	/**
 	 * Las visitas realizadas por el bebedor. 
@@ -69,97 +65,73 @@ public class Bebedor implements VOBebedor
 	/**
 	 * Constructor por defecto
 	 */
-	public Bebedor() 
+	public AlojamientoServicio() 
 	{
-		this.id = 0;
-		this.nombre = "";
-		this.ciudad = "";
-		this.presupuesto = "";
+		this.idAlojamiento = 0;
+		this.nombreServicio = "";
+		this.costo = 0;
 		visitasRealizadas = new LinkedList<Object []> ();
 		bebidasQueLeGustan = new LinkedList<Object []> ();
 	}
 
-	/**
-	 * Constructor con valores
-	 * @param id - El id del bebedor
-	 * @param nombre - El nombre del bebedor
-	 * @param ciudad - La ciudad del bebedor
-	 * @param presupuesto - El presupuesto del bebedor (ALTO, MEDIO, BAJO)
-	 */
-	public Bebedor(long id, String nombre, String ciudad, String presupuesto) 
+
+	public AlojamientoServicio(long id, String nombre, int costo) 
 	{
-		this.id = id;
-		this.nombre = nombre;
-		this.ciudad = ciudad;
-		this.presupuesto = presupuesto;
+		this.idAlojamiento = id;
+		this.nombreServicio = nombre;
+		this.costo = costo;
 		
-		// Estos valores no se conocen en el momento de la construcción del bebedor
+		// Estos valores no se conocen en el momento de la construcción 
 		visitasRealizadas = new LinkedList<Object []> ();
 		bebidasQueLeGustan = new LinkedList<Object []> ();
 	}
 
 	/**
-	 * @return El id del bebedor
+	 * @return El id del alojamiento
 	 */
-	public long getId() 
+	public long getIdAlojamiento() 
 	{
-		return id;
+		return idAlojamiento;
 	}
 
 	/**
-	 * @param id - El nuevo id del bebedor
+	 * @param id - El nuevo id del alojamiento
 	 */
-	public void setId(long id) 
+	public void setIdalojamiento(long id) 
 	{
-		this.id = id;
+		this.idAlojamiento = id;
 	}
 
 	/**
-	 * @return El nombre del bebedor
+	 * @return El nombre del servicio
 	 */
-	public String getNombre() 
+	public String getNombreServicio() 
 	{
-		return nombre;
+		return nombreServicio;
 	}
 
 	/**
-	 * @param nombre - El nuevo nombre del bebedor
+	 * @param nombre - El nuevo nombre del servicio
 	 */
-	public void setNombre(String nombre) 
+	public void setNombreServicio(String nombre) 
 	{
-		this.nombre = nombre;
+		this.nombreServicio = nombre;
 	}
 
 	/**
-	 * @return La ciudad del bebedor
+	 * @return el costo del servicio
 	 */
-	public String getCiudad() 
+	public int getCosto() 
 	{
-		return ciudad;
+		return costo;
 	}
 
 	/**
-	 * @param ciudad - La nueva ciudad del bebedor
+	 * @param ciudad - el nuevo costo del servicio
 	 */
-	public void setCiudad(String ciudad) 
+	public void setCosto(int costo) 
 	{
-		this.ciudad = ciudad;
-	}
-
-	/**
-	 * @return El presupuesto del bebedor
-	 */
-	public String getPresupuesto() 
-	{
-		return presupuesto;
-	}
-
-	/**
-	 * @param presupuesto - El nuevo presupuesto del bebedor
-	 */
-	public void setPresupuesto(String presupuesto) 
-	{
-		this.presupuesto = presupuesto;
+		this.costo = costo;
 	}
 
 	/**
@@ -200,7 +172,7 @@ public class Bebedor implements VOBebedor
 	@Override
 	public String toString() 
 	{
-		return "Bebedor [id=" + id + ", nombre=" + nombre + ", ciudad=" + ciudad + ", presupuesto=" + presupuesto + "]";
+		return "Bebedor [id=" + idAlojamiento + ", nombre=" + nombreServicio + ", ciudad=" + costo + "]";
 	}
 
 	/**
@@ -224,7 +196,7 @@ public class Bebedor implements VOBebedor
 		i = 1;
 		for (Object [] gusta : bebidasQueLeGustan)
 		{
-			Bebida bebida = (Bebida) gusta [0];
+			Cliente bebida = (Cliente) gusta [0];
 			String tipoBebida = (String) gusta [1];
 			resp += i++ + ". " + "[" + bebida.toString() + ", Tipo Bebida= " + tipoBebida + "]\n";
 		}

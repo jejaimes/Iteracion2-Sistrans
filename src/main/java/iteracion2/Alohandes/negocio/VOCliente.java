@@ -16,37 +16,41 @@
 package iteracion2.Alohandes.negocio;
 
 /**
- * Interfaz para los métodos get de TIPOBEBIDA.
+ * Interfaz para los métodos get de CLIENTE.
  * Sirve para proteger la información del negocio de posibles manipulaciones desde la interfaz 
  * 
- * @author Germán Bravo
  */
-public interface VOTipoBebida 
+public interface VOCliente 
 {
-	/* ****************************************************************
-	 * 			Métodos
-	 *****************************************************************/
+	
 	/**
-	 * @return El id del tipo de bebida
-	 */
-	public long getId();
-
-	/**
-	 * @return El nombre del tipo de bebida
+	 * @return El nombre del cliente
 	 */
 	public String getNombre();
+	
+	
+	/**
+	 * @return El tipo_persona del cliente
+	 */
+	public String getIdTipoPersona();
+	
 
 	/**
-	 * @return Una cadena de caracteres con la información del tipo de bebida
+	 * @return El tipoDocumento del cliente
 	 */
-	@Override
-	public String toString(); 
-
+	public String getTipoDocumento();
+	
+	
 	/**
-	 * Define la igualdad dos Tipos de bebida
-	 * @param tb - El tipo de bebida a comparar
-	 * @return true si tienen el mismo identificador y el mismo nombre
+	 * @return El num_documento del cliente
+	 */
+	public long geNumdocumento();
+	
+	
+	/**
+	 * @return Una cadena con la información básica de la bebida
 	 */
 	@Override
-	public boolean equals (Object tb); 
+	public String toString();
+
 }

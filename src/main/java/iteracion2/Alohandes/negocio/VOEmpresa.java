@@ -21,7 +21,7 @@ package iteracion2.Alohandes.negocio;
  * 
  * @author Germán Bravo
  */
-public interface VOGustan 
+public interface VOEmpresa 
 {
 	/* ****************************************************************
 	 * 			Métodos

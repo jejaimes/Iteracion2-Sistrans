@@ -18,54 +18,32 @@ package iteracion2.Alohandes.negocio;
 import java.util.List;
 
 /**
- * Interfaz para los métodos get de BEBEDOR.
+ * Interfaz para los métodos get de AlojamientoServicio.
  * Sirve para proteger la información del negocio de posibles manipulaciones desde la interfaz 
  * 
- * @author Germán Bravo
  */
-public interface VOBebedor 
+public interface VOAlojamientoServicio 
 {
 	/* ****************************************************************
 	 * 			Métodos
 	 *****************************************************************/
 	/**
-	 * @return El id del bebedor
+	 * @return El id del alojamiento
 	 */
-	public long getId();
+	public long getIdAlojamiento();
 
 	/**
-	 * @return El nombre del bebedor
+	 * @return El nombre del servicio
 	 */
-	public String getNombre();
+	public String getNombreServicio();
 
 	/**
-	 * @return La ciudad del bebedor
+	 * @return El costo del servicio
 	 */
-	public String getCiudad();
+	public int getCosto();
 
 	/**
-	 * @return El presupuesto del bebedor
-	 */
-	public String getPresupuesto();
-
-	/**
-	 * @return La lista de visitasRealizadas por el bebedor 
-	 */
-	public List<Object []> getVisitasRealizadas();
-
-	/**
-	 * @return Las bebidasQueLeGustan al bebedor
-	 */
-	public List<Object[]> getBebidasQueLeGustan();
-
-	/**
-	 * @return Una cadena de caracteres con la información básica del bebedor
-	 */
-	@Override
-	public String toString();
-
-	/**
-	 * @return Una cadena de caracteres con la información COMPLEtA del bebedor.
+	 * @return Una cadena de caracteres con la información COMPLEtA del AlojamientoServicio.
 	 * Además de la información básica, contiene las visitas realizadas (una por línea) y 
 	 * las bebidas que le gustan al bebedor (una por línea)
 	 */

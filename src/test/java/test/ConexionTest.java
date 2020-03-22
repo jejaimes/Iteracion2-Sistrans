@@ -15,7 +15,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import iteracion2.Alohandes.negocio.Parranderos;
-import iteracion2.Alohandes.negocio.VOTipoBebida;
+import iteracion2.Alohandes.negocio.VOHabitacionServicio;
 
 /**
  * Clase con métodos de prueba de conexión a la base de datos

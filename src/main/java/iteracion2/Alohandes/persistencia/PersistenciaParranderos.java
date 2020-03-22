@@ -33,12 +33,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import iteracion2.Alohandes.negocio.Alojamiento;
-import iteracion2.Alohandes.negocio.Bebedor;
-import iteracion2.Alohandes.negocio.Bebida;
-import iteracion2.Alohandes.negocio.Gustan;
-import iteracion2.Alohandes.negocio.Sirven;
-import iteracion2.Alohandes.negocio.TipoBebida;
-import iteracion2.Alohandes.negocio.Visitan;
+import iteracion2.Alohandes.negocio.AlojamientoServicio;
+import iteracion2.Alohandes.negocio.Cliente;
+import iteracion2.Alohandes.negocio.Empresa;
+import iteracion2.Alohandes.negocio.Habitacion;
+import iteracion2.Alohandes.negocio.HabitacionServicio;
+import iteracion2.Alohandes.negocio.HabitacionTiempoOcupada;
 
 /**
  * Clase para el manejador de persistencia del proyecto Parranderos
@@ -332,7 +332,7 @@ public class PersistenciaParranderos
 	 * @param nombre - El nombre del tipo de bebida
 	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
 	 */
-	public TipoBebida adicionarTipoBebida(String nombre)
+	public HabitacionServicio adicionarTipoBebida(String nombre)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
@@ -345,7 +345,7 @@ public class PersistenciaParranderos
             
             log.trace ("Inserción de tipo de bebida: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
             
-            return new TipoBebida (idTipoBebida, nombre);
+            return new HabitacionServicio (idTipoBebida, nombre);
         }
         catch (Exception e)
         {
@@ -433,7 +433,7 @@ public class PersistenciaParranderos
 	 * Método que consulta todas las tuplas en la tabla TipoBebida
 	 * @return La lista de objetos TipoBebida, construidos con base en las tuplas de la tabla TIPOBEBIDA
 	 */
-	public List<TipoBebida> darTiposBebida ()
+	public List<HabitacionServicio> darTiposBebida ()
 	{
 		return sqlTipoBebida.darTiposBebida (pmf.getPersistenceManager());
 	}
@@ -443,7 +443,7 @@ public class PersistenciaParranderos
 	 * @param nombre - El nombre del tipo de bebida
 	 * @return La lista de objetos TipoBebida, construidos con base en las tuplas de la tabla TIPOBEBIDA
 	 */
-	public List<TipoBebida> darTipoBebidaPorNombre (String nombre)
+	public List<HabitacionServicio> darTipoBebidaPorNombre (String nombre)
 	{
 		return sqlTipoBebida.darTiposBebidaPorNombre (pmf.getPersistenceManager(), nombre);
 	}
@@ -453,7 +453,7 @@ public class PersistenciaParranderos
 	 * @param idTipoBebida - El identificador del tipo de bebida
 	 * @return El objeto TipoBebida, construido con base en las tuplas de la tabla TIPOBEBIDA con el identificador dado
 	 */
-	public TipoBebida darTipoBebidaPorId (long idTipoBebida)
+	public HabitacionServicio darTipoBebidaPorId (long idTipoBebida)
 	{
 		return sqlTipoBebida.darTipoBebidaPorId (pmf.getPersistenceManager(), idTipoBebida);
 	}
@@ -470,7 +470,7 @@ public class PersistenciaParranderos
 	 * @param gradoAlcohol - El grado de alcohol de la bebida (mayor que 0)
 	 * @return El objeto Bebida adicionado. null si ocurre alguna Excepción
 	 */
-	public Bebida adicionarBebida(String nombre, long idTipoBebida, int gradoAlcohol) 
+	public Cliente adicionarBebida(String nombre, long idTipoBebida, int gradoAlcohol) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
@@ -482,7 +482,7 @@ public class PersistenciaParranderos
             tx.commit();
             
             log.trace ("Inserción bebida: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
-            return new Bebida (idBebida,nombre, idTipoBebida, gradoAlcohol);
+            return new Cliente (idBebida,nombre, idTipoBebida, gradoAlcohol);
         }
         catch (Exception e)
         {
@@ -573,7 +573,7 @@ public class PersistenciaParranderos
 	 * @param nombreBebida - El nombre de la bebida
 	 * @return La lista de objetos Bebida, construidos con base en las tuplas de la tabla BEBIDA
 	 */
-	public List<Bebida> darBebidasPorNombre (String nombreBebida)
+	public List<Cliente> darBebidasPorNombre (String nombreBebida)
 	{
 		return sqlBebida.darBebidasPorNombre (pmf.getPersistenceManager(), nombreBebida);
 	}
@@ -582,7 +582,7 @@ public class PersistenciaParranderos
 	 * Método que consulta todas las tuplas en la tabla Bebida
 	 * @return La lista de objetos Bebida, construidos con base en las tuplas de la tabla BEBIDA
 	 */
-	public List<Bebida> darBebidas ()
+	public List<Cliente> darBebidas ()
 	{
 		return sqlBebida.darBebidas (pmf.getPersistenceManager());
 	}
@@ -630,7 +630,7 @@ public class PersistenciaParranderos
 	 * @param presupuesto - El presupuesto del bebedor (ALTO, MEDIO, BAJO)
 	 * @return El objeto BEBEDOR adicionado. null si ocurre alguna Excepción
 	 */
-	public Bebedor adicionarBebedor(String nombre, String ciudad, String presupuesto) 
+	public AlojamientoServicio adicionarBebedor(String nombre, String ciudad, String presupuesto) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
@@ -643,7 +643,7 @@ public class PersistenciaParranderos
 
             log.trace ("Inserción de bebedor: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
             
-            return new Bebedor (idBebedor, nombre, ciudad, presupuesto);
+            return new AlojamientoServicio (idBebedor, nombre, ciudad, presupuesto);
         }
         catch (Exception e)
         {
@@ -732,7 +732,7 @@ public class PersistenciaParranderos
 	 * @param nombreBebedor - El nombre del bebedor
 	 * @return La lista de objetos BEBEDOR, construidos con base en las tuplas de la tabla BEBEDOR
 	 */
-	public List<Bebedor> darBebedoresPorNombre (String nombreBebedor) 
+	public List<AlojamientoServicio> darBebedoresPorNombre (String nombreBebedor) 
 	{
 		return sqlBebedor.darBebedoresPorNombre (pmf.getPersistenceManager(), nombreBebedor);
 	}
@@ -742,9 +742,9 @@ public class PersistenciaParranderos
 	 * @param idBebedor - El identificador del bebedor
 	 * @return El objeto BEBEDOR, construido con base en la tuplas de la tabla BEBEDOR, que tiene el identificador dado
 	 */
-	public Bebedor darBebedorPorId (long idBebedor) 
+	public AlojamientoServicio darBebedorPorId (long idBebedor) 
 	{
-		return (Bebedor) sqlBebedor.darBebedorPorId (pmf.getPersistenceManager(), idBebedor);
+		return (AlojamientoServicio) sqlBebedor.darBebedorPorId (pmf.getPersistenceManager(), idBebedor);
 	}
 
 	/**
@@ -754,10 +754,10 @@ public class PersistenciaParranderos
 	 * @return El objeto BEBEDOR, construido con base en las tuplas de la tablas BEBEDOR, VISITAN, BARES, GUSTAN, BEBIDAS y TIPOBEBIDA,
 	 * relacionadas con el identificador de bebedor dado
 	 */
-	public Bebedor darBebedorCompleto (long idBebedor) 
+	public AlojamientoServicio darBebedorCompleto (long idBebedor) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
-		Bebedor bebedor = (Bebedor) sqlBebedor.darBebedorPorId (pm, idBebedor);
+		AlojamientoServicio bebedor = (AlojamientoServicio) sqlBebedor.darBebedorPorId (pm, idBebedor);
 		bebedor.setVisitasRealizadas(armarVisitasBebedor (sqlBebedor.darVisitasRealizadas (pm, idBebedor)));
 		bebedor.setBebidasQueLeGustan(armarGustanBebedor (sqlBebedor.darBebidasQueLeGustan (pm, idBebedor)));
 		return bebedor;
@@ -767,7 +767,7 @@ public class PersistenciaParranderos
 	 * Método que consulta todas las tuplas en la tabla BEBEDOR
 	 * @return La lista de objetos BEBEDOR, construidos con base en las tuplas de la tabla BEBEDOR
 	 */
-	public List<Bebedor> darBebedores ()
+	public List<AlojamientoServicio> darBebedores ()
 	{
 		return sqlBebedor.darBebedores (pmf.getPersistenceManager());
 	}
@@ -792,7 +792,7 @@ public class PersistenciaParranderos
 			int numBares = ((BigDecimal) datos [4]).intValue ();
 
 			Object [] resp = new Object [2];
-			resp [0] = new Bebedor (idBebedor, nombreBebedor, ciudadBebedor, presupuesto);
+			resp [0] = new AlojamientoServicio (idBebedor, nombreBebedor, ciudadBebedor, presupuesto);
 			resp [1] = numBares;	
 			
 			respuesta.add(resp);
@@ -963,7 +963,7 @@ public class PersistenciaParranderos
 			String nombreTipo = (String) tupla [4];
 
 			Object [] gusta = new Object [2];
-			gusta [0] = new Bebida (idBebida, nombreBebida, idTipoBebida, gradoAlcohol);
+			gusta [0] = new Cliente (idBebida, nombreBebida, idTipoBebida, gradoAlcohol);
 			gusta [1] = nombreTipo;	
 			
 			gustan.add(gusta);
@@ -1156,7 +1156,7 @@ public class PersistenciaParranderos
 	 * @param idBebida - El identificador de la bebida - Debe haber una bebida con ese identificador
 	 * @return Un objeto GUSTAN con la información dada. Null si ocurre alguna Excepción
 	 */
-	public Gustan adicionarGustan(long idBebedor, long idBebida) 
+	public Empresa adicionarGustan(long idBebedor, long idBebida) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
@@ -1168,7 +1168,7 @@ public class PersistenciaParranderos
 
             log.trace ("Inserción de gustan: [" + idBebedor + ", " + idBebida + "]. " + tuplasInsertadas + " tuplas insertadas");
 
-            return new Gustan (idBebedor, idBebida);
+            return new Empresa (idBebedor, idBebida);
         }
         catch (Exception e)
         {
@@ -1224,7 +1224,7 @@ public class PersistenciaParranderos
 	 * Método que consulta todas las tuplas en la tabla GUSTAN
 	 * @return La lista de objetos GUSTAN, construidos con base en las tuplas de la tabla GUSTAN
 	 */
-	public List<Gustan> darGustan ()
+	public List<Empresa> darGustan ()
 	{
 		return sqlGustan.darGustan (pmf.getPersistenceManager());
 	}
@@ -1242,7 +1242,7 @@ public class PersistenciaParranderos
 	 * @param horario - El hororio en que se sirve (DIURNO, NOCTURNO, TODOS)
 	 * @return Un objeto SIRVEN con la información dada. Null si ocurre alguna Excepción
 	 */
-	public Sirven adicionarSirven (long idBar, long idBebida, String horario) 
+	public Habitacion adicionarSirven (long idBar, long idBebida, String horario) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
@@ -1254,7 +1254,7 @@ public class PersistenciaParranderos
 
             log.trace ("Inserción de gustan: [" + idBar + ", " + idBebida + "]. " + tuplasInsertadas + " tuplas insertadas");
 
-            return new Sirven (idBar, idBebida, horario);
+            return new Habitacion (idBar, idBebida, horario);
         }
         catch (Exception e)
         {
@@ -1310,7 +1310,7 @@ public class PersistenciaParranderos
 	 * Método que consulta todas las tuplas en la tabla SIRVEN
 	 * @return La lista de objetos SIRVEN, construidos con base en las tuplas de la tabla SIRVEN
 	 */
-	public List<Sirven> darSirven ()
+	public List<Habitacion> darSirven ()
 	{
 		return sqlSirven.darSirven (pmf.getPersistenceManager());
 	}
@@ -1348,7 +1348,7 @@ public class PersistenciaParranderos
 	 * @param horario - El hororio en que se sirve (DIURNO, NOCTURNO, TODOS)
 	 * @return Un objeto VISITAN con la información dada. Null si ocurre alguna Excepción
 	 */	
-	public Visitan adicionarVisitan (long idBebedor, long idBar, Timestamp fecha, String horario) 
+	public HabitacionTiempoOcupada adicionarVisitan (long idBebedor, long idBar, Timestamp fecha, String horario) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
@@ -1360,7 +1360,7 @@ public class PersistenciaParranderos
 
             log.trace ("Inserción de gustan: [" + idBebedor + ", " + idBar + "]. " + tuplasInsertadas + " tuplas insertadas");
 
-            return new Visitan (idBebedor, idBar, fecha, horario);
+            return new HabitacionTiempoOcupada (idBebedor, idBar, fecha, horario);
         }
         catch (Exception e)
         {
@@ -1484,7 +1484,7 @@ public class PersistenciaParranderos
 	 * Método que consulta todas las tuplas en la tabla VISITAN
 	 * @return La lista de objetos VISITAN, construidos con base en las tuplas de la tabla VISITAN
 	 */
-	public List<Visitan> darVisitan ()
+	public List<HabitacionTiempoOcupada> darVisitan ()
 	{
 		return sqlVisitan.darVisitan (pmf.getPersistenceManager());
 	}	

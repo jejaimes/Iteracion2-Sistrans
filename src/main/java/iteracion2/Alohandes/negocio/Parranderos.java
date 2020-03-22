@@ -85,10 +85,10 @@ public class Parranderos
 	 * @param nombre - El nombre del tipo de bebida
 	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
 	 */
-	public TipoBebida adicionarTipoBebida (String nombre)
+	public HabitacionServicio adicionarTipoBebida (String nombre)
 	{
         log.info ("Adicionando Tipo de bebida: " + nombre);
-        TipoBebida tipoBebida = pp.adicionarTipoBebida (nombre);		
+        HabitacionServicio tipoBebida = pp.adicionarTipoBebida (nombre);		
         log.info ("Adicionando Tipo de bebida: " + tipoBebida);
         return tipoBebida;
 	}
@@ -126,10 +126,10 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos TipoBebida con todos los tipos de bebida que conoce la aplicación, llenos con su información básica
 	 */
-	public List<TipoBebida> darTiposBebida ()
+	public List<HabitacionServicio> darTiposBebida ()
 	{
 		log.info ("Consultando Tipos de bebida");
-        List<TipoBebida> tiposBebida = pp.darTiposBebida ();	
+        List<HabitacionServicio> tiposBebida = pp.darTiposBebida ();	
         log.info ("Consultando Tipos de bebida: " + tiposBebida.size() + " existentes");
         return tiposBebida;
 	}
@@ -139,11 +139,11 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos VOTipoBebida con todos los tipos de bebida que conoce la aplicación, llenos con su información básica
 	 */
-	public List<VOTipoBebida> darVOTiposBebida ()
+	public List<VOHabitacionServicio> darVOTiposBebida ()
 	{
 		log.info ("Generando los VO de Tipos de bebida");        
-        List<VOTipoBebida> voTipos = new LinkedList<VOTipoBebida> ();
-        for (TipoBebida tb : pp.darTiposBebida ())
+        List<VOHabitacionServicio> voTipos = new LinkedList<VOHabitacionServicio> ();
+        for (HabitacionServicio tb : pp.darTiposBebida ())
         {
         	voTipos.add (tb);
         }
@@ -158,10 +158,10 @@ public class Parranderos
 	 * @return Un objeto TipoBebida con el tipos de bebida de ese nombre que conoce la aplicación, 
 	 * lleno con su información básica
 	 */
-	public TipoBebida darTipoBebidaPorNombre (String nombre)
+	public HabitacionServicio darTipoBebidaPorNombre (String nombre)
 	{
 		log.info ("Buscando Tipo de bebida por nombre: " + nombre);
-		List<TipoBebida> tb = pp.darTipoBebidaPorNombre (nombre);
+		List<HabitacionServicio> tb = pp.darTipoBebidaPorNombre (nombre);
 		return !tb.isEmpty () ? tb.get (0) : null;
 	}
 
@@ -176,10 +176,10 @@ public class Parranderos
 	 * @param gradoAlcohol - El grado de alcohol de la bebida (Mayor que 0)
 	 * @return El objeto Bebida adicionado. null si ocurre alguna Excepción
 	 */
-	public Bebida adicionarBebida (String nombre, long idTipoBebida, int gradoAlcohol)
+	public Cliente adicionarBebida (String nombre, long idTipoBebida, int gradoAlcohol)
 	{
 		log.info ("Adicionando bebida " + nombre);
-		Bebida bebida = pp.adicionarBebida (nombre, idTipoBebida, gradoAlcohol);
+		Cliente bebida = pp.adicionarBebida (nombre, idTipoBebida, gradoAlcohol);
         log.info ("Adicionando bebida: " + bebida);
         return bebida;
 	}
@@ -217,10 +217,10 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos Bebida con todos las bebidas que conoce la aplicación, llenos con su información básica
 	 */
-	public List<Bebida> darBebidas ()
+	public List<Cliente> darBebidas ()
 	{
         log.info ("Consultando Bebidas");
-        List<Bebida> bebidas = pp.darBebidas ();	
+        List<Cliente> bebidas = pp.darBebidas ();	
         log.info ("Consultando Bebidas: " + bebidas.size() + " bebidas existentes");
         return bebidas;
 	}
@@ -230,11 +230,11 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos VOBebida con todos las bebidas que conoce la aplicación, llenos con su información básica
 	 */
-	public List<VOBebida> darVOBebidas ()
+	public List<VOCliente> darVOBebidas ()
 	{
 		log.info ("Generando los VO de las bebidas");       
-        List<VOBebida> voBebidas = new LinkedList<VOBebida> ();
-        for (Bebida beb : pp.darBebidas ())
+        List<VOCliente> voBebidas = new LinkedList<VOCliente> ();
+        for (Cliente beb : pp.darBebidas ())
         {
         	voBebidas.add (beb);
         }
@@ -267,10 +267,10 @@ public class Parranderos
 	 * @param ciudad - La ciudad del bebedor
 	 * @return El objeto BEBEDOR adicionado. null si ocurre alguna Excepción
 	 */
-	public Bebedor adicionarBebedor (String nombre, String presupuesto, String ciudad)
+	public AlojamientoServicio adicionarBebedor (String nombre, String presupuesto, String ciudad)
 	{
         log.info ("Adicionando bebedor: " + nombre);
-        Bebedor bebedor = pp.adicionarBebedor (nombre, presupuesto, ciudad);
+        AlojamientoServicio bebedor = pp.adicionarBebedor (nombre, presupuesto, ciudad);
         log.info ("Adicionando bebedor: " + bebedor);
         return bebedor;
 	}
@@ -309,10 +309,10 @@ public class Parranderos
 	 * @return Un objeto Bebedor que corresponde con el identificador buscado y lleno con su información básica
 	 * 			null, si un bebedor con dicho identificador no existe
 	 */
-	public Bebedor darBebedorPorId (long idBebedor)
+	public AlojamientoServicio darBebedorPorId (long idBebedor)
 	{
         log.info ("Dar información de un bebedor por id: " + idBebedor);
-        Bebedor bebedor = pp.darBebedorPorId (idBebedor);
+        AlojamientoServicio bebedor = pp.darBebedorPorId (idBebedor);
         log.info ("Buscando bebedor por Id: " + bebedor != null ? bebedor : "NO EXISTE");
         return bebedor;
 	}
@@ -323,10 +323,10 @@ public class Parranderos
 	 * @return Una lista de Bebedores con su información básica, donde todos tienen el nombre buscado.
 	 * 	La lista vacía indica que no existen bebedores con ese nombre
 	 */
-	public List<Bebedor> darBebedoresPorNombre (String nombre)
+	public List<AlojamientoServicio> darBebedoresPorNombre (String nombre)
 	{
         log.info ("Dar información de bebedores por nombre: " + nombre);
-        List<Bebedor> bebedores = pp.darBebedoresPorNombre (nombre);
+        List<AlojamientoServicio> bebedores = pp.darBebedoresPorNombre (nombre);
         log.info ("Dar información de Bebedores por nombre: " + bebedores.size() + " bebedores con ese nombre existentes");
         return bebedores;
  	}
@@ -337,11 +337,11 @@ public class Parranderos
 	 * @return Una lista de Bebedores con su información básica, donde todos tienen el nombre buscado.
 	 * 	La lista vacía indica que no existen bebedores con ese nombre
 	 */
-	public List<VOBebedor> darVOBebedoresPorNombre (String nombre)
+	public List<VOAlojamientoServicio> darVOBebedoresPorNombre (String nombre)
 	{
         log.info ("Generando VO de bebedores por nombre: " + nombre);
-        List<VOBebedor> voBebedores = new LinkedList<VOBebedor> ();
-       for (Bebedor bdor : pp.darBebedoresPorNombre (nombre))
+        List<VOAlojamientoServicio> voBebedores = new LinkedList<VOAlojamientoServicio> ();
+       for (AlojamientoServicio bdor : pp.darBebedoresPorNombre (nombre))
        {
           	voBebedores.add (bdor);
        }
@@ -357,10 +357,10 @@ public class Parranderos
 	 * 		los bares y bebidas con los que está directamente relacionado<br>
 	 * 			null, si un bebedor con dicho identificador no existe
 	 */
-	public Bebedor darBebedorCompleto (long idBebedor)
+	public AlojamientoServicio darBebedorCompleto (long idBebedor)
 	{
         log.info ("Dar información COMPLETA de un bebedor por id: " + idBebedor);
-        Bebedor bebedor = pp.darBebedorCompleto (idBebedor);
+        AlojamientoServicio bebedor = pp.darBebedorCompleto (idBebedor);
         log.info ("Buscando bebedor por Id: " + bebedor.toStringCompleto() != null ? bebedor : "NO EXISTE");
         return bebedor;
 	}
@@ -370,10 +370,10 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos Bebedor con todos las bebedores que conoce la aplicación, llenos con su información básica
 	 */
-	public List<Bebedor> darBebedores ()
+	public List<AlojamientoServicio> darBebedores ()
 	{
         log.info ("Listando Bebedores");
-        List<Bebedor> bebedores = pp.darBebedores ();	
+        List<AlojamientoServicio> bebedores = pp.darBebedores ();	
         log.info ("Listando Bebedores: " + bebedores.size() + " bebedores existentes");
         return bebedores;
 	}
@@ -383,11 +383,11 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos VOBebedor con todos las bebedores que conoce la aplicación, llenos con su información básica
 	 */
-	public List<VOBebedor> darVOBebedores ()
+	public List<VOAlojamientoServicio> darVOBebedores ()
 	{
         log.info ("Generando los VO de Bebedores");
-         List<VOBebedor> voBebedores = new LinkedList<VOBebedor> ();
-        for (Bebedor bdor : pp.darBebedores ())
+         List<VOAlojamientoServicio> voBebedores = new LinkedList<VOAlojamientoServicio> ();
+        for (AlojamientoServicio bdor : pp.darBebedores ())
         {
         	voBebedores.add (bdor);
         }
@@ -583,10 +583,10 @@ public class Parranderos
 	 * @param idBebida - El identificador de la bebida
 	 * @return Un objeto Gustan con los valores dados
 	 */
-	public Gustan adicionarGustan (long idBebedor, long idBebida)
+	public Empresa adicionarGustan (long idBebedor, long idBebida)
 	{
         log.info ("Adicionando gustan [" + idBebedor + ", " + idBebida + "]");
-        Gustan resp = pp.adicionarGustan (idBebedor, idBebida);
+        Empresa resp = pp.adicionarGustan (idBebedor, idBebida);
         log.info ("Adicionando gustan: " + resp + " tuplas insertadas");
         return resp;
 	}
@@ -611,10 +611,10 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos Gustan con todos los GUSTAN que conoce la aplicación, llenos con su información básica
 	 */
-	public List<Gustan> darGustan ()
+	public List<Empresa> darGustan ()
 	{
         log.info ("Listando Gustan");
-        List<Gustan> gustan = pp.darGustan ();	
+        List<Empresa> gustan = pp.darGustan ();	
         log.info ("Listando Gustan: " + gustan.size() + " preferencias de gusto existentes");
         return gustan;
 	}
@@ -624,11 +624,11 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos Gustan con todos los GUSTAN que conoce la aplicación, llenos con su información básica
 	 */
-	public List<VOGustan> darVOGustan ()
+	public List<VOEmpresa> darVOGustan ()
 	{
 		log.info ("Generando los VO de Gustan");
-		List<VOGustan> voGustan = new LinkedList<VOGustan> ();
-		for (VOGustan bar: pp.darGustan ())
+		List<VOEmpresa> voGustan = new LinkedList<VOEmpresa> ();
+		for (VOEmpresa bar: pp.darGustan ())
 		{
 			voGustan.add (bar);
 		}
@@ -648,10 +648,10 @@ public class Parranderos
 	 * @param horario - El horario en el que se sirve la bebida (DIURNO, NOCTURNO, TODOS)
 	 * @return Un objeto Sirven con los valores dados
 	 */
-	public Sirven adicionarSirven (long idBar, long idBebida, String horario)
+	public Habitacion adicionarSirven (long idBar, long idBebida, String horario)
 	{
         log.info ("Adicionando sirven [" + idBar + ", " + idBebida + "]");
-        Sirven resp = pp.adicionarSirven (idBar, idBebida, horario);
+        Habitacion resp = pp.adicionarSirven (idBar, idBebida, horario);
         log.info ("Adicionando sirven: " + resp + " tuplas insertadas");
         return resp;
 	}
@@ -676,10 +676,10 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos SIRVEN con todos los GUSTAN que conoce la aplicación, llenos con su información básica
 	 */
-	public List<Sirven> darSirven ()
+	public List<Habitacion> darSirven ()
 	{
         log.info ("Listando Sirven");
-        List<Sirven> sirven = pp.darSirven ();	
+        List<Habitacion> sirven = pp.darSirven ();	
         log.info ("Listando Sirven: " + sirven.size() + " sirven existentes");
         return sirven;
 	}
@@ -689,11 +689,11 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos SIRVEN con todos los SIRVEN que conoce la aplicación, llenos con su información básica
 	 */
-	public List<VOSirven> darVOSirven ()
+	public List<VOHabitacion> darVOSirven ()
 	{
 		log.info ("Generando los VO de Sirven");
-		List<VOSirven> voGustan = new LinkedList<VOSirven> ();
-		for (VOSirven sirven: pp.darSirven ())
+		List<VOHabitacion> voGustan = new LinkedList<VOHabitacion> ();
+		for (VOHabitacion sirven: pp.darSirven ())
 		{
 			voGustan.add (sirven);
 		}
@@ -714,10 +714,10 @@ public class Parranderos
 	 * @param horario - El horario en el que se sirve la bebida (DIURNO, NOCTURNO, TODOS)
 	 * @return Un objeto Visitan con los valores dados
 	 */
-	public Visitan adicionarVisitan (long idBebedor, long idBar, Timestamp fecha, String horario)
+	public HabitacionTiempoOcupada adicionarVisitan (long idBebedor, long idBar, Timestamp fecha, String horario)
 	{
         log.info ("Adicionando visitan [" + idBebedor + ", " + idBar + "]");
-        Visitan resp = pp.adicionarVisitan (idBebedor, idBar, fecha, horario);
+        HabitacionTiempoOcupada resp = pp.adicionarVisitan (idBebedor, idBar, fecha, horario);
         log.info ("Adicionando visitan: " + resp + " tuplas insertadas");
         return resp;
 	}
@@ -742,10 +742,10 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos VISITAN con todos los GUSTAN que conoce la aplicación, llenos con su información básica
 	 */
-	public List<Visitan> darVisitan ()
+	public List<HabitacionTiempoOcupada> darVisitan ()
 	{
         log.info ("Listando Visitan");
-        List<Visitan> visitan = pp.darVisitan ();	
+        List<HabitacionTiempoOcupada> visitan = pp.darVisitan ();	
         log.info ("Listando Visitan: Listo!");
         return visitan;
 	}
@@ -755,11 +755,11 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos Visitan con todos los Visitan que conoce la aplicación, llenos con su información básica
 	 */
-	public List<VOVisitan> darVOVisitan ()
+	public List<VOHabitacionTiempoOcupada> darVOVisitan ()
 	{
 		log.info ("Generando los VO de Visitan");
-		List<VOVisitan> voGustan = new LinkedList<VOVisitan> ();
-		for (VOVisitan vis: pp.darVisitan ())
+		List<VOHabitacionTiempoOcupada> voGustan = new LinkedList<VOHabitacionTiempoOcupada> ();
+		for (VOHabitacionTiempoOcupada vis: pp.darVisitan ())
 		{
 			voGustan.add (vis);
 		}

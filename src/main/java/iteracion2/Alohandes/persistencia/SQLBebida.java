@@ -20,8 +20,8 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import iteracion2.Alohandes.negocio.Bebida;
-import iteracion2.Alohandes.negocio.TipoBebida;
+import iteracion2.Alohandes.negocio.Cliente;
+import iteracion2.Alohandes.negocio.HabitacionServicio;
 
 /**
  * Clase que encapsula los métodos que hacen acceso a la base de datos para el concepto BEBIDA de Parranderos
@@ -109,12 +109,12 @@ class SQLBebida
 	 * @param idBebida - El identificador de la bebida
 	 * @return El objeto BEBIDA que tiene el identificador dado
 	 */
-	public Bebida darTipoBebidaPorId (PersistenceManager pm, long idBebida) 
+	public Cliente darTipoBebidaPorId (PersistenceManager pm, long idBebida) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaBebida () + " WHERE id = ?");
-		q.setResultClass(TipoBebida.class);
+		q.setResultClass(HabitacionServicio.class);
 		q.setParameters(idBebida);
-		return (Bebida) q.executeUnique();
+		return (Cliente) q.executeUnique();
 	}
 
 	/**
@@ -124,12 +124,12 @@ class SQLBebida
 	 * @param nombreBebida - El nombre de la bebida
 	 * @return Una lista de objetos BEBIDA que tienen el nombre dado
 	 */
-	public List<Bebida> darBebidasPorNombre (PersistenceManager pm, String nombreBebida) 
+	public List<Cliente> darBebidasPorNombre (PersistenceManager pm, String nombreBebida) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaBebida () + " WHERE nombre = ?");
-		q.setResultClass(Bebida.class);
+		q.setResultClass(Cliente.class);
 		q.setParameters(nombreBebida);
-		return (List<Bebida>) q.executeList();
+		return (List<Cliente>) q.executeList();
 	}
 
 	/**
@@ -138,11 +138,11 @@ class SQLBebida
 	 * @param pm - El manejador de persistencia
 	 * @return Una lista de objetos BEBIDA
 	 */
-	public List<Bebida> darBebidas (PersistenceManager pm)
+	public List<Cliente> darBebidas (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaBebida ());
-		q.setResultClass(Bebida.class);
-		return (List<Bebida>) q.executeList();
+		q.setResultClass(Cliente.class);
+		return (List<Cliente>) q.executeList();
 	}
 
 	/**

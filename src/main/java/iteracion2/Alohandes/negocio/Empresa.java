@@ -24,7 +24,7 @@ package iteracion2.Alohandes.negocio;
  * 
  * @author Germán Bravo
  */
-public class Gustan implements VOGustan
+public class Empresa implements VOEmpresa
 {
 	/* ****************************************************************
 	 * 			Atributos
@@ -45,7 +45,7 @@ public class Gustan implements VOGustan
 	/**
 	 * Constructor por defecto
 	 */
-	public Gustan() 
+	public Empresa() 
 	{
 		this.idBebedor = 0;
 		this.idBebida = 0;
@@ -56,7 +56,7 @@ public class Gustan implements VOGustan
 	 * @param idBebedor - El identificador del bebedor. Debe exixtir un bebedor con dicho identificador
 	 * @param idBebida - El identificador de la bebida. Debe existir una bebida con dicho identificador
 	 */
-	public Gustan(long idBebedor, long idBebida) 
+	public Empresa(long idBebedor, long idBebida) 
 	{
 		this.idBebedor = idBebedor;
 		this.idBebida = idBebida;
