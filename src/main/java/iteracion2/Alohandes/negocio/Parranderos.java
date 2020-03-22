@@ -478,10 +478,10 @@ public class Parranderos
 	 * @param sedes - El número de sedes que tiene el bar en la ciudad (Mayor que 0)
 	 * @return El objeto Bar adicionado. null si ocurre alguna Excepción
 	 */
-	public Bar adicionarBar (String nombre, String presupuesto, String ciudad, int sedes)
+	public Alojamiento adicionarBar (String nombre, String presupuesto, String ciudad, int sedes)
 	{
         log.info ("Adicionando bar: " + nombre);
-        Bar bar = pp.adicionarBar (nombre, presupuesto, ciudad, sedes);
+        Alojamiento bar = pp.adicionarBar (nombre, presupuesto, ciudad, sedes);
         log.info ("Adicionando bar: " + bar);
         return bar;
 	}
@@ -519,10 +519,10 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos Bar con todos las bares que conoce la aplicación, llenos con su información básica
 	 */
-	public List<Bar> darBares ()
+	public List<Alojamiento> darBares ()
 	{
         log.info ("Listando Bares");
-        List<Bar> bares = pp.darBares ();	
+        List<Alojamiento> bares = pp.darBares ();	
         log.info ("Listando Bares: " + bares.size() + " bares existentes");
         return bares;
 	}
@@ -532,11 +532,11 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos Bar con todos las bares que conoce la aplicación, llenos con su información básica
 	 */
-	public List<VOBar> darVOBares ()
+	public List<VOAlojamiento> darVOBares ()
 	{
 		log.info ("Generando los VO de Bares");
-		List<VOBar> voBares = new LinkedList<VOBar> ();
-		for (Bar bar: pp.darBares ())
+		List<VOAlojamiento> voBares = new LinkedList<VOAlojamiento> ();
+		for (Alojamiento bar: pp.darBares ())
 		{
 			voBares.add (bar);
 		}
