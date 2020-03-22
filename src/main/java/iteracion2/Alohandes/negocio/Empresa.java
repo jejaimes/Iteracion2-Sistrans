@@ -24,20 +24,20 @@ package iteracion2.Alohandes.negocio;
  * 
  * @author Germán Bravo
  */
-public class Empresa implements VOEmpresa
+public class Empresa extends Alojamiento implements VOEmpresa
 {
 	/* ****************************************************************
 	 * 			Atributos
 	 *****************************************************************/
 	/**
-	 * El identificador del bebedor que gusta de la bebida
+	 * El identificador del alojamiento
 	 */
-	private long idBebedor;
+	private long idAlojamiento;
 
 	/**
 	 * El identificador de la bebida que gusta al bebedor
 	 */
-	private long idBebida;
+	private String nombre;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -47,52 +47,48 @@ public class Empresa implements VOEmpresa
 	 */
 	public Empresa() 
 	{
-		this.idBebedor = 0;
-		this.idBebida = 0;
+		this.idAlojamiento = 0;
+		this.nombre = "";
 	}
 
 	/**
 	 * Constructor con valores
-	 * @param idBebedor - El identificador del bebedor. Debe exixtir un bebedor con dicho identificador
-	 * @param idBebida - El identificador de la bebida. Debe existir una bebida con dicho identificador
+	 * 
 	 */
-	public Empresa(long idBebedor, long idBebida) 
+	public Empresa(long id, String nombre) 
 	{
-		this.idBebedor = idBebedor;
-		this.idBebida = idBebida;
+		this.idAlojamiento = id;
+		this.nombre = nombre;
 	}
 
 	/**
-	 * @return El idBebedor
+	 * @return El id del alojamiento
 	 */
-	public long getIdBebedor() 
-	{
-		return idBebedor;
+	public long getIdAlojamiento() {
+		return idAlojamiento;
 	}
 
 	/**
-	 * @param idBebedor - El nuevo idBebedor. Debe existir un bebedor con dicho identificador
+	 * @param idAlojamiento - El nuevo idAlojamiento. Debe existir un alojamiento con dicho identificador
+
+	public void setIdAlojamiento(long idAlojamiento) {
+		this.idAlojamiento = idAlojamiento;
+	}
+	
+	/**
+	 * @return El nombre de la empresa
 	 */
-	public void setIdBebedor(long idBebedor) 
-	{
-		this.idBebedor = idBebedor;
+	public String getNombre() {
+		return nombre;
 	}
 
 	/**
-	 * @return El idBebida
+	 * @param nombre - El nuevo nombre de la empresa
 	 */
-	public long getIdBebida() 
-	{
-		return idBebida;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	/**
-	 * @param idBebida - El nuevo identificador de bebida. Debe existir una bebida con dicho identificador
-	 */
-	public void setIdBebida(long idBebida) 
-	{
-		this.idBebida = idBebida;
-	}
 	
 	/** 
 	 * @return Una cadena con la información básica
@@ -100,7 +96,7 @@ public class Empresa implements VOEmpresa
 	@Override
 	public String toString() 
 	{
-		return "Gustan [idBebedor=" + idBebedor + ", idBebida=" + idBebida + "]";
+		return "Empresa [idAlojamiento=" + idAlojamiento + ", nombre=" + nombre + "]";
 	}
 	
 }

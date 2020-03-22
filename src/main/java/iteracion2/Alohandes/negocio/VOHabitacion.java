@@ -1,25 +1,9 @@
-/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * Universidad	de	los	Andes	(Bogotá	- Colombia)
- * Departamento	de	Ingeniería	de	Sistemas	y	Computación
- * Licenciado	bajo	el	esquema	Academic Free License versión 2.1
- * 		
- * Curso: isis2304 - Sistemas Transaccionales
- * Proyecto: Parranderos Uniandes
- * @version 1.0
- * @author Germán Bravo
- * Julio de 2018
- * 
- * Revisado por: Claudia Jiménez, Christian Ariza
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
-
 package iteracion2.Alohandes.negocio;
 
 /**
- * Interfaz para los métodos get de SIRVEN.
+ * Interfaz para los métodos get de HABITACION.
  * Sirve para proteger la información del negocio de posibles manipulaciones desde la interfaz 
  * 
- * @author Germán Bravo
  */
 public interface VOHabitacion 
 {
@@ -27,19 +11,49 @@ public interface VOHabitacion
 	 * 			Métodos
 	 *****************************************************************/
 	/**
-	 * @return El idBar
+	 * @return El id de la habitacion
 	 */
-	public long getIdBar();
+	public long getId();
 
 	/**
-	 * @return El idBebida
+	 * @return El id de la Empresa
 	 */
-	public long getIdBebida();
+	public long getEmpresa();
 
 	/**
-	 * @return El horario en que el bar sirve la bebida
+	 * @return El numero de la habitacion
 	 */
-	public String getHorario();
+	public int getNumHabitacion();
+	
+	/**
+	 * @return El tipo de habitacion
+	 */
+	public String getTipo();
+	
+	/**
+	 * @return La ubicaión de la habitación
+	 */
+	public String getUbicacion();
+	
+	/**
+	 * @return La capacidad de la habitación
+	 */
+	public int getCapacidad();
+	
+	/**
+	 * @return Si la habitación es o no compartida
+	 */
+	public boolean getCompartida();
+	
+	/**
+	 * @return El tamanio de la habitacion
+	 */
+	public int getTamanio();
+	
+	/**
+	 * @return El precio de la habitacion
+	 */
+	public int getPrecio();
 
 	/** 
 	 * @return Una cadena con la información básica

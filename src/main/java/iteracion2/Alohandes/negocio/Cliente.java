@@ -97,37 +97,41 @@ public class Cliente implements VOCliente
 	}
 
 	/**
-	 * @return El id del alojamiento
+	 * @return El tipo de documento del cliente
 	 */
 	public String getTipoDocumento() {
 		return tipoDocumento;
 	}
 
-
+	/**
+	 * @param tipoDocumento - El nuevo tipo de documento del cliente
+	 */
 	public void setTipoDocumento(String tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
 	}
 
 	/**
-	 * @return El id del alojamiento
+	 * @return El numero de documento del cliente
 	 */
 	public long getNumDocumento() {
 		return numDocumento;
 	}
 
-
+	/**
+	 * @param numDocumento - El nuevo numero de documento del cliente
+	 */
 	public void setNumDocumento(long numDocumento) {
 		this.numDocumento = numDocumento;
 	}
 
 
 	/**
-	 * @return Una cadena con la información básica de la bebida
+	 * @return Una cadena con la información básica del cliente
 	 */
 	@Override
 	public String toString() 
 	{
-		return "Bebida [id=" + id + ", nombre=" + nombre + ", idTipoBebida=" + idTipoBebida + ", gradoAlcohol=" + gradoAlcohol + "]";
+		return "Cliente [nombre=" + nombre + ", tipoPersona=" + tipoPersona + ", tipoDocumento=" + tipoDocumento + ", numeroDocumento=" + numDocumento + "]";
 	}
 
 }

@@ -172,7 +172,7 @@ public class AlojamientoServicio implements VOAlojamientoServicio
 	@Override
 	public String toString() 
 	{
-		return "Bebedor [id=" + idAlojamiento + ", nombre=" + nombreServicio + ", ciudad=" + costo + "]";
+		return "AlojamientoServicio [id=" + idAlojamiento + ", nombre=" + nombreServicio + ", ciudad=" + costo + "]";
 	}
 
 	/**

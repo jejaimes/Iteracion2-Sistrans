@@ -1,17 +1,3 @@
-/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * Universidad	de	los	Andes	(Bogotá	- Colombia)
- * Departamento	de	Ingeniería	de	Sistemas	y	Computación
- * Licenciado	bajo	el	esquema	Academic Free License versión 2.1
- * 		
- * Curso: isis2304 - Sistemas Transaccionales
- * Proyecto: Parranderos Uniandes
- * @version 1.0
- * @author Germán Bravo
- * Julio de 2018
- * 
- * Revisado por: Claudia Jiménez, Christian Ariza
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
 
 package iteracion2.Alohandes.negocio;
 
@@ -33,24 +19,14 @@ public class HabitacionTiempoOcupada implements VOHabitacionTiempoOcupada
 	 * 			Atributos
 	 *****************************************************************/
 	/**
-	 * El identificador del bebedor que realiza la visita
+	 * El id de la habitacion
 	 */
-	private long idBebedor;
-	
+	private long idHabitacion;
+
 	/**
-	 * El identificador del bar visitado
+	 * El id del tiempo de ocupación
 	 */
-	private long idBar;
-	
-	/**
-	 * La fecha de la visita
-	 */
-	private Timestamp fechaVisita;
-	
-	/**
-	 * El horario en que se realizó la visita (DIURNO, NOCTURNO, TODOS)
-	 */
-	private String horario;
+	private long idTiempoOcupacion;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -60,90 +36,59 @@ public class HabitacionTiempoOcupada implements VOHabitacionTiempoOcupada
 	 */
 	public HabitacionTiempoOcupada() 
 	{
-		this.idBebedor = 0;
-		this.idBar = 0;
-		this.horario = "";
-		this.fechaVisita = new Timestamp (0);
+		this.idHabitacion = 0;
+		this.idTiempoOcupacion = 0;
 	}
+
+	
 
 	/**
 	 * Constructor con valores
-	 * @param idBebedor - El identificador del b ebedor. Debe existir un bebedor con dicho identificador
-	 * @param idBar - El identificador del bar. Debe exixtir un bar con dicho identificador
-	 * @param fechaVisita - La fecha en la cual se realiza la visita
-	 * @param horario - El horario en el que el bebedor vista el bar (DIURNO, NOCTURNO, TODOS)
+	 * @param idHabitacion
+	 * @param idTiempoOcupacion
 	 */
-	public HabitacionTiempoOcupada(long idBebedor, long idBar, Timestamp fechaVisita, String horario) 
-	{
-		this.idBebedor = idBebedor;
-		this.idBar = idBar;
-		this.fechaVisita = fechaVisita;
-		this.horario = horario;
+	public HabitacionTiempoOcupada(long idHabitacion, long idTiempoOcupacion) {
+		this.idHabitacion = idHabitacion;
+		this.idTiempoOcupacion = idTiempoOcupacion;
 	}
 
-	/**
-	 * @return El idBebedor
-	 */
-	public long getIdBebedor() 
-	{
-		return idBebedor;
-	}
+	
 
 	/**
-	 * @param idBebedor - El nuevo idBebedor. Debe existir un bebedor con dicho identificador
+	 * @return El id de la habitacion
 	 */
-	public void setIdBebedor(long idBebedor) 
-	{
-		this.idBebedor = idBebedor;
+	public long getIdHabitacion() {
+		return idHabitacion;
 	}
 
-	/**
-	 * @return El idBar
-	 */
-	public long getIdBar() 
-	{
-		return idBar;
-	}
+
 
 	/**
-	 * @param idBar - El nuevo idBar. Debe exixtir un bar con dicho identificador
+	 * @param El nuevo id de la habitacion
 	 */
-	public void setIdBar(long idBar) 
-	{
-		this.idBar = idBar;
+	public void setIdHabitacion(long idHabitacion) {
+		this.idHabitacion = idHabitacion;
 	}
 
-	/**
-	 * @return La fechaVisita
-	 */
-	public Timestamp getFechaVisita() 
-	{
-		return fechaVisita;
-	}
+
 
 	/**
-	 * @param fechaVisita - La nueva fecha de visita al bar por el bebedor
+	 * @return El id del tiempo de ocupación
 	 */
-	public void setFechaVisita(Timestamp fechaVisita) 
-	{
-		this.fechaVisita = fechaVisita;
+	public long getIdTiempoOcupacion() {
+		return idTiempoOcupacion;
 	}
 
-	/**
-	 * @return El horario
-	 */
-	public String getHorario() 
-	{
-		return horario;
-	}
+
 
 	/**
-	 * @param horario - El nuevo horario en que se realizó la visita (DIURNO, NOCTURNO, TODOS)
+	 * @param El nuevo id del tiempo de ocupación
 	 */
-	public void setHorario(String horario) 
-	{
-		this.horario = horario;
+	public void setIdTiempoOcupacion(long idTiempoOcupacion) {
+		this.idTiempoOcupacion = idTiempoOcupacion;
 	}
+
+
 
 	/** 
 	 * @return Una cadena con la información básica
@@ -151,7 +96,6 @@ public class HabitacionTiempoOcupada implements VOHabitacionTiempoOcupada
 	@Override
 	public String toString() 
 	{
-		return "Visitan [idBebedor=" + idBebedor + ", idBar=" + idBar + ", fechaVisita=" + fechaVisita + ", horario="
-				+ horario + "]";
+		return "HabitacionTiempoOcupada [idHabitacion=" + idHabitacion + ", idTiempoOcupacion=" + idTiempoOcupacion + "]";
 	}
 }

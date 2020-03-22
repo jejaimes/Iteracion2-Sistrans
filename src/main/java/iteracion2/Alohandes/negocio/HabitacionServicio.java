@@ -16,7 +16,7 @@
 package iteracion2.Alohandes.negocio;
 
 /**
- * Clase para modelar el concepto BAR del negocio de los Parranderos
+ * * Clase para modelar la relación HABITACIONSERVICIO del negocio de ALOHANDES
  *
  * @author Germán Bravo
  */
@@ -26,69 +26,101 @@ public class HabitacionServicio implements VOHabitacionServicio
 	 * 			Atributos
 	 *****************************************************************/
 	/**
-	 * El identificador del tipo de bebida
+	 * El nombre del servicio
 	 */
-	private long id;
+	private String nombreServicio;
 
 	/**
-	 * El nombre del tipo de bebida
+	 * El id de la habitacion
 	 */
-	private String nombre;
+	private long idHabitacion;
+	
+	/**
+	 * El costo del servicio
+	 */
+	private int costo;
 
 	/* ****************************************************************
 	 * 			Métodos
 	 *****************************************************************/
 	/**
-	 * Constructor por defecto
+	 * Constructor por defectp
 	 */
-	public HabitacionServicio() 
-	{
-		this.id = 0;
-		this.nombre = "Default";
+	public HabitacionServicio() {
+		this.nombreServicio = "";
+		this.idHabitacion = 0;
+		this.costo = 0;
 	}
 
-	/**
-	 * Constructor con valores
-	 * @param id - El identificador del tipo de bebida
-	 * @param nombre - El nombre del tipo de bebida
-	 */
-	public HabitacionServicio(long id, String nombre) 
-	{
-		this.id = id;
-		this.nombre = nombre;
-	}
+
 
 	/**
-	 * @return El id del tipo de bebida
+	 * Construcor con valores
+	 * @param nombreServicio
+	 * @param idHabitacion
+	 * @param costo
 	 */
-	public long getId() 
-	{
-		return id;
+	public HabitacionServicio(String nombreServicio, long idHabitacion, int costo) {
+		this.nombreServicio = nombreServicio;
+		this.idHabitacion = idHabitacion;
+		this.costo = costo;
 	}
 
-	/**
-	 * @param id - El nuevo id del tipo de bebida
-	 */
-	public void setId(long id) 
-	{
-		this.id = id;
-	}
+	
+
 
 	/**
-	 * @return El nombre del tipo de bebida
+	 * @return El nombre del servicio
 	 */
-	public String getNombre() 
-	{
-		return nombre;
+	public String getNombreServicio() {
+		return nombreServicio;
 	}
 
+
+
 	/**
-	 * @param nombre - El nuevo nombre del tipo de bebida
+	 * @param El nuevo nombre del servicio
 	 */
-	public void setNombre(String nombre) 
-	{
-		this.nombre = nombre;
+	public void setNombreServicio(String nombreServicio) {
+		this.nombreServicio = nombreServicio;
 	}
+
+
+
+	/**
+	 * @return El id de la habitacion
+	 */
+	public long getIdHabitacion() {
+		return idHabitacion;
+	}
+
+
+
+	/**
+	 * @param El nuevo id de la habitacion
+	 */
+	public void setIdHabitacion(long idHabitacion) {
+		this.idHabitacion = idHabitacion;
+	}
+
+
+
+	/**
+	 * @return El costo del servicio
+	 */
+	public int getCosto() {
+		return costo;
+	}
+
+
+
+	/**
+	 * @param El nuevo costo del servicio
+	 */
+	public void setCosto(int costo) {
+		this.costo = costo;
+	}
+
 
 
 	/**
@@ -97,17 +129,7 @@ public class HabitacionServicio implements VOHabitacionServicio
 	@Override
 	public String toString() 
 	{
-		return "TipoBebida [id=" + id + ", nombre=" + nombre + "]";
-	}
-
-	/**
-	 * @param tipo - El TipoBebida a comparar
-	 * @return True si tienen el mismo nombre
-	 */
-	public boolean equals(Object tipo) 
-	{
-		HabitacionServicio tb = (HabitacionServicio) tipo;
-		return id == tb.id && nombre.equalsIgnoreCase (tb.nombre);
+		return "HabitacionServicio [nombreServicio=" + nombreServicio + ", idHabitacion=" + idHabitacion + ", costo=" + costo +"]";
 	}
 
 }

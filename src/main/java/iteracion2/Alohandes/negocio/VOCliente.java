@@ -32,7 +32,7 @@ public interface VOCliente
 	/**
 	 * @return El tipo_persona del cliente
 	 */
-	public String getIdTipoPersona();
+	public String getTipoPersona();
 	
 
 	/**
@@ -44,7 +44,7 @@ public interface VOCliente
 	/**
 	 * @return El num_documento del cliente
 	 */
-	public long geNumdocumento();
+	public long getNumDocumento();
 	
 	
 	/**

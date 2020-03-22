@@ -1,25 +1,9 @@
-/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * Universidad	de	los	Andes	(Bogotá	- Colombia)
- * Departamento	de	Ingeniería	de	Sistemas	y	Computación
- * Licenciado	bajo	el	esquema	Academic Free License versión 2.1
- * 		
- * Curso: isis2304 - Sistemas Transaccionales
- * Proyecto: Parranderos Uniandes
- * @version 1.0
- * @author Germán Bravo
- * Julio de 2018
- * 
- * Revisado por: Claudia Jiménez, Christian Ariza
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
-
 package iteracion2.Alohandes.negocio;
 
 /**
- * Interfaz para los métodos get de GUSTAN.
+ * Interfaz para los métodos get de EMPRESA.
  * Sirve para proteger la información del negocio de posibles manipulaciones desde la interfaz 
  * 
- * @author Germán Bravo
  */
 public interface VOEmpresa 
 {
@@ -27,14 +11,14 @@ public interface VOEmpresa
 	 * 			Métodos
 	 *****************************************************************/
 	/**
-	 * @return El idBebedor
+	 * @return El IDALOJAMIENTO
 	 */
-	public long getIdBebedor();
+	public long getIdAlojamiento();
 
 	/**
-	 * @return El idBebida
+	 * @return El nombre de la empresa
 	 */
-	public long getIdBebida();
+	public String getNombre();
 	
 	/** 
 	 * @return Una cadena con la información básica
