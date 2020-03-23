@@ -46,6 +46,8 @@ public class Reserva implements VOReserva
 	 * El id del TiempoOcupacion de la Reserva
 	 */
 	private long idTiempo;
+	
+	private int costo;
 
 	/*****************************************************************
 	 * 			Métodos
@@ -62,6 +64,7 @@ public class Reserva implements VOReserva
 		this.clienteTipoDoc = "";
 		this.alojamiento = 0;
 		this.idTiempo = 0;
+		this.costo = 0;
 	}
 
 
@@ -75,7 +78,7 @@ public class Reserva implements VOReserva
 	 * @param alojamiento - El id del alojamiento de la Reserva
 	 * @param idTiempo - El id del TiempoOcupacion de la Reserva
 	 */
-	public Reserva(String estado, Timestamp fecha, long id, long clienteNumDoc, String clienteTipoDoc, long alojamiento, long idTiempo) 
+	public Reserva(String estado, Timestamp fecha, long id, long clienteNumDoc, String clienteTipoDoc, long alojamiento, long idTiempo, int costo) 
 	{
 		this.estado = estado;
 		this.fecha = fecha;
@@ -84,6 +87,7 @@ public class Reserva implements VOReserva
 		this.clienteTipoDoc = clienteTipoDoc;
 		this.alojamiento = alojamiento;
 		this.idTiempo = idTiempo;
+		this.costo = costo;
 	}
 
 	/**
@@ -198,13 +202,26 @@ public class Reserva implements VOReserva
 		this.idTiempo = idTiempo;
 	}
 	
+	public int getCosto()
+	{
+		return costo;
+	}
+	
+	/**
+	 * @param idTiempo - El nuevo id del TiempoOcupacion de la Reserva
+	 */
+	public void setCosto(int Costo) 
+	{
+		this.costo = Costo;
+	}
+	
 	/** 
 	 * @return Una cadena con la información básica
 	 */
 	@Override
 	public String toString()
 	{
-		return "Reserva [estado=" + estado + ", fecha=" + fecha + ", id=" + id + ", clienteNumDoc=" + clienteNumDoc + ", clienteTipoDoc=" + clienteTipoDoc + ", alojamiento=" + alojamiento + ", idTiempo=" + idTiempo + "]";
+		return "Reserva [estado=" + estado + ", fecha=" + fecha + ", id=" + id + ", clienteNumDoc=" + clienteNumDoc + ", clienteTipoDoc=" + clienteTipoDoc + ", alojamiento=" + alojamiento + ", idTiempo=" + idTiempo + ", costo=" + costo+ "]";
 	}
 	
 }

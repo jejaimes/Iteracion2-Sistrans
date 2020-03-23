@@ -50,10 +50,6 @@ public interface VOHabitacion
 	 */
 	public int getTamanio();
 	
-	/**
-	 * @return El precio de la habitacion
-	 */
-	public int getPrecio();
 
 	/** 
 	 * @return Una cadena con la información básica

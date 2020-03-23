@@ -30,10 +30,6 @@ public interface VOInmueblePersona
 	 */
 	public String getTipoInmueble();
 	
-	/**
-	 * @return El precio del inmueble
-	 */
-	public int getPrecio();
 	
 	/**
 	 * @return El id del alojamiento del inmueble

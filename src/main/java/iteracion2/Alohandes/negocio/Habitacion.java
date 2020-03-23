@@ -51,10 +51,7 @@ public class Habitacion implements VOHabitacion
 	 */
 	private int tamanio;
 	
-	/**
-	 * El precio de la habitacion
-	 */
-	private int precio;
+
 
 	
 	
@@ -74,7 +71,6 @@ public class Habitacion implements VOHabitacion
 		this.capacidad = 0;
 		this.compartida = false;
 		this.tamanio = 0;
-		this.precio = 0;
 	}
 	
 	
@@ -101,7 +97,6 @@ public class Habitacion implements VOHabitacion
 		this.capacidad = capacidad;
 		this.compartida = compartida;
 		this.tamanio = tamanio;
-		this.precio = precio;
 	}
 
 	
@@ -248,23 +243,6 @@ public class Habitacion implements VOHabitacion
 	}
 
 
-
-	/**
-	 * @return El precio de la habitacion
-	 */
-	public int getPrecio() {
-		return precio;
-	}
-
-
-
-	/**
-	 * @param precio the precio to set
-	 */
-	public void setPrecio(int precio) {
-		this.precio = precio;
-	}
-
 	
 	/** 
 	 * @return Una cadena con la información básica
@@ -272,6 +250,6 @@ public class Habitacion implements VOHabitacion
 	@Override
 	public String toString() 
 	{
-		return "Habitacion [id=" + id + ", empresaId=" + empresa + ", numeroHabitacion=" + numHabitacion +", tipoHabitacion=" + tipo +", ubicacion=" + ubicacion+", capacidad=" + capacidad + ", compartida=" + compartida +", tamanio=" + tamanio +", precio=" + precio + "]";
+		return "Habitacion [id=" + id + ", empresaId=" + empresa + ", numeroHabitacion=" + numHabitacion +", tipoHabitacion=" + tipo +", ubicacion=" + ubicacion+", capacidad=" + capacidad + ", compartida=" + compartida +", tamanio=" + tamanio + "]";
 	}
 }

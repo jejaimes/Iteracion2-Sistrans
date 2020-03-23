@@ -47,6 +47,8 @@ public interface VOReserva
 	 */
 	public long getIdTiempo();
 	
+	public int getCosto();
+	
 	/** 
 	 * @return Una cadena con la información básica
 	 */

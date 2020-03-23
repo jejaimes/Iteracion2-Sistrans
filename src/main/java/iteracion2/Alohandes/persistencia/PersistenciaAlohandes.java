@@ -107,6 +107,8 @@ public class PersistenciaAlohandes
 	 */
 	private SQLHabitacionTiempoOcupada sqlHabitacionTiempoOcupada;
 	
+	private SQLProveedor sqlProveedor;
+	
 	/**
 	 * Atributo para el acceso a la tabla HOSTAL de la base de datos
 	 */
@@ -198,6 +200,7 @@ public class PersistenciaAlohandes
 		tablas.add ("MENAJE");
 		tablas.add ("MENAJE_INMUEBLE");
 		tablas.add ("MENAJE_VIVIENDAU");
+		tablas.add ("PROVEEDOR");
 		tablas.add ("RESERVA");
 		tablas.add ("RESERVA_HABITACION");
 		tablas.add ("SERVICIO");
@@ -295,6 +298,7 @@ public class PersistenciaAlohandes
 		this.sqlMenaje = new SQLMenaje(this);
 		this.sqlMenajeInmueble = new SQLMenajeInmueble(this);
 		this.sqlMenajeViviendaU = new SQLMenajeViviendaU(this);
+		this.sqlProveedor = new SQLProveedor(this);
 		this.sqlReserva = new SQLReserva(this);
 		this.sqlReservaHabitacion = new SQLReservaHabitacion(this);
 		this.sqlServicio = new SQLServicio(this);
@@ -422,12 +426,17 @@ public class PersistenciaAlohandes
 		return tablas.get (14);
 	}
 	
+	public String darTablaProveedor ()
+	{
+		return tablas.get (15);
+	}
+	
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de RESERVA de ALOHANDES
 	 */
 	public String darTablaReserva ()
 	{
-		return tablas.get (15);
+		return tablas.get (16);
 	}
 	
 	/**
@@ -435,7 +444,7 @@ public class PersistenciaAlohandes
 	 */
 	public String darTablaReservaHabitacion ()
 	{
-		return tablas.get (16);
+		return tablas.get (17);
 	}
 	
 	/**
@@ -443,7 +452,7 @@ public class PersistenciaAlohandes
 	 */
 	public String darTablaServicio ()
 	{
-		return tablas.get (17);
+		return tablas.get (18);
 	}
 	
 	/**
@@ -451,7 +460,7 @@ public class PersistenciaAlohandes
 	 */
 	public String darTablaTiempoOcupacion ()
 	{
-		return tablas.get (18);
+		return tablas.get (19);
 	}
 	
 	/**
@@ -459,7 +468,7 @@ public class PersistenciaAlohandes
 	 */
 	public String darTablaViviendaUniversitaria ()
 	{
-		return tablas.get (19);
+		return tablas.get (20);
 	}
 	
 	/**
@@ -527,12 +536,9 @@ public class PersistenciaAlohandes
 	/**
 	 * Método que inserta, de manera transaccional, una tupla en la tabla reserva
 	 * Adiciona entradas al log de la aplicación
-	 * @param nombre - El nombre de la bebida
-	 * @param idTipoBebida - El identificador del tipo de bebida (Debe existir en la tabla TipoBebida)
-	 * @param gradoAlcohol - El grado de alcohol de la bebida (mayor que 0)
 	 * @return El objeto Bebida adicionado. null si ocurre alguna Excepción
 	 */
-	public Reserva adicionarReserva(Timestamp fechaLlegada, Timestamp fechaSalida, long idCliente, String tipoDocCliente, long idAlojamiento) 
+	public Reserva adicionarReserva(Timestamp fechaLlegada, Timestamp fechaSalida, long idCliente, String tipoDocCliente, long idAlojamiento, int costo) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
@@ -545,11 +551,11 @@ public class PersistenciaAlohandes
             tx.begin();            
             long id = nextval ();
             String estado = "creacion exitosa";
-            long tuplasInsertadas = sqlReserva.crearReserva(pm, estado, t, id, idCliente, tipoDocCliente,idAlojamiento, aux);
+            long tuplasInsertadas = sqlReserva.crearReserva(pm, estado, t, id, idCliente, tipoDocCliente,idAlojamiento, aux,costo);
             tx.commit();
             
             log.trace ("Inserción reserva: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
-            return new Reserva(estado, t, id, idCliente, tipoDocCliente, idAlojamiento, aux);
+            return new Reserva(estado, t, id, idCliente, tipoDocCliente, idAlojamiento, aux, costo);
         	}
         	else
         		return null;

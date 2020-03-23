@@ -71,10 +71,10 @@ public class ALOHANDES
 	 * Adiciona entradas al log de la aplicación
 	 * @return El objeto Reserva adicionado. null si ocurre alguna Excepción
 	 */
-	public Reserva adicionarReserva (Timestamp fechaLlegada, Timestamp fechaSalida, long idCliente, String tipoDocCliente, long idAlojamiento)
+	public Reserva adicionarReserva (Timestamp fechaLlegada, Timestamp fechaSalida, long idCliente, String tipoDocCliente, long idAlojamiento, int costo)
 	{
         log.info ("Adicionando nueva reserva con los datos especificados" );
-        Reserva reserva = pp.adicionarReserva(fechaLlegada, fechaSalida, idCliente, tipoDocCliente, idAlojamiento);	
+        Reserva reserva = pp.adicionarReserva(fechaLlegada, fechaSalida, idCliente, tipoDocCliente, idAlojamiento, costo);	
         log.info ("Adicionando reserva: " + reserva);
         return reserva;
 	}

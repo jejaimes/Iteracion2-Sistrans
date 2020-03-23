@@ -31,10 +31,7 @@ public class InmueblePersona extends Alojamiento implements VOInmueblePersona
 	 */
 	private String tipoInmueble;
 	
-	/**
-	 * El precio del inmueble
-	 */
-	private int precio;
+
 	
 	/**
 	 * El id del alojamiento del inmueble
@@ -53,7 +50,6 @@ public class InmueblePersona extends Alojamiento implements VOInmueblePersona
 		this.numHabitaciones = 0;
 		this.amoblado = false;
 		this.tipoInmueble = "";
-		this.precio = 0;
 		this.idAlojamiento = 0;
 	}
 
@@ -72,7 +68,6 @@ public class InmueblePersona extends Alojamiento implements VOInmueblePersona
 		this.numHabitaciones = numHabitaciones;
 		this.amoblado = amoblado;
 		this.tipoInmueble = tipoInmueble;
-		this.precio = precio;
 		this.idAlojamiento = idAlojamiento;
 	}
 
@@ -134,20 +129,6 @@ public class InmueblePersona extends Alojamiento implements VOInmueblePersona
 	}
 
 	/**
-	 * @return El precio del inmueble
-	 */
-	public int getPrecio() {
-		return precio;
-	}
-
-	/**
-	 * @param El nuevo precio del inmueble
-	 */
-	public void setPrecio(int precio) {
-		this.precio = precio;
-	}
-
-	/**
 	 * @return El id del alojamiento del inmueble
 	 */
 	public int getIdAlojamiento() {
@@ -167,6 +148,6 @@ public class InmueblePersona extends Alojamiento implements VOInmueblePersona
 	@Override
 	public String toString() 
 	{
-		return "InmueblePersona [tipoPropietario=" + tipoPropietario + ", numeroHabitaciones=" + numHabitaciones + ", amoblado=" + amoblado + ", tipoInmueble=" + tipoInmueble+", precio=" + precio+", idAlojamiento=" + idAlojamiento+ "]";
+		return "InmueblePersona [tipoPropietario=" + tipoPropietario + ", numeroHabitaciones=" + numHabitaciones + ", amoblado=" + amoblado + ", tipoInmueble=" + tipoInmueble+", idAlojamiento=" + idAlojamiento+ "]";
 	}
 }

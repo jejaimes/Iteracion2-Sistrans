@@ -61,7 +61,7 @@ public class ConexionTest
 	/**
 	 * La clase que se quiere probar
 	 */
-    private ALOHANDES parranderos;
+    private ALOHANDES alohandes;
 	
 	/* ****************************************************************
 	 * 			Métodos de prueba de acceso a la BD
@@ -70,16 +70,16 @@ public class ConexionTest
      * Método de prueba para acceso correcto a una base de datos
      */
     @Test
-    public void normalAccessTest ()
+    public void normalAccessTest()
   	{
   	  	try
 		{
 			log.info ("Probando el acceso a la base de datos con datos válidos (BD, credenciales, esquema");
-			parranderos = new ALOHANDES (openConfig (CONFIG_TABLAS_A));
+			alohandes = new ALOHANDES (openConfig (CONFIG_TABLAS_A));
 			log.info ("Conexión realizada correstamente");
 			log.info ("Cerrando la conexión");
 			
-			parranderos.cerrarUnidadPersistencia ();
+			alohandes.cerrarUnidadPersistencia ();
 			log.info ("Conexión cerrada");
 		}
 		catch (Exception e)
@@ -106,7 +106,7 @@ public class ConexionTest
 		try
 		{
 	    	log.info ("Probando el acceso a la base de datos con una base de datos que no existe");
-			parranderos = new ALOHANDES (openConfig (CONFIG_TABLAS_ERR_DS));
+			alohandes = new ALOHANDES (openConfig (CONFIG_TABLAS_ERR_DS));
 			fail ("Debería fallar. La base de datos no existe !!");
 		}
 		catch (Exception e)
@@ -131,7 +131,7 @@ public class ConexionTest
 		try
 		{
 	    	log.info ("Probando el acceso a la base de datos con datos de usuario incorrectos");
-			parranderos = new ALOHANDES (openConfig (CONFIG_TABLAS_ERR_USER));
+			alohandes = new ALOHANDES (openConfig (CONFIG_TABLAS_ERR_USER));
 			fail ("Debería fallar. Las credenciales del usuario no son válidas");
 		}
 		catch (Exception e)
@@ -157,7 +157,7 @@ public class ConexionTest
 		try
 		{
 	    	log.info ("Probando el acceso a la base de datos con datos de usuario correctos, pero sin crear el esquema");
-			parranderos = new ALOHANDES (openConfig (CONFIG_TABLAS_B));
+			alohandes = new ALOHANDES (openConfig (CONFIG_TABLAS_B));
 		}
 		catch (Exception e)
 		{
@@ -174,7 +174,7 @@ public class ConexionTest
 		// Ahora si se puede probar si la tabla existe o no...
 		try
 		{
-			parranderos.darTiposBebida ();
+			alohandes.darTiposBebida ();
 			fail ("Debería fallar. La tabla consultada no existe en la BD");
 		}
 		catch (Exception e)
@@ -189,8 +189,8 @@ public class ConexionTest
 		}
 		finally
 		{
-			parranderos.limpiarParranderos ();
-    		parranderos.cerrarUnidadPersistencia ();    		
+			alohandes.limpiarParranderos ();
+    		alohandes.cerrarUnidadPersistencia ();    		
 		}
     }
 

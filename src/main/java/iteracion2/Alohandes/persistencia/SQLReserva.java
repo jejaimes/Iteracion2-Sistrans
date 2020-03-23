@@ -54,10 +54,10 @@ class SQLReserva
 	 * @param id - El id del alojamiento
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long crearReserva (PersistenceManager pm, String estado, Timestamp fecha, long id, long idCliente, String tipoDoc, long alojamiento, long tiempo )
+	public long crearReserva (PersistenceManager pm, String estado, Timestamp fecha, long id, long idCliente, String tipoDoc, long alojamiento, long tiempo, int costo)
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaReserva () + "(estado, fecha, id, cliente_num_doc, cliente_tipo_doc, alojamiento, id_tiempo) values (?, ?, ?, ?, ?, ?, ?)");
-        q.setParameters(estado, fecha,id,idCliente, tipoDoc,alojamiento,tiempo);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaReserva () + "(estado, fecha, id, cliente_num_doc, cliente_tipo_doc, alojamiento, id_tiempo) values (?, ?, ?, ?, ?, ?, ?, ?)");
+        q.setParameters(estado, fecha,id,idCliente, tipoDoc,alojamiento,tiempo, costo);
         return (long) q.executeUnique();
 	}
 	
