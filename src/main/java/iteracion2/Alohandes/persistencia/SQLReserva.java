@@ -92,5 +92,12 @@ class SQLReserva
 		q.setResultClass(AlojamientosPopulares.class);
 		return (List<AlojamientosPopulares>) q.executeList();
 	}
+	
+	public List<Reserva> darReservas (PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaReserva() );
+		q.setResultClass(AlojamientosPopulares.class);
+		return (List<Reserva>) q.executeList();
+	}
 
 }

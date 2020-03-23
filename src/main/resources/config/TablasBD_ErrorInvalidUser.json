@@ -3,13 +3,26 @@
 	"unidadPersistencia": "ParranderosErrorUser",
 	"tablas":
 	[
-		"Parranderos_sequence",
-		"X_TIPOBEBIDA",
-		"X_BEBIDA",
-		"X_BAR",
-		"X_BEBEDOR",
-		"X_GUSTAN",
-		"X_SIRVEN",
-		"X_VISITAN"
+		"alohandes_sequence",
+		"X_ALOJAMIENTO",
+		"X_ALOJAMIENTO_SERVICIO",
+		"X_CLIENTE",
+		"X_EMPRESA",
+		"X_HABITACION",
+		"X_HABITACION_SERVICIO",
+		"X_HABITACION_TIEMPO_OCUPADA",
+		"X_HOSTAL",
+		"X_HOTEL",
+		"X_INMUEBLE_PERSONA",
+		"X_INMUEBLE_TIEMPO_OCUPADA",
+		"X_MENAJE",
+		"X_MENAJE_INMUEBLE",
+		"X_MENAJE_VIVIENDAU",
+		"X_PROVEEDOR",
+		"X_RESERVA",	
+		"X_RESERVA_HABITACION",
+		"X_SERVICIO",
+		"X_TIEMPO_OCUPACION",
+		"X_VIVIENDA_UNIVERSITARIA"
 	]
 }

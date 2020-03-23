@@ -111,5 +111,31 @@ public class ALOHANDES
 	}
 	
 	
+	public List<AlojamientosPopulares> alojamientosPopulares ()
+	{
+		log.info ("Consultando Tipos de bebida");
+        List<AlojamientosPopulares> tiposBebida = pp.alojamientosPopulares();	
+        log.info ("Consultando los alojamientos populares: " + tiposBebida.size() );
+        return tiposBebida;
+	}
+	
+	
+	public List<Reserva> darReservas ()
+	{
+		log.info ("Consultando Tipos de bebida");
+        List<Reserva> tiposBebida = pp.darReservas();	
+        log.info ("Consultando las reservas: " + tiposBebida.size()  + " existentes");
+        return tiposBebida;
+	}
+	
+	
+	public long [] limpiarAlohandes ()
+	{
+        log.info ("Limpiando la BD de Parranderos");
+        long [] borrrados = pp.limpiarAlohandes();	
+        log.info ("Limpiando la BD de Parranderos: Listo!");
+        return borrrados;
+	}
+	
 	
 }

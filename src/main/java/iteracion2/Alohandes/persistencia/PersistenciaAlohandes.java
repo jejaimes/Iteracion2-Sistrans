@@ -671,7 +671,38 @@ public class PersistenciaAlohandes
 		return sqlReserva.alojamientosPopulares(pmf.getPersistenceManager());
 	}
 	
-		
+	public List<Reserva> darReservas ()
+	{
+		return sqlReserva.darReservas(pmf.getPersistenceManager());
+	}	
 	
+	public long [] limpiarAlohandes ()
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long [] resp = sqlUtil.limpiarAlohandes(pm);
+            tx.commit ();
+            log.info ("Borrada la base de datos");
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return new long[] {-1, -1, -1, -1, -1, -1, -1};
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+		
+	}
 	
 }

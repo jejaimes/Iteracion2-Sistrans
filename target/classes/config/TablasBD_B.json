@@ -1,15 +1,28 @@
-{
+	{
 	"title": "Nombres de las tablas de Parranderos Uniandes para la aplicación B",
 	"unidadPersistencia": "Parranderos",
 	"tablas":
 	[
-		"Parranderos_sequence",
-		"B_TIPOBEBIDA",
-		"B_BEBIDA",
-		"B_BAR",
-		"B_BEBEDOR",
-		"B_GUSTAN",
-		"B_SIRVEN",
-		"B_VISITAN"
+		"alohandes_sequence",
+		"B_ALOJAMIENTO",
+		"B_ALOJAMIENTO_SERVICIO",
+		"B_CLIENTE",
+		"B_EMPRESA",
+		"B_HABITACION",
+		"B_HABITACION_SERVICIO",
+		"B_HABITACION_TIEMPO_OCUPADA",
+		"B_HOSTAL",
+		"B_HOTEL",
+		"B_INMUEBLE_PERSONA",
+		"B_INMUEBLE_TIEMPO_OCUPADA",
+		"B_MENAJE",
+		"B_MENAJE_INMUEBLE",
+		"B_MENAJE_VIVIENDAU",
+		"B_PROVEEDOR",
+		"B_RESERVA",	
+		"B_RESERVA_HABITACION",
+		"B_SERVICIO",
+		"B_TIEMPO_OCUPACION",
+		"B_VIVIENDA_UNIVERSITARIA"
 	]
 }
