@@ -311,59 +311,155 @@ public class PersistenciaAlohandes
 	}
 
 	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de TipoBebida de parranderos
+	 * @return La cadena de caracteres con el nombre de la tabla de ALOJAMIENTO de ALOHANDES
 	 */
-	public String darTablaTipoBebida ()
+	public String darTablaAlojamiento ()
 	{
 		return tablas.get (1);
 	}
 
 	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Bebida de parranderos
+	 * @return La cadena de caracteres con el nombre de la tabla de ALOJAMIENTO_SERVICIO de ALOHANDES
 	 */
-	public String darTablaBebida ()
+	public String darTablaAlojamientoServicio ()
 	{
 		return tablas.get (2);
 	}
 
 	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Bar de parranderos
+	 * @return La cadena de caracteres con el nombre de la tabla de CLIENTE de ALOHANDES
 	 */
-	public String darTablaBar ()
+	public String darTablaCliente ()
 	{
 		return tablas.get (3);
 	}
 
 	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Bebedor de parranderos
+	 * @return La cadena de caracteres con el nombre de la tabla de EMPRESA de ALOHANDES
 	 */
-	public String darTablaBebedor ()
+	public String darTablaEmpresa ()
 	{
 		return tablas.get (4);
 	}
 
 	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Gustan de parranderos
+	 * @return La cadena de caracteres con el nombre de la tabla de HABITACION de ALOHANDES
 	 */
-	public String darTablaGustan ()
+	public String darTablaHabitacion ()
 	{
 		return tablas.get (5);
 	}
 
 	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Sirven de parranderos
+	 * @return La cadena de caracteres con el nombre de la tabla de HABITACION_SERVICIO de ALOHANDES
 	 */
-	public String darTablaSirven ()
+	public String darTablaHabitacionServicio ()
 	{
 		return tablas.get (6);
 	}
 
 	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Visitan de parranderos
+	 * @return La cadena de caracteres con el nombre de la tabla de HABITACION_TIEMPO_OCUPADA de ALOHANDES
 	 */
-	public String darTablaVisitan ()
+	public String darTablaHabitacionTiempoOcupada ()
 	{
 		return tablas.get (7);
+	}
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de HOSTAL de ALOHANDES
+	 */
+	public String darTablaHostal ()
+	{
+		return tablas.get (8);
+	}
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de HOTEL de ALOHANDES
+	 */
+	public String darTablaHotel ()
+	{
+		return tablas.get (9);
+	}
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de INMUEBLE_PERSONA de ALOHANDES
+	 */
+	public String darTablaInmueblePersona ()
+	{
+		return tablas.get (10);
+	}
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de INMUEBLE_TIEMPO_OCUPADA de ALOHANDES
+	 */
+	public String darTablaInmuebleTiempoOcupada ()
+	{
+		return tablas.get (11);
+	}
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de MENAJE de ALOHANDES
+	 */
+	public String darTablaMenaje ()
+	{
+		return tablas.get (12);
+	}
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de MENAJE_INMUEBLE de ALOHANDES
+	 */
+	public String darTablaMenajeInmueble ()
+	{
+		return tablas.get (13);
+	}
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de MENAJE_VIVIENDAU de ALOHANDES
+	 */
+	public String darTablaMenajeViviendaU ()
+	{
+		return tablas.get (14);
+	}
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de RESERVA de ALOHANDES
+	 */
+	public String darTablaReserva ()
+	{
+		return tablas.get (15);
+	}
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de RESERVA_HABITACION de ALOHANDES
+	 */
+	public String darTablaReservaHabitacion ()
+	{
+		return tablas.get (16);
+	}
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de SERVICIO de ALOHANDES
+	 */
+	public String darTablaServicio ()
+	{
+		return tablas.get (17);
+	}
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de TIEMPO_OCUPACION de ALOHANDES
+	 */
+	public String darTablaTiempoOcupacion ()
+	{
+		return tablas.get (18);
+	}
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de VIVIENDA_UNIVERSITARIA de ALOHANDES
+	 */
+	public String darTablaViviendaUniversitaria ()
+	{
+		return tablas.get (19);
 	}
 	
 	/**
