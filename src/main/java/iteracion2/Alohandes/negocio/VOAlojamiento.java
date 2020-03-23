@@ -6,7 +6,7 @@ package iteracion2.Alohandes.negocio;
  */
 public interface VOAlojamiento 
 {
-	/* ****************************************************************
+	/*****************************************************************
 	 * 			Métodos 
 	 *****************************************************************/
      /**
@@ -18,6 +18,16 @@ public interface VOAlojamiento
 	 * @return la direccion del alojamiento
 	 */
 	public String getDireccion();
+	
+	/**
+	 * @return El proveedorNumDoc del proveedor del alojamiento
+	 */
+	public long getProveedorNumDoc();
+	
+	/**
+	 * @return El proveedorTipoDoc del proveedor del alojamiento
+	 */
+	public String getProveedorTipoDoc();
 	
 	@Override
 	/**

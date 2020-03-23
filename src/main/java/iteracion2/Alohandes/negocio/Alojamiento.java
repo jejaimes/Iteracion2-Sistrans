@@ -7,7 +7,7 @@ package iteracion2.Alohandes.negocio;
  */
 public class Alojamiento implements VOAlojamiento
 {
-	/* ****************************************************************
+	/*****************************************************************
 	 * 			Atributos
 	 *****************************************************************/
 	/**
@@ -19,6 +19,16 @@ public class Alojamiento implements VOAlojamiento
 	 * La direccion del alojamiento
 	 */
 	private String direccion;
+	
+	/**
+	 * El número de documento del proveedor del alojamiento
+	 */
+	private long proveedorNumDoc;
+	
+	/**
+	 * El tipo de documento del proveedor del alojamiento
+	 */
+	private String proveedorTipoDoc;
 
 
 	/* ****************************************************************
@@ -31,17 +41,23 @@ public class Alojamiento implements VOAlojamiento
     {
     	this.id = 0;
 		this.direccion = "";
+		this.proveedorTipoDoc = "";
+		this.proveedorNumDoc = 0;
 	}
 
 	/**
 	 * Constructor con valores
 	 * @param id - El id del alojamiento
-	 * @param nombre - La direccion del alojamiento
+	 * @param dir - La direccion del alojamiento
+	 * @param proveedorTipoDoc - El número de documento del proveedor del alojamiento
+	 * @param proveedorNumDoc - El tipo de documento del proveedor del alojamiento
 	 */
-    public Alojamiento(long id, String dir) 
+    public Alojamiento(long id, String dir, String proveedorTipoDoc, long proveedorNumDoc) 
     {
     	this.id = id;
 		this.direccion = dir;
+		this.proveedorTipoDoc = proveedorTipoDoc;
+		this.proveedorNumDoc = proveedorNumDoc;
 	}
 
     /**
@@ -76,13 +92,45 @@ public class Alojamiento implements VOAlojamiento
 		this.direccion = nombre;
 	}
 	
+	/**
+	 * @return El proveedorNumDoc del proveedor del alojamiento
+	 */
+	public long getProveedorNumDoc()
+	{
+		return proveedorNumDoc;
+	}
+
+	/**
+	 * @param proveedorNumDoc - El nuevo proveedorNumDoc del proveedor del alojamiento
+	 */
+	public void setProveedorNumDoc(long proveedorNumDoc)
+	{
+		this.proveedorNumDoc = proveedorNumDoc;
+	}
+
+	/**
+	 * @return El proveedorTipoDoc del proveedor del alojamiento
+	 */
+	public String getProveedorTipoDoc()
+	{
+		return proveedorTipoDoc;
+	}
+
+	/**
+	 * @param proveedorTipoDoc - El nuevo proveedorTipoDoc del proveedor del alojamiento
+	 */
+	public void setProveedorTipoDoc(String proveedorTipoDoc)
+	{
+		this.proveedorTipoDoc = proveedorTipoDoc;
+	}
+
 	@Override
 	/**
 	 * @return Una cadena de caracteres con todos los atributos del alojamiento
 	 */
 	public String toString() 
 	{
-		return "Bar [id=" + id + ", direccion=" + direccion+ "]";
+		return "Alojamiento [id=" + id + ", direccion=" + direccion + ", proveedorTipoDoc=" + proveedorTipoDoc + ", proveedorNumDoc=" + proveedorNumDoc + "]";
 	}
 	
 
