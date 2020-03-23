@@ -1,17 +1,4 @@
-/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * Universidad	de	los	Andes	(Bogotá	- Colombia)
- * Departamento	de	Ingeniería	de	Sistemas	y	Computación
- * Licenciado	bajo	el	esquema	Academic Free License versión 2.1
- * 		
- * Curso: isis2304 - Sistemas Transaccionales
- * Proyecto: Parranderos Uniandes
- * @version 1.0
- * @author Germán Bravo
- * Julio de 2018
- * 
- * Revisado por: Claudia Jiménez, Christian Ariza
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
+
 
 package iteracion2.Alohandes.negocio;
 
@@ -20,17 +7,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+
 import com.google.gson.JsonObject;
 
-import iteracion2.Alohandes.persistencia.PersistenciaParranderos;
+import iteracion2.Alohandes.persistencia.PersistenciaAlohandes;
 
 /**
  * Clase principal del negocio
- * Sarisface todos los requerimientos funcionales del negocio
+ * Satisface todos los requerimientos funcionales del negocio
  *
- * @author Germán Bravo
  */
-public class Parranderos 
+public class ALOHANDES 
 {
 	/* ****************************************************************
 	 * 			Constantes
@@ -38,7 +25,7 @@ public class Parranderos
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(Parranderos.class.getName());
+	private static Logger log = Logger.getLogger(ALOHANDES.class.getName());
 	
 	/* ****************************************************************
 	 * 			Atributos
@@ -46,7 +33,7 @@ public class Parranderos
 	/**
 	 * El manejador de persistencia
 	 */
-	private PersistenciaParranderos pp;
+	private PersistenciaAlohandes pp;
 	
 	/* ****************************************************************
 	 * 			Métodos
@@ -54,18 +41,18 @@ public class Parranderos
 	/**
 	 * El constructor por defecto
 	 */
-	public Parranderos ()
+	public ALOHANDES ()
 	{
-		pp = PersistenciaParranderos.getInstance ();
+		pp = PersistenciaAlohandes.getInstance();
 	}
 	
 	/**
 	 * El constructor qye recibe los nombres de las tablas en tableConfig
 	 * @param tableConfig - Objeto Json con los nombres de las tablas y de la unidad de persistencia
 	 */
-	public Parranderos (JsonObject tableConfig)
+	public ALOHANDES (JsonObject tableConfig)
 	{
-		pp = PersistenciaParranderos.getInstance (tableConfig);
+		pp = PersistenciaAlohandes.getInstance (tableConfig);
 	}
 	
 	/**
@@ -77,50 +64,37 @@ public class Parranderos
 	}
 	
 	/* ****************************************************************
-	 * 			Métodos para manejar los TIPOS DE BEBIDA
+	 * 			Métodos para manejar las RESERVAS 
 	 *****************************************************************/
 	/**
-	 * Adiciona de manera persistente un tipo de bebida 
+	 * Adiciona de manera persistente una reserva
 	 * Adiciona entradas al log de la aplicación
-	 * @param nombre - El nombre del tipo de bebida
-	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
+	 * @param ID - El id de la reserva
+	 * @return El objeto Reserva adicionado. null si ocurre alguna Excepción
 	 */
-	public HabitacionServicio adicionarTipoBebida (String nombre)
+	public Reserva adicionarReserva (String id)
 	{
-        log.info ("Adicionando Tipo de bebida: " + nombre);
-        HabitacionServicio tipoBebida = pp.adicionarTipoBebida (nombre);		
-        log.info ("Adicionando Tipo de bebida: " + tipoBebida);
-        return tipoBebida;
+        log.info ("Adicionando Reserva: " + id);
+        Reserva reserva = pp.adicionarReserva (id);		
+        log.info ("Adicionando reserva: " + reserva);
+        return reserva;
 	}
 	
 	/**
-	 * Elimina un tipo de bebida por su nombre
+	 * Elimina una reserva por su id
 	 * Adiciona entradas al log de la aplicación
-	 * @param nombre - El nombre del tipo de bebida a eliminar
+	 * @param id - El id de la reserva a eliminar
 	 * @return El número de tuplas eliminadas
 	 */
-	public long eliminarTipoBebidaPorNombre (String nombre)
+	public long eliminarReserva (String id)
 	{
-		log.info ("Eliminando Tipo de bebida por nombre: " + nombre);
-        long resp = pp.eliminarTipoBebidaPorNombre (nombre);		
-        log.info ("Eliminando Tipo de bebida por nombre: " + resp + " tuplas eliminadas");
+		log.info ("Eliminando reserva por id: " + id);
+        long resp = pp.eliminarReserva (id);		
+        log.info ("Eliminando reserva por id: " + resp + " tuplas eliminadas");
         return resp;
 	}
 	
-	/**
-	 * Elimina un tipo de bebida por su identificador
-	 * Adiciona entradas al log de la aplicación
-	 * @param idTipoBebida - El id del tipo de bebida a eliminar
-	 * @return El número de tuplas eliminadas
-	 */
-	public long eliminarTipoBebidaPorId (long idTipoBebida)
-	{
-		log.info ("Eliminando Tipo de bebida por id: " + idTipoBebida);
-        long resp = pp.eliminarTipoBebidaPorId (idTipoBebida);		
-        log.info ("Eliminando Tipo de bebida por id: " + resp + " tuplas eliminadas");
-        return resp;
-	}
-	
+
 	/**
 	 * Encuentra todos los tipos de bebida en Parranderos
 	 * Adiciona entradas al log de la aplicación

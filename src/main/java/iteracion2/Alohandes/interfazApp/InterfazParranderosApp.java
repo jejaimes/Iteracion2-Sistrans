@@ -46,7 +46,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
-import iteracion2.Alohandes.negocio.Parranderos;
+import iteracion2.Alohandes.negocio.ALOHANDES;
 import iteracion2.Alohandes.negocio.VOHabitacionServicio;
 
 /**
@@ -86,7 +86,7 @@ public class InterfazParranderosApp extends JFrame implements ActionListener
     /**
      * Asociación a la clase principal del negocio.
      */
-    private Parranderos parranderos;
+    private ALOHANDES parranderos;
     
 	/* ****************************************************************
 	 * 			Atributos de interfaz
@@ -126,7 +126,7 @@ public class InterfazParranderosApp extends JFrame implements ActionListener
         }
         
         tableConfig = openConfig ("Tablas BD", CONFIG_TABLAS);
-        parranderos = new Parranderos (tableConfig);
+        parranderos = new ALOHANDES (tableConfig);
         
     	String path = guiConfig.get("bannerPath").getAsString();
         panelDatos = new PanelDatos ( );

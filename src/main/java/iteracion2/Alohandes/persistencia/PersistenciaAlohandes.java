@@ -1,17 +1,3 @@
-/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * Universidad	de	los	Andes	(Bogotá	- Colombia)
- * Departamento	de	Ingeniería	de	Sistemas	y	Computación
- * Licenciado	bajo	el	esquema	Academic Free License versión 2.1
- * 		
- * Curso: isis2304 - Sistemas Transaccionales
- * Proyecto: Parranderos Uniandes
- * @version 1.0
- * @author Germán Bravo
- * Julio de 2018
- * 
- * Revisado por: Claudia Jiménez, Christian Ariza
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
 
 package iteracion2.Alohandes.persistencia;
 
@@ -39,18 +25,13 @@ import iteracion2.Alohandes.negocio.Empresa;
 import iteracion2.Alohandes.negocio.Habitacion;
 import iteracion2.Alohandes.negocio.HabitacionServicio;
 import iteracion2.Alohandes.negocio.HabitacionTiempoOcupada;
+import iteracion2.Alohandes.negocio.Reserva;
 
 /**
- * Clase para el manejador de persistencia del proyecto Parranderos
- * Traduce la información entre objetos Java y tuplas de la base de datos, en ambos sentidos
- * Sigue un patrón SINGLETON (Sólo puede haber UN objeto de esta clase) para comunicarse de manera correcta
- * con la base de datos
- * Se apoya en las clases SQLBar, SQLBebedor, SQLBebida, SQLGustan, SQLSirven, SQLTipoBebida y SQLVisitan, que son 
- * las que realizan el acceso a la base de datos
+ * Clase para el manejador de persistencia del proyecto alohandes
  * 
- * @author Germán Bravo
  */
-public class PersistenciaParranderos 
+public class PersistenciaAlohandes 
 {
 	/* ****************************************************************
 	 * 			Constantes
@@ -58,7 +39,7 @@ public class PersistenciaParranderos
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(PersistenciaParranderos.class.getName());
+	private static Logger log = Logger.getLogger(PersistenciaAlohandes.class.getName());
 	
 	/**
 	 * Cadena para indicar el tipo de sentencias que se va a utilizar en una consulta
@@ -71,7 +52,7 @@ public class PersistenciaParranderos
 	/**
 	 * Atributo privado que es el único objeto de la clase - Patrón SINGLETON
 	 */
-	private static PersistenciaParranderos instance;
+	private static PersistenciaAlohandes instance;
 	
 	/**
 	 * Fábrica de Manejadores de persistencia, para el manejo correcto de las transacciones
@@ -80,49 +61,113 @@ public class PersistenciaParranderos
 	
 	/**
 	 * Arreglo de cadenas con los nombres de las tablas de la base de datos, en su orden:
-	 * Secuenciador, tipoBebida, bebida, bar, bebedor, gustan, sirven y visitan
+	 * Secuenciador, alojamiento, alojamientoServicio, cliente, empresa, habitacion, habitacionServicio, habitacionTiempoOcupada, 
+	 * hostal, hotel, inmueblePersona, inmuebleTiempoOcupada, menaje, menajeInmueble, menajeviviendaU, reserva, reservaHabitacion,
+	 * servicio, tiempoOcupacion, ViviendaUniversitaria.
 	 */
 	private List <String> tablas;
 	
 	/**
-	 * Atributo para el acceso a las sentencias SQL propias a PersistenciaParranderos
+	 * Atributo para el acceso a las sentencias SQL propias a PersistenciaAlohandes
 	 */
 	private SQLUtil sqlUtil;
 	
 	/**
-	 * Atributo para el acceso a la tabla TIPOBEBIDA de la base de datos
+	 * Atributo para el acceso a la tabla ALOJAMIENTO de la base de datos
 	 */
-	private SQLTipoBebida sqlTipoBebida;
+	private SQLAlojamiento sqlAlojamiento;
 	
 	/**
-	 * Atributo para el acceso a la tabla BEBIDA de la base de datos
+	 * Atributo para el acceso a la tabla ALOJAMIENTOSERVICIO de la base de datos
 	 */
-	private SQLBebida sqlBebida;
+	private SQLAlojamientoServicio sqlAlojamientoServicio;
 	
 	/**
-	 * Atributo para el acceso a la tabla BAR de la base de datos
+	 * Atributo para el acceso a la tabla CLIENTE de la base de datos
 	 */
-	private SQLBar sqlBar;
+	private SQLCliente sqlCliente;
 	
 	/**
-	 * Atributo para el acceso a la tabla BEBIDA de la base de datos
+	 * Atributo para el acceso a la tabla EMPRESA de la base de datos
 	 */
-	private SQLBebedor sqlBebedor;
+	private SQLEmpresa sqlEmpresa;
 	
 	/**
-	 * Atributo para el acceso a la tabla GUSTAN de la base de datos
+	 * Atributo para el acceso a la tabla HABITACION de la base de datos
 	 */
-	private SQLGustan sqlGustan;
+	private SQLHabitacion sqlHabitacion;
 	
 	/**
-	 * Atributo para el acceso a la tabla SIRVEN de la base de datos
+	 * Atributo para el acceso a la tabla HABITACIONSERVICIO de la base de datos
 	 */
-	private SQLSirven sqlSirven;
+	private SQLHabitacionServicio sqlHabitacionServicio;
 	
 	/**
-	 * Atributo para el acceso a la tabla VISITAN de la base de datos
+	 * Atributo para el acceso a la tabla HABITACIONTIEMPOOCUPADA de la base de datos
 	 */
-	private SQLVisitan sqlVisitan;
+	private SQLHabitacionTiempoOcupada sqlHabitacionTiempoOcupada;
+	
+	/**
+	 * Atributo para el acceso a la tabla HOSTAL de la base de datos
+	 */
+	private SQLHostal sqlHostal;
+	
+	/**
+	 * Atributo para el acceso a la tabla HOTEL de la base de datos
+	 */
+	private SQLHotel sqlHotel;
+	
+	/**
+	 * Atributo para el acceso a la tabla INMUEBLEPERSONA de la base de datos
+	 */
+	private SQLInmueblePersona sqlInmueblePersona;
+	
+	/**
+	 * Atributo para el acceso a la tabla INMUEBLETIEMPOOCUPADA de la base de datos
+	 */
+	private SQLInmuebleTiempoOcupada sqlInmuebleTiempoOcupada;
+	
+	/**
+	 * Atributo para el acceso a la tabla MENAJE de la base de datos
+	 */
+	private SQLMenaje sqlMenaje;
+	
+	/**
+	 * Atributo para el acceso a la tabla MENAJEINMUEBLE de la base de datos
+	 */
+	private SQLMenajeInmueble sqlMenajeInmueble;
+	
+	/**
+	 * Atributo para el acceso a la tabla MENAJEVIVIENDAU de la base de datos
+	 */
+	private SQLMenajeViviendaU sqlMenajeViviendaU;
+	
+	/**
+	 * Atributo para el acceso a la tabla RESERVA de la base de datos
+	 */
+	private SQLReserva sqlReserva;
+	
+	/**
+	 * Atributo para el acceso a la tabla RESERVAHABITACION de la base de datos
+	 */
+	private SQLReservaHabitacion sqlReservaHabitacion;
+	
+	/**
+	 * Atributo para el acceso a la tabla SERVICIO de la base de datos
+	 */
+	private SQLServicio sqlServicio;
+	
+	/**
+	 * Atributo para el acceso a la tabla TIEMPOOCUPACION de la base de datos
+	 */
+	private SQLTiempoOcupacion sqlTiempoOcupacion;
+	
+	/**
+	 * Atributo para el acceso a la tabla VIVIENDAU de la base de datos
+	 */
+	private SQLViviendaUniversitaria sqlViviendaUniversitaria;
+	
+	
 	
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
@@ -131,28 +176,41 @@ public class PersistenciaParranderos
 	/**
 	 * Constructor privado con valores por defecto - Patrón SINGLETON
 	 */
-	private PersistenciaParranderos ()
+	private PersistenciaAlohandes ()
 	{
-		pmf = JDOHelper.getPersistenceManagerFactory("Parranderos");		
+		pmf = JDOHelper.getPersistenceManagerFactory("Alohandes");		
 		crearClasesSQL ();
 		
 		// Define los nombres por defecto de las tablas de la base de datos
 		tablas = new LinkedList<String> ();
-		tablas.add ("Parranderos_sequence");
-		tablas.add ("TIPOBEBIDA");
-		tablas.add ("BEBIDA");
-		tablas.add ("BAR");
-		tablas.add ("BEBEDOR");
-		tablas.add ("GUSTAN");
-		tablas.add ("SIRVEN");
-		tablas.add ("VISITAN");
+		tablas.add ("alohandes_sequence");
+		tablas.add ("ALOJAMIENTO");
+		tablas.add ("ALOJAMIENTO_SERVICIO");
+		tablas.add ("CLIENTE");
+		tablas.add ("EMPRESA");
+		tablas.add ("HABITACION");
+		tablas.add ("HABITACION_SERVICIO");
+		tablas.add ("HABITACION_TIEMPO_OCUPADA");
+		tablas.add ("HOSTAL");
+		tablas.add ("HOTEL");
+		tablas.add ("INMUEBLE_PERSONA");
+		tablas.add ("INMUEBLE_TIEMPO_OCUPADA");
+		tablas.add ("MENAJE");
+		tablas.add ("MENAJE_INMUEBLE");
+		tablas.add ("MENAJE_VIVIENDAU");
+		tablas.add ("RESERVA");
+		tablas.add ("RESERVA_HABITACION");
+		tablas.add ("SERVICIO");
+		tablas.add ("TIEMPO_OCUPACION");
+		tablas.add ("VIVIENDA_UNIVERSITARIA");
+
 }
 
 	/**
 	 * Constructor privado, que recibe los nombres de las tablas en un objeto Json - Patrón SINGLETON
 	 * @param tableConfig - Objeto Json que contiene los nombres de las tablas y de la unidad de persistencia a manejar
 	 */
-	private PersistenciaParranderos (JsonObject tableConfig)
+	private PersistenciaAlohandes (JsonObject tableConfig)
 	{
 		crearClasesSQL ();
 		tablas = leerNombresTablas (tableConfig);
@@ -165,11 +223,11 @@ public class PersistenciaParranderos
 	/**
 	 * @return Retorna el único objeto PersistenciaParranderos existente - Patrón SINGLETON
 	 */
-	public static PersistenciaParranderos getInstance ()
+	public static PersistenciaAlohandes getInstance ()
 	{
 		if (instance == null)
 		{
-			instance = new PersistenciaParranderos ();
+			instance = new PersistenciaAlohandes ();
 		}
 		return instance;
 	}
@@ -179,11 +237,11 @@ public class PersistenciaParranderos
 	 * @param tableConfig - El objeto JSON con los nombres de las tablas
 	 * @return Retorna el único objeto PersistenciaParranderos existente - Patrón SINGLETON
 	 */
-	public static PersistenciaParranderos getInstance (JsonObject tableConfig)
+	public static PersistenciaAlohandes getInstance (JsonObject tableConfig)
 	{
 		if (instance == null)
 		{
-			instance = new PersistenciaParranderos (tableConfig);
+			instance = new PersistenciaAlohandes (tableConfig);
 		}
 		return instance;
 	}
@@ -215,19 +273,33 @@ public class PersistenciaParranderos
 		return resp;
 	}
 	
+	
+
 	/**
 	 * Crea los atributos de clases de apoyo SQL
+
 	 */
-	private void crearClasesSQL ()
-	{
-		sqlTipoBebida = new SQLTipoBebida(this);
-		sqlBebida = new SQLBebida(this);
-		sqlBar = new SQLBar(this);
-		sqlBebedor = new SQLBebedor(this);
-		sqlGustan = new SQLGustan(this);
-		sqlSirven = new SQLSirven (this);
-		sqlVisitan = new SQLVisitan(this);		
-		sqlUtil = new SQLUtil(this);
+	private void crearClasesSQL() {
+		this.sqlUtil = new SQLUtil(this);
+		this.sqlAlojamiento = new SQLAlojamiento(this);
+		this.sqlAlojamientoServicio = new SQLAlojamientoServicio(this);
+		this.sqlCliente = new SQLCliente(this);
+		this.sqlEmpresa = new SQLEmpresa(this);
+		this.sqlHabitacion = new SQLHabitacion(this);
+		this.sqlHabitacionServicio = new SQLHabitacionServicio(this);
+		this.sqlHabitacionTiempoOcupada = new SQLHabitacionTiempoOcupada(this);
+		this.sqlHostal = new SQLHostal(this);
+		this.sqlHotel = new SQLHotel(this);
+		this.sqlInmueblePersona = new SQLInmueblePersona(this);
+		this.sqlInmuebleTiempoOcupada = new SQLInmuebleTiempoOcupada(this);
+		this.sqlMenaje = new SQLMenaje(this);
+		this.sqlMenajeInmueble = new SQLMenajeInmueble(this);
+		this.sqlMenajeViviendaU = new SQLMenajeViviendaU(this);
+		this.sqlReserva = new SQLReserva(this);
+		this.sqlReservaHabitacion = new SQLReservaHabitacion(this);
+		this.sqlServicio = new SQLServicio(this);
+		this.sqlTiempoOcupacion = new SQLTiempoOcupacion(this);
+		this.sqlViviendaUniversitaria = new SQLViviendaUniversitaria(this);
 	}
 
 	/**
@@ -1522,6 +1594,16 @@ public class PersistenciaParranderos
             pm.close();
         }
 		
+	}
+
+	public Reserva adicionarReserva(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public long eliminarReserva(String id) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 
