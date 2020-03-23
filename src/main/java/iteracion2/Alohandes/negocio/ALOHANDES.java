@@ -113,7 +113,7 @@ public class ALOHANDES
 	
 	public List<AlojamientosPopulares> alojamientosPopulares ()
 	{
-		log.info ("Consultando Tipos de bebida");
+		log.info ("Consultando Alojamientos populares");
         List<AlojamientosPopulares> tiposBebida = pp.alojamientosPopulares();	
         log.info ("Consultando los alojamientos populares: " + tiposBebida.size() );
         return tiposBebida;
@@ -122,12 +122,34 @@ public class ALOHANDES
 	
 	public List<Reserva> darReservas ()
 	{
-		log.info ("Consultando Tipos de bebida");
+		log.info ("Consultando Reservas");
         List<Reserva> tiposBebida = pp.darReservas();	
         log.info ("Consultando las reservas: " + tiposBebida.size()  + " existentes");
         return tiposBebida;
 	}
 	
+	public List<Alojamiento> darAlojamientos()
+	{
+		log.info ("Consultando Alojamientos");
+        List<Alojamiento> tiposBebida = pp.darAlojamientos();
+        System.out.println("Andadndoooooooooooo");
+        System.err.println(tiposBebida.size());
+        log.info ("Consultando los alojamientos: " + tiposBebida.size() );
+        return tiposBebida;
+	}
+	
+	
+	public Alojamiento darAlojamientoId(long id)
+	{
+		System.out.println("Al menos está acaaaaaa");
+		log.info ("Consultando Alojamientos");
+		System.out.println("otro pasito");
+        Alojamiento tiposBebida = pp.darAlojamientoId(id);
+        System.out.println("Andadndoooooooooooo");
+        System.err.println(tiposBebida);
+        log.info ("Consultando los alojamientos: " + tiposBebida );
+        return tiposBebida;
+	}
 	
 	public long [] limpiarAlohandes ()
 	{

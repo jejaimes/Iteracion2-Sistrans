@@ -6,6 +6,9 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import java.io.FileReader;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
@@ -33,7 +36,7 @@ public class ConexionTest
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos: La unidad de persistencia existe y el esquema de la BD también
 	 */
-	private static final String CONFIG_TABLAS_A = "./src/main/resources/config/TablasBD_A.json"; 
+	private static final String CONFIG_TABLAS_A = "./src/main/resources/config/TablasBD.json"; 
 	
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos: La unidad de persistencia existe, pero el esquema de la BD no se ha creado
@@ -87,6 +90,7 @@ public class ConexionTest
 //			e.printStackTrace();
 			log.info ("Prueba de acceso normal FALLÓ !!. La excepción generada es: " + e.getClass ().getName ());
 			log.info ("La causa es: " + e.getCause ().toString ());
+			System.out.println("La causa es: " + e.getCause ().toString ());
 
 			String msg = "Prueba de acceso normal a la base de datos falló !! Revise persistence.xml.\n";
 			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
@@ -214,6 +218,7 @@ public class ConexionTest
 			JsonReader reader = new JsonReader ( file );
 			config = gson.fromJson(reader, JsonObject.class);
 			log.info ("Se encontró un archivo de configuración de tablas válido");
+			
 		} 
 		catch (Exception e)
 		{

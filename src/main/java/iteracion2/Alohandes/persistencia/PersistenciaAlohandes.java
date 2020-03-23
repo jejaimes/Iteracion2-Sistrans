@@ -682,6 +682,7 @@ public class PersistenciaAlohandes
 	 */
 	public List<Reserva> darReservas ()
 	{
+		System.err.println(sqlReserva.darReservas(pmf.getPersistenceManager()).size());
 		return sqlReserva.darReservas(pmf.getPersistenceManager());
 	}
 	
@@ -692,6 +693,20 @@ public class PersistenciaAlohandes
 	public List<GananciaProveedor> gananciaProveedores ()
 	{
 		return sqlReserva.gananciaProveedores(pmf.getPersistenceManager());
+	}
+	
+	
+	public List<Alojamiento> darAlojamientos()
+	{
+		System.out.println("Si lees esto vamos bien");
+		return sqlAlojamiento.darAlojamientos(pmf.getPersistenceManager());
+	}
+	
+	
+	public Alojamiento darAlojamientoId(long id)
+	{
+		System.out.println("Si lees esto vamos bien");
+		return (Alojamiento) sqlAlojamiento.darAlojamientoId(pmf.getPersistenceManager(), id);
 	}
 	
 	/**

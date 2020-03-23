@@ -56,8 +56,12 @@ class SQLReserva
 	 */
 	public long crearReserva (PersistenceManager pm, String estado, Timestamp fecha, long id, long idCliente, String tipoDoc, long alojamiento, long tiempo, int costo)
 	{
+		System.out.println("empezamos bien");
+
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaReserva () + "(estado, fecha, id, cliente_num_doc, cliente_tipo_doc, alojamiento, id_tiempo) values (?, ?, ?, ?, ?, ?, ?, ?)");
         q.setParameters(estado, fecha,id,idCliente, tipoDoc,alojamiento,tiempo, costo);
+		System.out.println("Terminó bien :)");
+		System.out.println((long) q.executeUnique());
         return (long) q.executeUnique();
 	}
 	
