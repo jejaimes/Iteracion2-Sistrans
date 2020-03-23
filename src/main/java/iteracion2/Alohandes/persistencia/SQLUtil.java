@@ -56,10 +56,10 @@ class SQLUtil
 	/**
 	 * Crea y ejecuta las sentencias SQL para cada tabla de la base de datos - EL ORDEN ES IMPORTANTE 
 	 * @param pm - El manejador de persistencia
-	 * @return Un arreglo con 19 números que indican el número de tuplas borradas en las tablas ALOJAMIENTO,
+	 * @return Un arreglo con 20 números que indican el número de tuplas borradas en las tablas ALOJAMIENTO,
 	 * ALOJAMIENTO_SERVICIO, CLIENTE, EMPRESA, HABITACION, HABITACION_SERVICIO, HABITACION_TIEMPO_OCUPADA, 
 	 * HOSTAL, HOTEL, INMUEBLE_PERSONA, INMUEBLE_TIEMPO_OCUPADA, MENAJE, MENAJE_INMUEBLE, MENAJE_VIVIENDAU,
-	 * RESERVA, RESERVA_HABITACION, SERVICIO, TIEMPO_OCUPACION, VIVIENDA_UNIVERSITARIA, respectivamente
+	 * RESERVA, RESERVA_HABITACION, SERVICIO, TIEMPO_OCUPACION, VIVIENDA_UNIVERSITARIA, PROVEEDOR, respectivamente
 	 */
 	public long [] limpiarAlohandes (PersistenceManager pm)
 	{
@@ -82,6 +82,7 @@ class SQLUtil
         Query qServicio = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServicio());
         Query qCliente = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCliente());
         Query qAlojamiento = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAlojamiento());
+        Query qProveedor = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaProveedor());
 
         long alojamientoServicioEliminados = (long) qAlojamientoServicio.executeUnique ();
         long habitacionServicioEliminados = (long) qHabitacionServicio.executeUnique ();
@@ -102,12 +103,13 @@ class SQLUtil
         long servicioEliminados = (long) qServicio.executeUnique ();
         long clienteEliminados = (long) qCliente.executeUnique ();
         long alojamientoEliminados = (long) qAlojamiento.executeUnique ();
+        long proveedorEliminados = (long) qProveedor.executeUnique ();
         
         return new long[] {alojamientoServicioEliminados, habitacionServicioEliminados, habitacionTiempoOcupadaEliminadas,
         		inmuebleTiempoOcupadaEliminadas, menajeInmuebleEliminados, menajeViviendaUEliminados,
         		reservaHabitacionEliminados, hotelEliminados, hostalEliminados, viviendaUniversitariaEliminados,
         		inmueblePersonaEliminados, reservaEliminados, empresaEliminados, menajeEliminados, habitacionEliminados,
-        		tiempoOcupacionEliminados, servicioEliminados, clienteEliminados, alojamientoEliminados};
+        		tiempoOcupacionEliminados, servicioEliminados, clienteEliminados, alojamientoEliminados, proveedorEliminados};
 	}
 
 }

@@ -21,6 +21,7 @@ import iteracion2.Alohandes.negocio.AlojamientoServicio;
 import iteracion2.Alohandes.negocio.AlojamientosPopulares;
 import iteracion2.Alohandes.negocio.Cliente;
 import iteracion2.Alohandes.negocio.Empresa;
+import iteracion2.Alohandes.negocio.GananciaProveedor;
 import iteracion2.Alohandes.negocio.Habitacion;
 import iteracion2.Alohandes.negocio.HabitacionServicio;
 import iteracion2.Alohandes.negocio.HabitacionTiempoOcupada;
@@ -666,16 +667,41 @@ public class PersistenciaAlohandes
 		return sqlReserva.verificarReserva (pmf.getPersistenceManager(), idAlojamiento);
 	}
 	
+	/**
+	 * RFC2 - Método que retorna los 20 Alojamientos más popolares en Alohandes
+	 * @return La lista de objetos AlojamientosPopulares
+	 */
 	public List<AlojamientosPopulares> alojamientosPopulares ()
 	{
 		return sqlReserva.alojamientosPopulares(pmf.getPersistenceManager());
 	}
 	
+	/**
+	 * 
+	 * @return La lista de objetos RESERVA, construidos con base en las tuplas de la tabla RESERVA
+	 */
 	public List<Reserva> darReservas ()
 	{
 		return sqlReserva.darReservas(pmf.getPersistenceManager());
-	}	
+	}
 	
+	/**
+	 * RFC1 - Método que retorna la ganancia de cada proveedor durente el año actual y el año pasado
+	 * @return La lista de objetos GananciaProveedor
+	 */
+	public List<GananciaProveedor> gananciaProveedores ()
+	{
+		return sqlReserva.gananciaProveedores(pmf.getPersistenceManager());
+	}
+	
+	/**
+	 * Elimina todas las tuplas de todas las tablas de la base de datos de Alohandes
+	 * Crea y ejecuta las sentencias SQL para cada tabla de la base de datos - EL ORDEN ES IMPORTANTE 
+	 * @return Un arreglo con 20 números que indican el número de tuplas borradas en las tablas ALOJAMIENTO,
+	 * ALOJAMIENTO_SERVICIO, CLIENTE, EMPRESA, HABITACION, HABITACION_SERVICIO, HABITACION_TIEMPO_OCUPADA, 
+	 * HOSTAL, HOTEL, INMUEBLE_PERSONA, INMUEBLE_TIEMPO_OCUPADA, MENAJE, MENAJE_INMUEBLE, MENAJE_VIVIENDAU,
+	 * RESERVA, RESERVA_HABITACION, SERVICIO, TIEMPO_OCUPACION, VIVIENDA_UNIVERSITARIA, PROVEEDORES respectivamente
+	 */
 	public long [] limpiarAlohandes ()
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();

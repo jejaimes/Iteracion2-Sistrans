@@ -1,9 +1,9 @@
 package iteracion2.Alohandes.negocio;
 
 /**
- * Clase para modelar el concepto ALOJAMIENTO del negocio de ALOHANDES
+ * Clase para modelar el concepto AlojamientosPopulares del negocio de ALOHANDES
  */
-public class AlojamientosPopulares implements VOAlojamiento
+public class AlojamientosPopulares
 {
 	/* ****************************************************************
 	 * 			Atributos
@@ -22,7 +22,6 @@ public class AlojamientosPopulares implements VOAlojamiento
 	 * La direccion del alojamiento
 	 */
 	private int cantidad;
-
 
 	/* ****************************************************************
 	 * 			Métodos 
@@ -96,16 +95,16 @@ public class AlojamientosPopulares implements VOAlojamiento
 	{
 		this.cantidad = cantidad;
 	}
-	
-	
+
 	@Override
 	/**
 	 * @return Una cadena de caracteres con todos los atributos del alojamiento
 	 */
 	public String toString() 
 	{
-		return "Alojamientos mas populares [id=" + id + ", direccion=" + direccion+ ", cantidad=" + cantidad +"]";
+		return "Alojamientos mas populares [id=" + id + ", direccion=" + direccion + ", cantidad=" + cantidad +"]";
 	}
+
 }
 
 
