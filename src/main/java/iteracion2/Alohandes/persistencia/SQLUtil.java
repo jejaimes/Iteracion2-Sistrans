@@ -1,28 +1,12 @@
-/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * Universidad	de	los	Andes	(Bogotá	- Colombia)
- * Departamento	de	Ingeniería	de	Sistemas	y	Computación
- * Licenciado	bajo	el	esquema	Academic Free License versión 2.1
- * 		
- * Curso: isis2304 - Sistemas Transaccionales
- * Proyecto: Parranderos Uniandes
- * @version 1.0
- * @author Germán Bravo
- * Julio de 2018
- * 
- * Revisado por: Claudia Jiménez, Christian Ariza
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
-
 package iteracion2.Alohandes.persistencia;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 /**
- * Clase que encapsula los métodos que hacen acceso a la base de datos para el concepto BAR de Parranderos
+ * Clase que encapsula los métodos sobre varios conceptos que hacen acceso a la base de datos de Alohandes
  * Nótese que es una clase que es sólo conocida en el paquete de persistencia
  * 
- * @author Germán Bravo
  */
 class SQLUtil
 {
@@ -72,28 +56,58 @@ class SQLUtil
 	/**
 	 * Crea y ejecuta las sentencias SQL para cada tabla de la base de datos - EL ORDEN ES IMPORTANTE 
 	 * @param pm - El manejador de persistencia
-	 * @return Un arreglo con 7 números que indican el número de tuplas borradas en las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA,
-	 * TIPOBEBIDA, BEBEDOR y BAR, respectivamente
+	 * @return Un arreglo con 19 números que indican el número de tuplas borradas en las tablas ALOJAMIENTO,
+	 * ALOJAMIENTO_SERVICIO, CLIENTE, EMPRESA, HABITACION, HABITACION_SERVICIO, HABITACION_TIEMPO_OCUPADA, 
+	 * HOSTAL, HOTEL, INMUEBLE_PERSONA, INMUEBLE_TIEMPO_OCUPADA, MENAJE, MENAJE_INMUEBLE, MENAJE_VIVIENDAU,
+	 * RESERVA, RESERVA_HABITACION, SERVICIO, TIEMPO_OCUPACION, VIVIENDA_UNIVERSITARIA, respectivamente
 	 */
-	public long [] limpiarParranderos (PersistenceManager pm)
+	public long [] limpiarAlohandes (PersistenceManager pm)
 	{
-        Query qGustan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaGustan ());          
-        Query qSirven = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaSirven ());
-        Query qVisitan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaVisitan ());
-        Query qBebida = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBebida ());
-        Query qTipoBebida = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTipoBebida ());
-        Query qBebedor = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBebedor ());
-        Query qBar = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBar ());
+        Query qAlojamientoServicio = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAlojamientoServicio());          
+        Query qHabitacionServicio = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHabitacionServicio());
+        Query qHabitacionTiempoOcupada = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHabitacionTiempoOcupada());
+        Query qInmuebleTiempoOcupada = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaInmuebleTiempoOcupada());
+        Query qMenajeInmueble = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaMenajeInmueble());
+        Query qMenajeViviendaU = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaMenajeViviendaU());
+        Query qReservaHabitacion = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaReservaHabitacion());
+        Query qHotel = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHotel());
+        Query qHostal = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHostal());
+        Query qViviendaUniversitaria = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaViviendaUniversitaria());
+        Query qInmueblePersona = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaInmueblePersona());
+        Query qReserva = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaReserva());
+        Query qEmpresa = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaEmpresa());
+        Query qMenaje = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaMenaje());
+        Query qHabitacion = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHabitacion());
+        Query qTiempoOcupacion = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTiempoOcupacion());
+        Query qServicio = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServicio());
+        Query qCliente = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCliente());
+        Query qAlojamiento = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAlojamiento());
 
-        long gustanEliminados = (long) qGustan.executeUnique ();
-        long sirvenEliminados = (long) qSirven.executeUnique ();
-        long visitanEliminadas = (long) qVisitan.executeUnique ();
-        long bebidasEliminadas = (long) qBebida.executeUnique ();
-        long tiposBebidaEliminados = (long) qTipoBebida.executeUnique ();
-        long bebedoresEliminados = (long) qBebedor.executeUnique ();
-        long baresEliminados = (long) qBar.executeUnique ();
-        return new long[] {gustanEliminados, sirvenEliminados, visitanEliminadas, bebidasEliminadas, 
-        		tiposBebidaEliminados, bebedoresEliminados, baresEliminados};
+        long alojamientoServicioEliminados = (long) qAlojamientoServicio.executeUnique ();
+        long habitacionServicioEliminados = (long) qHabitacionServicio.executeUnique ();
+        long habitacionTiempoOcupadaEliminadas = (long) qHabitacionTiempoOcupada.executeUnique ();
+        long inmuebleTiempoOcupadaEliminadas = (long) qInmuebleTiempoOcupada.executeUnique ();
+        long menajeInmuebleEliminados = (long) qMenajeInmueble.executeUnique ();
+        long menajeViviendaUEliminados = (long) qMenajeViviendaU.executeUnique ();
+        long reservaHabitacionEliminados = (long) qReservaHabitacion.executeUnique ();
+        long hotelEliminados = (long) qHotel.executeUnique ();
+        long hostalEliminados = (long) qHostal.executeUnique ();
+        long viviendaUniversitariaEliminados = (long) qViviendaUniversitaria.executeUnique ();
+        long inmueblePersonaEliminados = (long) qInmueblePersona.executeUnique ();
+        long reservaEliminados = (long) qReserva.executeUnique ();
+        long empresaEliminados = (long) qEmpresa.executeUnique ();
+        long menajeEliminados = (long) qMenaje.executeUnique ();
+        long habitacionEliminados = (long) qHabitacion.executeUnique ();
+        long tiempoOcupacionEliminados = (long) qTiempoOcupacion.executeUnique ();
+        long servicioEliminados = (long) qServicio.executeUnique ();
+        long clienteEliminados = (long) qCliente.executeUnique ();
+        long alojamientoEliminados = (long) qAlojamiento.executeUnique ();
+        
+        return new long[] {alojamientoServicioEliminados, habitacionServicioEliminados, habitacionTiempoOcupadaEliminadas,
+        		inmuebleTiempoOcupadaEliminadas, menajeInmuebleEliminados, menajeViviendaUEliminados,
+        		reservaHabitacionEliminados, hotelEliminados, hostalEliminados, viviendaUniversitariaEliminados,
+        		inmueblePersonaEliminados, reservaEliminados, empresaEliminados, menajeEliminados, habitacionEliminados,
+        		tiempoOcupacionEliminados, servicioEliminados, clienteEliminados, alojamientoEliminados};
 	}
 
 }

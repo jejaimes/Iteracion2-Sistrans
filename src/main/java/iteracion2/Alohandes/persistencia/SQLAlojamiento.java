@@ -1,18 +1,3 @@
-/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * Universidad	de	los	Andes	(Bogotá	- Colombia)
- * Departamento	de	Ingeniería	de	Sistemas	y	Computación
- * Licenciado	bajo	el	esquema	Academic Free License versión 2.1
- * 		
- * Curso: isis2304 - Sistemas Transaccionales
- * Proyecto: Parranderos Uniandes
- * @version 1.0
- * @author Germán Bravo
- * Julio de 2018
- * 
- * Revisado por: Claudia Jiménez, Christian Ariza
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
-
 package iteracion2.Alohandes.persistencia;
 
 import java.util.List;
@@ -23,13 +8,13 @@ import javax.jdo.Query;
 import iteracion2.Alohandes.negocio.Alojamiento;
 
 /**
- * Clase que encapsula los métodos que hacen acceso a la base de datos para el concepto BAR de Parranderos
+ * Clase que encapsula los métodos que hacen acceso a la base de datos para el concepto ALOJAMIENTO de Alohandes
  * Nótese que es una clase que es sólo conocida en el paquete de persistencia
  * 
  */
 class SQLAlojamiento 
 {
-	/* ****************************************************************
+	/*****************************************************************
 	 * 			Constantes
 	 *****************************************************************/
 	/**
@@ -46,7 +31,7 @@ class SQLAlojamiento
 	 */
 	private PersistenciaAlohandes pp;
 
-	/* ****************************************************************
+	/*****************************************************************
 	 * 			Métodos
 	 *****************************************************************/
 
@@ -68,8 +53,8 @@ class SQLAlojamiento
 	 */
 	public long adicionarAlojamiento (PersistenceManager pm, long id, String direccion) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaAlojamiento () + "(id, direccion) values (?, ?)");
-        q.setParameters(id, direccion);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaAlojamiento () + "(direccion) values (?)");
+        q.setParameters(direccion);
         return (long) q.executeUnique();
 	}
 
