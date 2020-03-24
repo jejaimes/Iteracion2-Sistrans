@@ -1,9 +1,15 @@
 package iteracion2.Alohandes.persistencia;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+
+import iteracion2.Alohandes.negocio.Cliente;
+import iteracion2.Alohandes.negocio.TiempoOcupacion;
 
 public class SQLTiempoOcupacion
 {
@@ -48,6 +54,23 @@ public class SQLTiempoOcupacion
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaTiempoOcupacion() + "(fecha_llegada, fecha_salida, id) values (?, ?, ?)");
         q.setParameters(fechaLlegada, fechaSalida,id);
         return (long) q.executeUnique();
+	}
+	
+	
+	public List<TiempoOcupacion> darTiempos (PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaTiempoOcupacion());
+		
+		List<Object[]> aux = (List<Object[]>) q.executeList();
+		List<TiempoOcupacion> lista =  new ArrayList<>();
+		for (Object[] datos : aux)
+		{
+				Timestamp fecha1 = Timestamp.valueOf(datos[0].toString());
+				Timestamp fecha2 = Timestamp.valueOf(datos[1].toString());
+				long id = ((BigDecimal)datos[2]).longValue();
+				lista.add( new TiempoOcupacion(id, fecha1, fecha2));
+		}
+		return lista;
 	}
 	
 }

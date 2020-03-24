@@ -128,25 +128,35 @@ public class ALOHANDES
         return tiposBebida;
 	}
 	
+	public List<TiempoOcupacion> darTiempos ()
+	{
+		log.info ("Consultando tiempos de ocupacion");
+        List<TiempoOcupacion> tiposBebida = pp.darTiempos();	
+        log.info ("Consultando los tiempos: " + tiposBebida.size()  + " existentes");
+        return tiposBebida;
+	}
+	
 	public List<Alojamiento> darAlojamientos()
 	{
 		log.info ("Consultando Alojamientos");
         List<Alojamiento> tiposBebida = pp.darAlojamientos();
-        System.out.println("Andadndoooooooooooo");
-        System.err.println(tiposBebida.size());
         log.info ("Consultando los alojamientos: " + tiposBebida.size() );
+        return tiposBebida;
+	}
+	
+	public List<Cliente> darClientes()
+	{
+		log.info ("Consultando Clientes");
+        List<Cliente> tiposBebida = pp.darClientes();
+        log.info ("Consultando los clientes: " + tiposBebida.size() );
         return tiposBebida;
 	}
 	
 	
 	public Alojamiento darAlojamientoId(long id)
 	{
-		System.out.println("Al menos está acaaaaaa");
 		log.info ("Consultando Alojamientos");
-		System.out.println("otro pasito");
         Alojamiento tiposBebida = pp.darAlojamientoId(id);
-        System.out.println("Andadndoooooooooooo");
-        System.err.println(tiposBebida);
         log.info ("Consultando los alojamientos: " + tiposBebida );
         return tiposBebida;
 	}

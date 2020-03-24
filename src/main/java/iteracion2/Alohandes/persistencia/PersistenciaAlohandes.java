@@ -551,20 +551,17 @@ public class PersistenciaAlohandes
         try
         {
         	TiempoOcupacion to = crearTiempo(fechaLlegada, fechaSalida);
-        	System.err.println(to.getId());
         	if (to != null){
         	long aux = to.getId();
         	Timestamp t = new Timestamp(System.currentTimeMillis());
         	@SuppressWarnings("deprecation")
 			Date d = new Date(t.getYear(), t.getMonth(), t.getDate()+1);
-        	System.out.println(d.getDate());
         	DateFormatManager obj = new DateFormatManager("dd/MM/YYYY");
         	String aiuda = obj.format(d);
             tx.begin();            
             long id = nextval ();
             String estado = "creacion exitosa";
             long tuplasInsertadas = sqlReserva.crearReserva(pm, estado, aiuda, id, idCliente, tipoDocCliente,idAlojamiento, aux,costo);
-            System.out.println("bebesitooo");
             tx.commit();
             
             log.trace ("Inserción reserva: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
@@ -688,14 +685,19 @@ public class PersistenciaAlohandes
 		return sqlReserva.alojamientosPopulares(pmf.getPersistenceManager());
 	}
 	
+	
 	/**
 	 * 
 	 * @return La lista de objetos RESERVA, construidos con base en las tuplas de la tabla RESERVA
 	 */
 	public List<Reserva> darReservas ()
 	{
-		System.err.println(sqlReserva.darReservas(pmf.getPersistenceManager()).size());
 		return sqlReserva.darReservas(pmf.getPersistenceManager());
+	}
+	
+	public List<TiempoOcupacion> darTiempos ()
+	{
+		return sqlTiempoOcupacion.darTiempos(pmf.getPersistenceManager());
 	}
 	
 	/**
@@ -710,15 +712,19 @@ public class PersistenciaAlohandes
 	
 	public List<Alojamiento> darAlojamientos()
 	{
-		System.out.println("Si lees esto vamos bien");
 		return sqlAlojamiento.darAlojamientos(pmf.getPersistenceManager());
 	}
 	
 	
+	public List<Cliente> darClientes()
+	{
+		return sqlCliente.darClientes(pmf.getPersistenceManager());
+	}
+	
 	public Alojamiento darAlojamientoId(long id)
 	{
-		System.out.println("Si lees esto vamos bien");
 		return (Alojamiento) sqlAlojamiento.darAlojamientoId(pmf.getPersistenceManager(), id);
+		
 	}
 	
 	/**
