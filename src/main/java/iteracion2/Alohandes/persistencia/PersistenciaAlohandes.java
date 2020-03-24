@@ -2,6 +2,8 @@ package iteracion2.Alohandes.persistencia;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,6 +14,9 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.lf5.util.DateFormatManager;
+import org.datanucleus.store.types.wrappers.SqlDate;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -546,13 +551,20 @@ public class PersistenciaAlohandes
         try
         {
         	TiempoOcupacion to = crearTiempo(fechaLlegada, fechaSalida);
+        	System.err.println(to.getId());
         	if (to != null){
-        		long aux = to.getId();
+        	long aux = to.getId();
         	Timestamp t = new Timestamp(System.currentTimeMillis());
+        	@SuppressWarnings("deprecation")
+			Date d = new Date(t.getYear(), t.getMonth(), t.getDate()+1);
+        	System.out.println(d.getDate());
+        	DateFormatManager obj = new DateFormatManager("dd/MM/YYYY");
+        	String aiuda = obj.format(d);
             tx.begin();            
             long id = nextval ();
             String estado = "creacion exitosa";
-            long tuplasInsertadas = sqlReserva.crearReserva(pm, estado, t, id, idCliente, tipoDocCliente,idAlojamiento, aux,costo);
+            long tuplasInsertadas = sqlReserva.crearReserva(pm, estado, aiuda, id, idCliente, tipoDocCliente,idAlojamiento, aux,costo);
+            System.out.println("bebesitooo");
             tx.commit();
             
             log.trace ("Inserción reserva: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
@@ -563,7 +575,7 @@ public class PersistenciaAlohandes
         }
         catch (Exception e)
         {
-//        	e.printStackTrace();
+        	e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
         	return null;
         }

@@ -90,11 +90,32 @@ public class TablasTest
     	try
 		{
 			// Lectura de los tipos de bebida con la tabla vacía
-    		long num = 1;
-			VOAlojamiento lista = alohandes.darAlojamientoId(num);
-			assertEquals ("No debe haber tipos de bebida creados!!", 1 , lista);
-			System.out.println(lista);
-
+//    		long num = 1;
+//			VOAlojamiento lista = alohandes.darAlojamientoId(num);
+//			//assertEquals ("No debe haber tipos de bebida creados!!", 1 , lista);
+//			System.out.println(lista);
+//			
+//			List<Alojamiento> lista2 = alohandes.darAlojamientos();
+//			System.err.println(lista2.size());
+//			for (Alojamiento alojamiento : lista2) {
+//				System.err.println(alojamiento);
+//			}
+//			
+//			System.out.println("Ahora a borrar");
+//			long aux = alohandes.eliminarAlojamiento(2);
+//			System.out.println(aux);
+//			List<Alojamiento> lista3 = alohandes.darAlojamientos();
+//			System.err.println(lista3.size());
+			
+			@SuppressWarnings("deprecation")
+			Timestamp fechaLlegada = new Timestamp(120, 3-1, 28, 0,0,0,0);
+			@SuppressWarnings("deprecation")
+			Timestamp fechaSalida = new Timestamp(120, 5-1, 28, 0,0,0,0);
+//			Reserva l = alohandes.adicionarReserva(fechaLlegada, fechaSalida, 1111666666, "CE", 3, 254125);
+//			System.out.println(l);
+			System.out.println(alohandes.eliminarReserva(64));
+			
+			
 			// Lectura de los tipos de bebida con un tipo de bebida adicionado
 //			@SuppressWarnings("deprecation")
 //			int año = 2020-1900;

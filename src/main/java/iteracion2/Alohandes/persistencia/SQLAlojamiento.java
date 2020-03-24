@@ -1,6 +1,7 @@
 package iteracion2.Alohandes.persistencia;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -8,6 +9,7 @@ import javax.jdo.Query;
 
 import iteracion2.Alohandes.negocio.Alojamiento;
 import iteracion2.Alohandes.negocio.Reserva;
+import java.math.BigDecimal;
 
 /**
  * Clase que encapsula los métodos que hacen acceso a la base de datos para el concepto BAR de Parranderos
@@ -72,17 +74,33 @@ class SQLAlojamiento
 	public List<Alojamiento> darAlojamientos (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAlojamiento ());
-		System.out.println("Estoy haciendo algoooooooooo");
-		q.setResultClass(Alojamiento.class);
-		return (List<Alojamiento>) q.executeList();
+		
+		List<Object[]> aux = (List<Object[]>) q.executeList();
+		List<Alojamiento> lista =  new ArrayList<>();
+		for (Object[] datos : aux)
+		{
+				long id = ((BigDecimal)datos[0]).longValue();
+				String direccion = datos[1].toString();
+				String tipoDoc = datos[2].toString();
+				long idPersona = ((BigDecimal)datos[3]).longValue();
+				lista.add( new Alojamiento(id, direccion, tipoDoc, idPersona));
+		}
+		return lista;
 	}
 	
 	public Alojamiento darAlojamientoId (PersistenceManager pm, long id)
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaReserva () + " WHERE id = ?");
-		q.setResultClass(Alojamiento.class);
-		q.setParameters(id);
-		return (Alojamiento) q.executeUnique();
+		long i = 1;
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAlojamiento () + " WHERE id = " + id);
+		Object o = q.executeUnique();
+		if (o == null) return null;
+		else{
+			Object[] datos = (Object[]) o;
+			String direccion = datos[1].toString();
+			String tipoDoc = datos[2].toString();
+			long idPersona = ((BigDecimal)datos[3]).longValue();
+			return new Alojamiento(id, direccion, tipoDoc, idPersona);
+		}
 	}
 
 	

@@ -52,17 +52,18 @@ class SQLReserva
 	 * Crea y ejecuta la sentencia SQL para eliminar ALOJAMIENTO de la base de datos de Alohandes, por su id
 	 * @param pm - El manejador de persistencia
 	 * @param id - El id del alojamiento
-	 * @return EL número de tuplas eliminadas
+	 * @return EL número de tuplas creadas
 	 */
-	public long crearReserva (PersistenceManager pm, String estado, Timestamp fecha, long id, long idCliente, String tipoDoc, long alojamiento, long tiempo, int costo)
-	{
-		System.out.println("empezamos bien");
-
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaReserva () + "(estado, fecha, id, cliente_num_doc, cliente_tipo_doc, alojamiento, id_tiempo) values (?, ?, ?, ?, ?, ?, ?, ?)");
-        q.setParameters(estado, fecha,id,idCliente, tipoDoc,alojamiento,tiempo, costo);
-		System.out.println("Terminó bien :)");
-		System.out.println((long) q.executeUnique());
-        return (long) q.executeUnique();
+	public long crearReserva (PersistenceManager pm, String estado, String fecha, long id, long idCliente, String tipoDoc, long alojamiento, long tiempo, int costo)
+	{try{
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaReserva () + "(estado, fecha, id, cliente_num_doc, cliente_tipo_doc, alojamiento, id_tiempo, precio) values"
+				+ " ('" + estado +"', '"+ fecha +"',"+ id  + ", " + idCliente+ ", '" + tipoDoc + "', " + alojamiento + ", " + tiempo + ", " + costo + ")" );
+        return (long) q.execute();
+	} 
+	catch (Exception e) {
+		e.printStackTrace();
+		return -1;
+	}
 	}
 	
 
