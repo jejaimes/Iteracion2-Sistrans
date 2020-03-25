@@ -18,6 +18,7 @@ import com.google.gson.stream.JsonReader;
 
 import iteracion2.Alohandes.negocio.ALOHANDES;
 import iteracion2.Alohandes.negocio.Alojamiento;
+import iteracion2.Alohandes.negocio.Cliente;
 import iteracion2.Alohandes.negocio.Reserva;
 import iteracion2.Alohandes.negocio.VOAlojamiento;
 import iteracion2.Alohandes.negocio.VOHabitacionServicio;
@@ -100,6 +101,12 @@ public class TablasTest
 //			for (Alojamiento alojamiento : lista2) {
 //				System.err.println(alojamiento);
 //			}
+			
+			List<Cliente> lista2 = alohandes.darClientes();
+			System.err.println(lista2.size());
+			for (Cliente alojamiento : lista2) {
+				System.err.println(alojamiento);
+			}
 //			
 //			System.out.println("Ahora a borrar");
 //			long aux = alohandes.eliminarAlojamiento(2);
@@ -107,13 +114,13 @@ public class TablasTest
 //			List<Alojamiento> lista3 = alohandes.darAlojamientos();
 //			System.err.println(lista3.size());
 			
-			@SuppressWarnings("deprecation")
-			Timestamp fechaLlegada = new Timestamp(120, 3-1, 28, 0,0,0,0);
-			@SuppressWarnings("deprecation")
-			Timestamp fechaSalida = new Timestamp(120, 5-1, 28, 0,0,0,0);
+//			@SuppressWarnings("deprecation")
+//			Timestamp fechaLlegada = new Timestamp(120, 3-1, 28, 0,0,0,0);
+//			@SuppressWarnings("deprecation")
+//			Timestamp fechaSalida = new Timestamp(120, 5-1, 28, 0,0,0,0);
 //			Reserva l = alohandes.adicionarReserva(fechaLlegada, fechaSalida, 1111666666, "CE", 3, 254125);
 //			System.out.println(l);
-			System.out.println(alohandes.eliminarReserva(64));
+//			System.out.println(alohandes.eliminarReserva(64));
 			
 			
 			// Lectura de los tipos de bebida con un tipo de bebida adicionado

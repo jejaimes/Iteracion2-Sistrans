@@ -58,7 +58,8 @@ class SQLReserva
 	 * @return EL número de tuplas creadas
 	 */
 	public long crearReserva (PersistenceManager pm, String estado, String fecha, long id, long idCliente, String tipoDoc, long alojamiento, long tiempo, int costo)
-	{try{
+	{
+		try{
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaReserva () + "(estado, fecha, id, cliente_num_doc, cliente_tipo_doc, alojamiento, id_tiempo, precio) values"
 				+ " ('" + estado +"', '"+ fecha +"',"+ id  + ", " + idCliente+ ", '" + tipoDoc + "', " + alojamiento + ", " + tiempo + ", " + costo + ")" );
 		return (long) q.execute();
@@ -154,13 +155,24 @@ class SQLReserva
 	 */
 	public List<GananciaProveedor> gananciaProveedores (PersistenceManager pm)
 	{
-		Query q = pm.newQuery(SQL, "SELECT PROVEEDOR_TIPO_DOC,PROVEEDOR_NUM_DOC, SUM(RESERVA.PRECIO) FROM " 
-				+ pp.darTablaReserva () + " INNER JOIN " + pp.darTablaAlojamiento() +
-				" ON " + pp.darTablaReserva () + ".ALOJAMIENTO = " + pp.darTablaAlojamiento() + ".ID" +
-				"WHERE FECHA <= sysdate AND FECHA >  TRUNC(add_months( sysdate, -12 ),'yyyy')" +
-				" GROUP BY PROVEEDOR_TIPO_DOC,PROVEEDOR_NUM_DOC");
-		q.setResultClass(GananciaProveedor.class);
-		return (List<GananciaProveedor>) q.executeList();
+		Query q = pm.newQuery(SQL, "SELECT PROVEEDOR_TIPO_DOC,PROVEEDOR_NUM_DOC, SUM(RESERVA.PRECIO)" +
+									" FROM RESERVA" +
+									" INNER JOIN ALOJAMIENTO" +
+									" ON RESERVA.ALOJAMIENTO = ALOJAMIENTO.ID" +
+									" WHERE FECHA <= sysdate AND FECHA >  TRUNC(add_months( sysdate, -12 ),'yyyy')" +
+									" GROUP BY PROVEEDOR_TIPO_DOC,PROVEEDOR_NUM_DOC");
+		
+		List<Object[]> aux = (List<Object[]>) q.executeList();
+		System.out.println(aux.size());
+		List<GananciaProveedor> lista =  new ArrayList<>();
+		for (Object[] datos : aux)
+		{
+				String proveedorTipoDoc = datos[0].toString();
+				long proveedorNumDoc = ((BigDecimal)datos[1]).longValue();
+				long ganancia = ((BigDecimal)datos[2]).longValue();
+				lista.add( new GananciaProveedor(proveedorTipoDoc, proveedorNumDoc, ganancia));
+		}
+		return lista;
 	}
 
 }

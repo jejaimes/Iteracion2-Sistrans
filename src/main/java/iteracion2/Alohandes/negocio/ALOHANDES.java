@@ -93,9 +93,24 @@ public class ALOHANDES
         return resp;
 	}
 	
-	/* ****************************************************************
+	/*****************************************************************
 	 * 			Métodos para manejar los ALOJAMIENTOS 
 	 *****************************************************************/
+	
+	/**
+	 * Adiciona de manera persistente un alojamiento
+	 * Adiciona entradas al log de la aplicación
+	 * @return El objeto Alojamiento adicionado. null si ocurre alguna Excepción
+	 */
+	public Alojamiento adicionarAlojamiento (String direccion, long docProv, String tipoDoc)
+	{
+        log.info ("Adicionando nueva alojamiento con los datos especificados" );
+        System.out.println("antes de crear en alohandes");
+        Alojamiento alo = pp.adicionarAlojamiento(direccion, docProv, tipoDoc);
+        System.out.println("ya deberia estar creado en alohandes");
+        log.info ("Adicionando alojamiento: " + alo);
+        return alo;
+	}
 	/**
 	 * Elimina un alojamiento por su id
 	 * Adiciona entradas al log de la aplicación
@@ -149,6 +164,15 @@ public class ALOHANDES
 		log.info ("Consultando Clientes");
         List<Cliente> tiposBebida = pp.darClientes();
         log.info ("Consultando los clientes: " + tiposBebida.size() );
+        return tiposBebida;
+	}
+	public List<GananciaProveedor> gananciaProveedores()
+	{
+		log.info ("Consultando Alojamientos");
+        List<GananciaProveedor> tiposBebida = pp.gananciaProveedores();
+        System.out.println("Andadndoooooooooooo");
+        System.err.println(tiposBebida.size());
+        log.info ("Consultando las ganancias: " + tiposBebida.size() );
         return tiposBebida;
 	}
 	

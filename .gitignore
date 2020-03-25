@@ -1,2 +1,6 @@
 
 datanucleus.log
+
+target/classes/META-INF/persistence.xml
+
+src/main/resources/META-INF/persistence.xml

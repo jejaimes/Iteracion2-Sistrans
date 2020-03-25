@@ -53,7 +53,7 @@ class SQLAlojamiento
 	 * Crea y ejecuta la sentencia SQL para eliminar ALOJAMIENTO de la base de datos de Alohandes, por su id
 	 * @param pm - El manejador de persistencia
 	 * @param id - El id del alojamiento
-	 * @return EL número de tuplas eliminadas
+	 * @return El número de tuplas eliminadas
 	 */
 	public long eliminarAlojamientoPorId (PersistenceManager pm, long id)
 	{
@@ -62,7 +62,29 @@ class SQLAlojamiento
         return (long) q.executeUnique();
 	}
 
-
+	/**
+	 * Crea y ejecuta la sentencia SQL para crear ALOJAMIENTO de la base de datos de Alohandes
+	 * @param pm - El manejador de persistencia
+	 * @param id - id del alojamiento
+	 * @param direccion - direccion del alojamiento
+	 * @param docProv - número de documento del proveedor del alojamiento
+	 * @param tipoDoc - tipo de documento del proveedor del alojamiento
+	 * @return El número de tuplas creadas
+	 */
+	public long crearAlojamiento (PersistenceManager pm, long id, String direccion, long docProv, String tipoDoc)
+	{
+		try{
+			System.out.println("vamos en el sql");
+//		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaAlojamiento() + " (direccion,proveedor_num_doc,proveedor_tipo_doc) values"
+//				+ " ('" + direccion +"',"+ docProv + ",'" + tipoDoc + "')");
+		Query q = pm.newQuery(SQL, "INSERT INTO ALOJAMIENTO (ID,DIRECCION, PROVEEDOR_TIPO_DOC, PROVEEDOR_NUM_DOC) VALUES (1,'cll 132c #44-44','CE',1111611111)");
+        return (long) q.execute();
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
 
 
 	/**

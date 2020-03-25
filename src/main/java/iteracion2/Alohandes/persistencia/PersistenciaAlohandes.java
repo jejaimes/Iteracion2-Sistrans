@@ -665,6 +665,42 @@ public class PersistenciaAlohandes
         }
 	}
 	
+	/**
+	 * Método que inserta, de manera transaccional, una tupla en la tabla alojamiento
+	 * Adiciona entradas al log de la aplicación
+	 * @return El objeto Alojamiento adicionado. null si ocurre alguna Excepción
+	 */
+	public Alojamiento adicionarAlojamiento(String direccion, long docProv, String tipoDoc) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();            
+            long id = nextval ();
+            System.out.println("antes del sql");
+            long tuplasInsertadas = sqlAlojamiento.crearAlojamiento(pm, id, direccion, docProv, tipoDoc);
+            System.out.println("tuplas insertadas:"+tuplasInsertadas);
+            tx.commit();
+            
+            log.trace ("Inserción alojamiento: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+            return new Alojamiento(id, direccion, tipoDoc, docProv);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
 	
 	/**
 	 * Método que consulta todas las tuplas en la tabla RESERVA que tienen el ID DEL ALOJAMIENTO dado
