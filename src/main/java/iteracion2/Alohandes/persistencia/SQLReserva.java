@@ -163,7 +163,7 @@ class SQLReserva
 									" GROUP BY PROVEEDOR_TIPO_DOC,PROVEEDOR_NUM_DOC");
 		
 		List<Object[]> aux = (List<Object[]>) q.executeList();
-		System.out.println(aux.size());
+//		System.out.println(aux.size());
 		List<GananciaProveedor> lista =  new ArrayList<>();
 		for (Object[] datos : aux)
 		{

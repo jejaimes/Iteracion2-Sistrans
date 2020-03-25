@@ -168,11 +168,11 @@ public class ALOHANDES
 	}
 	public List<GananciaProveedor> gananciaProveedores()
 	{
-		log.info ("Consultando Alojamientos");
+		log.info ("Consultando ganancias");
         List<GananciaProveedor> tiposBebida = pp.gananciaProveedores();
-        System.out.println("Andadndoooooooooooo");
-        System.err.println(tiposBebida.size());
-        log.info ("Consultando las ganancias: " + tiposBebida.size() );
+//        System.out.println("Andadndoooooooooooo");
+//        System.err.println(tiposBebida.size());
+        log.info ("Consultando el numero de proveedores: " + tiposBebida.size() );
         return tiposBebida;
 	}
 	

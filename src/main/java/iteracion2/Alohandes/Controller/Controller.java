@@ -11,7 +11,9 @@ import com.google.gson.JsonSyntaxException;
 
 import iteracion2.Alohandes.negocio.ALOHANDES;
 import iteracion2.Alohandes.negocio.Alojamiento;
+import iteracion2.Alohandes.negocio.AlojamientosPopulares;
 import iteracion2.Alohandes.negocio.Cliente;
+import iteracion2.Alohandes.negocio.GananciaProveedor;
 import iteracion2.Alohandes.negocio.Reserva;
 import iteracion2.Alohandes.negocio.TiempoOcupacion;
 import iteracion2.Alohandes.persistencia.PersistenciaAlohandes;
@@ -152,11 +154,19 @@ public class Controller {
 
 
 			case 7:
-				
+				List<GananciaProveedor> lista4 = modelo.gananciaProveedores();
+				System.out.println("Hasta el momento " + lista4.size() + " proveedor(es) recibieron dinero este año");
+				for (GananciaProveedor ganancia : lista4) {
+					System.out.println(ganancia);
+				}
 				break;
 				
 			case 8:
-				
+				List<AlojamientosPopulares> lista5 = modelo.alojamientosPopulares();
+				System.out.println("Las 20 ofertas de alojamiento más populares son:");
+				for (AlojamientosPopulares alo : lista5) {
+					System.out.println(alo);
+				}
 				break;
 				
 			case 9:
