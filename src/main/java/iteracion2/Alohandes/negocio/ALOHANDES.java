@@ -185,6 +185,14 @@ public class ALOHANDES
         return tiposBebida;
 	}
 	
+	public long crearHostal(long id_empresa, String horario, String idSuperI, String idCamara)
+	{
+		log.info ("Creando hostal");
+        long numCreados = pp.crearHostal(id_empresa, horario, idSuperI, idCamara);
+        log.info ("Hostales creados: " + numCreados );
+        return numCreados;
+	}
+	
 	public long [] limpiarAlohandes ()
 	{
         log.info ("Limpiando la BD de Parranderos");

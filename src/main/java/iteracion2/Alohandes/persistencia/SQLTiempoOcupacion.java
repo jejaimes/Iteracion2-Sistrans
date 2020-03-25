@@ -73,4 +73,30 @@ public class SQLTiempoOcupacion
 		return lista;
 	}
 	
+	/**
+	 * Crea y ejecuta la sentencia SQL para eliminar una tupla de TiempoOcupacion de la base de datos de Alohandes
+	 * @param pm - El manejador de persistencia
+	 * @param id - El id del TiempoOcupacion
+	 * @return El número de tuplas eliminadas
+	 */
+	public long eliminarTiempoOcupacion (PersistenceManager pm, long id)
+	{
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTiempoOcupacion () + " WHERE id = ?");
+        q.setParameters(id);
+        return (long) q.executeUnique();
+	}
+	
+	/**
+	 * Crea y ejecuta la sentencia SQL para buscar una tupla de TiempoOcupacion de la base de datos de Alohandes
+	 * @param pm - El manejador de persistencia
+	 * @param id - El id del TiempoOcupacion
+	 * @return El número de tuplas eliminadas
+	 */
+	public long buscarTiempoOcupacion (PersistenceManager pm, long id)
+	{
+        Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaTiempoOcupacion () + " WHERE id = ?");
+        q.setParameters(id);
+        return (long) q.executeUnique();
+	}
+	
 }

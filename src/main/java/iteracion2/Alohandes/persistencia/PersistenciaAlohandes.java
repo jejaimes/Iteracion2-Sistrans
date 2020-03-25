@@ -30,6 +30,7 @@ import iteracion2.Alohandes.negocio.GananciaProveedor;
 import iteracion2.Alohandes.negocio.Habitacion;
 import iteracion2.Alohandes.negocio.HabitacionServicio;
 import iteracion2.Alohandes.negocio.HabitacionTiempoOcupada;
+import iteracion2.Alohandes.negocio.Hostal;
 import iteracion2.Alohandes.negocio.Reserva;
 import iteracion2.Alohandes.negocio.TiempoOcupacion;
 
@@ -761,6 +762,11 @@ public class PersistenciaAlohandes
 	{
 		return (Alojamiento) sqlAlojamiento.darAlojamientoId(pmf.getPersistenceManager(), id);
 		
+	}
+	
+	public long crearHostal(long id_empresa, String horario, String idSuperI, String idCamara)
+	{
+		return sqlHostal.crearHostal(pmf.getPersistenceManager(), id_empresa, horario, idSuperI, idCamara);
 	}
 	
 	/**

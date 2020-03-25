@@ -102,12 +102,12 @@ public class TablasTest
 //				System.err.println(alojamiento);
 //			}
 			
-			List<Cliente> lista2 = alohandes.darClientes();
-			System.err.println(lista2.size());
-			for (Cliente alojamiento : lista2) {
-				System.err.println(alojamiento);
-			}
-//			
+//			List<Cliente> lista2 = alohandes.darClientes();
+//			System.err.println(lista2.size());
+//			for (Cliente alojamiento : lista2) {
+//				System.err.println(alojamiento);
+//			}
+    		
 //			System.out.println("Ahora a borrar");
 //			long aux = alohandes.eliminarAlojamiento(2);
 //			System.out.println(aux);
