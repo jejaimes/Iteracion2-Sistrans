@@ -163,9 +163,13 @@ public class Controller {
 				
 			case 8:
 				List<AlojamientosPopulares> lista5 = modelo.alojamientosPopulares();
+				if(lista5.size() == 0)
+					System.out.println("No hay ofertas de alojamiento");
+				else{
 				System.out.println("Las 20 ofertas de alojamiento más populares son:");
 				for (AlojamientosPopulares alo : lista5) {
 					System.out.println(alo);
+				}
 				}
 				break;
 				

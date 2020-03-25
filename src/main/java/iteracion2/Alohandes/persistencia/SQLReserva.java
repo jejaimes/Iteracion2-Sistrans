@@ -159,7 +159,7 @@ class SQLReserva
 									" FROM RESERVA" +
 									" INNER JOIN ALOJAMIENTO" +
 									" ON RESERVA.ALOJAMIENTO = ALOJAMIENTO.ID" +
-									" WHERE FECHA <= sysdate AND FECHA >  TRUNC(add_months( sysdate, -12 ),'yyyy')" +
+									" WHERE FECHA <= sysdate AND FECHA > TRUNC(sysdate,'yyyy')" +
 									" GROUP BY PROVEEDOR_TIPO_DOC,PROVEEDOR_NUM_DOC");
 		
 		List<Object[]> aux = (List<Object[]>) q.executeList();

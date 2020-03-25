@@ -604,10 +604,10 @@ ENABLE;
 CREATE TRIGGER TRG_CHECK_FECHA_RESERVA
     BEFORE INSERT OR UPDATE OF FECHA ON RESERVA
     FOR EACH ROW
-        WHEN (NEW.FECHA <= CURRENT_DATE)
+        WHEN (NEW.FECHA > CURRENT_DATE)
     BEGIN
         RAISE_APPLICATION_ERROR( -20001,
-          'Invalid FECHA: FECHA must be greater or equal than the current date');
+          'Invalid FECHA: FECHA must be less or equal than the current date');
     END TRG_CHECK_FECHA_RESERVA;
 /
 
