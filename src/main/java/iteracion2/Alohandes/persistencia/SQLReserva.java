@@ -118,7 +118,7 @@ class SQLReserva
 	{
 		Query q = pm.newQuery(SQL, "SELECT ID, DIRECCION, CANTIDAD FROM (SELECT COUNT(*) AS CANTIDAD, ALOJAMIENTO AS ID_1 FROM "
 				+ pp.darTablaReserva () + " GROUP BY ALOJAMIENTO)"
-				+ " JOIN " + pp.darTablaAlojamiento() + " ON ID_1 = ID WHERE ROWNUM <= 20");
+				+ " JOIN " + pp.darTablaAlojamiento() + " ON ID_1 = ID WHERE ROWNUM <= 20 ORDER BY CANTIDAD DESC" );
 		q.setResultClass(AlojamientosPopulares.class);
 		return (List<AlojamientosPopulares>) q.executeList();
 	}

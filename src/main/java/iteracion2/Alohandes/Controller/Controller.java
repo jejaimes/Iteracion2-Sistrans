@@ -99,8 +99,11 @@ public class Controller {
 				System.out.println("Ingrese el ID del alojamiento en el cual se desea hospedar (este debe existir)");
 				long idAl = lector.nextLong();
 				Reserva l = modelo.adicionarReserva(fechaLlegada, fechaSalida, numDoc, tipoDoc, idAl , 554832);
+				if (l != null){
 				System.out.println("Los datos de su reserva son:");
-				System.out.println(l);
+				System.out.println(l);}
+				else 
+					System.out.println("Ocurrió un error y no se pudo ingresar la reserva. Resive los datos ingresados");
 				System.out.println("\n");
 				
 				break;
@@ -111,7 +114,7 @@ public class Controller {
 				for (Reserva alojamiento : lista3) {
 					System.out.println(alojamiento);
 				}
-				
+				System.out.println("\n");
 				System.out.println("Si desea mayor información sobre el idTiempo, el cual referencia las fechas de estadia, digite 1, de lo contrario digite 0");
 					int aux = lector.nextInt();
 					if (aux ==1)
@@ -159,6 +162,7 @@ public class Controller {
 				for (GananciaProveedor ganancia : lista4) {
 					System.out.println(ganancia);
 				}
+				System.out.println("\n");
 				break;
 				
 			case 8:

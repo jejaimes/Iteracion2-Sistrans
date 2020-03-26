@@ -556,7 +556,7 @@ public class PersistenciaAlohandes
         	long aux = to.getId();
         	Timestamp t = new Timestamp(System.currentTimeMillis());
         	@SuppressWarnings("deprecation")
-			Date d = new Date(t.getYear(), t.getMonth(), t.getDate()+1);
+			Date d = new Date(t.getYear(), t.getMonth(), t.getDate());
         	DateFormatManager obj = new DateFormatManager("dd/MM/YYYY");
         	String aiuda = obj.format(d);
             tx.begin();            
@@ -564,9 +564,11 @@ public class PersistenciaAlohandes
             String estado = "creacion exitosa";
             long tuplasInsertadas = sqlReserva.crearReserva(pm, estado, aiuda, id, idCliente, tipoDocCliente,idAlojamiento, aux,costo);
             tx.commit();
-            
+            if (tuplasInsertadas == 1){
+            Reserva r = new Reserva(estado, t, id, idCliente, tipoDocCliente, idAlojamiento, aux, costo);
             log.trace ("Inserción reserva: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
-            return new Reserva(estado, t, id, idCliente, tipoDocCliente, idAlojamiento, aux, costo);
+            return r;}
+            else return null;
         	}
         	else
         		return null;

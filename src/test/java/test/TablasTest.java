@@ -19,9 +19,11 @@ import com.google.gson.stream.JsonReader;
 import iteracion2.Alohandes.negocio.ALOHANDES;
 import iteracion2.Alohandes.negocio.Alojamiento;
 import iteracion2.Alohandes.negocio.Cliente;
+import iteracion2.Alohandes.negocio.GananciaProveedor;
 import iteracion2.Alohandes.negocio.Reserva;
 import iteracion2.Alohandes.negocio.VOAlojamiento;
 import iteracion2.Alohandes.negocio.VOHabitacionServicio;
+import iteracion2.Alohandes.negocio.VOReserva;
 
 /**
  * Clase con los métdos de prueba de funcionalidad sobre TIPOBEBIDA
@@ -67,21 +69,21 @@ public class TablasTest
 	 * 4. Borrar un tipo de bebida por su nombre
 	 */
     @Test
-	public void CRDTipoBebidaTest() 
+	public void AgregarYEliminarReserva() 
 	{
     	// Probar primero la conexión a la base de datos
 		try
 		{
-			log.info ("Probando las operaciones CRD sobre TipoBebida");
+			log.info ("Probando agregar una reserva");
 			alohandes = new ALOHANDES (openConfig (CONFIG_TABLAS_A));
 		}
 		catch (Exception e)
 		{
 //			e.printStackTrace();
-			log.info ("Prueba de CRD de Tipobebida incompleta. No se pudo conectar a la base de datos !!. La excepción generada es: " + e.getClass ().getName ());
+			log.info ("Prueba de agregar una reserva incompleta. No se pudo conectar a la base de datos !!. La excepción generada es: " + e.getClass ().getName ());
 			log.info ("La causa es: " + e.getCause ().toString ());
 
-			String msg = "Prueba de CRD de Tipobebida incompleta. No se pudo conectar a la base de datos !!.\n";
+			String msg = "Prueba de agregar una reserva incompleta. No se pudo conectar a la base de datos !!.\n";
 			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
 			System.out.println (msg);
 			fail (msg);
@@ -90,81 +92,36 @@ public class TablasTest
 		// Ahora si se pueden probar las operaciones
     	try
 		{
-			// Lectura de los tipos de bebida con la tabla vacía
-//    		long num = 1;
-//			VOAlojamiento lista = alohandes.darAlojamientoId(num);
-//			//assertEquals ("No debe haber tipos de bebida creados!!", 1 , lista);
-//			System.out.println(lista);
-//			
-//			List<Alojamiento> lista2 = alohandes.darAlojamientos();
-//			System.err.println(lista2.size());
-//			for (Alojamiento alojamiento : lista2) {
-//				System.err.println(alojamiento);
-//			}
+			// Lectura de las reservas. La tabla está vacía
+			List<Reserva> lista = alohandes.darReservas();
+			assertEquals ("No debe haber reservas existentes!!", 0 , lista.size());
 			
-//			List<Cliente> lista2 = alohandes.darClientes();
-//			System.err.println(lista2.size());
-//			for (Cliente alojamiento : lista2) {
-//				System.err.println(alojamiento);
-//			}
-    		
-//			System.out.println("Ahora a borrar");
-//			long aux = alohandes.eliminarAlojamiento(2);
-//			System.out.println(aux);
-//			List<Alojamiento> lista3 = alohandes.darAlojamientos();
-//			System.err.println(lista3.size());
+			//Ingresar una reserva
+			Timestamp fechaLlegada = new Timestamp(2020-1900, 5-1, 14, 0,0,0,0);
 			
-//			@SuppressWarnings("deprecation")
-//			Timestamp fechaLlegada = new Timestamp(120, 3-1, 28, 0,0,0,0);
-//			@SuppressWarnings("deprecation")
-//			Timestamp fechaSalida = new Timestamp(120, 5-1, 28, 0,0,0,0);
-//			Reserva l = alohandes.adicionarReserva(fechaLlegada, fechaSalida, 1111666666, "CE", 3, 254125);
-//			System.out.println(l);
-//			System.out.println(alohandes.eliminarReserva(64));
+			Timestamp fechaSalida = new Timestamp(2020-1900, 11-1, 26, 0,0,0,0);
 			
 			
-			// Lectura de los tipos de bebida con un tipo de bebida adicionado
-//			@SuppressWarnings("deprecation")
-//			int año = 2020-1900;
-//			@SuppressWarnings("deprecation")
-//			Timestamp fechaLlegada = new Timestamp(120, 3-1, 28, 0,0,0,0);
-//			@SuppressWarnings("deprecation")
-//			Timestamp fechaSalida = new Timestamp(120, 5-1, 28, 0,0,0,0);
-//			Reserva reserva1 = alohandes.adicionarReserva(fechaLlegada, fechaSalida, 1111111111, "TI", 1, 245212);
-//			lista = alohandes.darReservas();
-//			assertEquals ("Debe haber una reserva creada !!", 1, lista.size ());
-//			assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", reserva1, lista.get (0));
-//
-//			// Lectura de los tipos de bebida con dos tipos de bebida adicionados
-//			String nombreTipoBebida2 = "Cerveza";
-//			VOHabitacionServicio tipoBebida2 = alohandes.adicionarTipoBebida (nombreTipoBebida2);
-//			lista = alohandes.darVOTiposBebida();
-//			assertEquals ("Debe haber dos tipos de bebida creados !!", 2, lista.size ());
-//			assertTrue ("El primer tipo de bebida adicionado debe estar en la tabla", tipoBebida1.equals (lista.get (0)) || tipoBebida1.equals (lista.get (1)));
-//			assertTrue ("El segundo tipo de bebida adicionado debe estar en la tabla", tipoBebida2.equals (lista.get (0)) || tipoBebida2.equals (lista.get (1)));
-//
-//			// Prueba de eliminación de un tipo de bebida, dado su identificador
-//			long tbEliminados = alohandes.eliminarTipoBebidaPorId (tipoBebida1.getId ());
-//			assertEquals ("Debe haberse eliminado un tipo de bebida !!", 1, tbEliminados);
-//			lista = alohandes.darVOTiposBebida();
-//			assertEquals ("Debe haber un solo tipo de bebida !!", 1, lista.size ());
-//			assertFalse ("El primer tipo de bebida adicionado NO debe estar en la tabla", tipoBebida1.equals (lista.get (0)));
-//			assertTrue ("El segundo tipo de bebida adicionado debe estar en la tabla", tipoBebida2.equals (lista.get (0)));
-//			
-//			// Prueba de eliminación de un tipo de bebida, dado su identificador
-//			tbEliminados = alohandes.eliminarTipoBebidaPorNombre (nombreTipoBebida2);
-//			assertEquals ("Debe haberse eliminado un tipo de bebida !!", 1, tbEliminados);
-//			lista = alohandes.darVOTiposBebida();
-//			assertEquals ("La tabla debió quedar vacía !!", 0, lista.size ());
+			Reserva l = alohandes.adicionarReserva(fechaLlegada, fechaSalida, 3638722, "CE", 1 , 554832);
+			lista = alohandes.darReservas();
+			assertEquals("No se agregó ninguna reserva!!" ,1, lista.size());
+			List<Reserva> lista2 = alohandes.darReservas();
+			assertEquals ("Debería haber una reserva existente!!", 1 , lista.size());
+			
+			//Eliminar una reserva
+			alohandes.eliminarReserva(lista2.get(0).getId());
+			lista = alohandes.darReservas();
+			assertEquals ("Se debió eliminar la reserva!!", 0 , lista.size());
+
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			String msg = "Error en la ejecución de las pruebas de operaciones sobre la tabla TipoBebida.\n";
+			String msg = "Error en la ejecución de las pruebas de operaciones sobre la tabla.\n";
 			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
 			System.out.println (msg);
 
-    		fail ("Error en las pruebas sobre la tabla TipoBebida");
+    		fail ("Error en las pruebas sobre la tabla");
 		}
 		finally
 		{
@@ -172,66 +129,114 @@ public class TablasTest
     		alohandes.cerrarUnidadPersistencia ();    		
 		}
 	}
-//
-//    /**
-//     * Método de prueba de la restricción de unicidad sobre el nombre de TipoBebida
-//     */
-//	@Test
-//	public void unicidadTipoBebidaTest() 
-//	{
-//    	// Probar primero la conexión a la base de datos
-//		try
-//		{
-//			log.info ("Probando la restricción de UNICIDAD del nombre del tipo de bebida");
-//			alohandes = new ALOHANDES (openConfig (CONFIG_TABLAS_A));
-//		}
-//		catch (Exception e)
-//		{
-////			e.printStackTrace();
-//			log.info ("Prueba de UNICIDAD de Tipobebida incompleta. No se pudo conectar a la base de datos !!. La excepción generada es: " + e.getClass ().getName ());
-//			log.info ("La causa es: " + e.getCause ().toString ());
-//
-//			String msg = "Prueba de UNICIDAD de Tipobebida incompleta. No se pudo conectar a la base de datos !!.\n";
-//			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
-//			System.out.println (msg);
-//			fail (msg);
-//		}
-//		
-//		// Ahora si se pueden probar las operaciones
-//		try
-//		{
-//			// Lectura de los tipos de bebida con la tabla vacía
-//			List <VOHabitacionServicio> lista = alohandes.darVOTiposBebida();
-//			assertEquals ("No debe haber tipos de bebida creados!!", 0, lista.size ());
-//
-//			// Lectura de los tipos de bebida con un tipo de bebida adicionado
-//			String nombreTipoBebida1 = "Vino tinto";
-//			VOHabitacionServicio tipoBebida1 = alohandes.adicionarTipoBebida (nombreTipoBebida1);
-//			lista = alohandes.darVOTiposBebida();
-//			assertEquals ("Debe haber un tipo de bebida creado !!", 1, lista.size ());
-//
-//			VOHabitacionServicio tipoBebida2 = alohandes.adicionarTipoBebida (nombreTipoBebida1);
-//			assertNull ("No puede adicionar dos tipos de bebida con el mismo nombre !!", tipoBebida2);
-//		}
-//		catch (Exception e)
-//		{
-////			e.printStackTrace();
-//			String msg = "Error en la ejecución de las pruebas de UNICIDAD sobre la tabla TipoBebida.\n";
-//			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
-//			System.out.println (msg);
-//
-//    		fail ("Error en las pruebas de UNICIDAD sobre la tabla TipoBebida");
-//		}    				
-//		finally
-//		{
-//			alohandes.limpiarParranderos ();
-//    		alohandes.cerrarUnidadPersistencia ();    		
-//		}
-//	}
-//
-//	/* ****************************************************************
-//	 * 			Métodos de configuración
-//	 *****************************************************************/
+
+    
+    @Test
+	public void EliminarAlojamiento() 
+	{
+    	// Probar primero la conexión a la base de datos
+		try
+		{
+			log.info ("Probando eliminar un alojamiento");
+			alohandes = new ALOHANDES (openConfig (CONFIG_TABLAS_A));
+		}
+		catch (Exception e)
+		{
+//			e.printStackTrace();
+			log.info ("Prueba de eliminar un alojamiento incompleta. No se pudo conectar a la base de datos !!. La excepción generada es: " + e.getClass ().getName ());
+			log.info ("La causa es: " + e.getCause ().toString ());
+
+			String msg = "Prueba de eliminar un alojamiento incompleta. No se pudo conectar a la base de datos !!.\n";
+			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
+			System.out.println (msg);
+			fail (msg);
+		}
+		
+		// Ahora si se pueden probar las operaciones
+    	try
+		{
+			// Lectura de los alojamientos. 
+			List<Alojamiento> lista = alohandes.darAlojamientos();
+			assertEquals ("Debería haber una reserva existente!!", 28 , lista.size());
+			
+			//Eliminar una reserva
+			alohandes.eliminarAlojamiento(28);
+			lista = alohandes.darAlojamientos();
+			assertEquals ("Se debió eliminar el alojamiento!!", 27 , lista.size());
+
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			String msg = "Error en la ejecución de las pruebas de operaciones sobre la tabla .\n";
+			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
+			System.out.println (msg);
+
+    		fail ("Error en las pruebas.");
+		}
+		finally
+		{
+//			alohandes.limpiarAlohandes();
+    		alohandes.cerrarUnidadPersistencia ();    		
+		}
+	}  
+    
+    
+    @Test
+  	public void verificarRFC1() 
+  	{
+      	// Probar primero la conexión a la base de datos
+  		try
+  		{
+  			log.info ("Probando el requerimiento funcional de consulta 1");
+  			alohandes = new ALOHANDES (openConfig (CONFIG_TABLAS_A));
+  		}
+  		catch (Exception e)
+  		{
+//  			e.printStackTrace();
+  			log.info ("Prueba de el requerimiento funcional de consulta 1 incompleta. No se pudo conectar a la base de datos !!. La excepción generada es: " + e.getClass ().getName ());
+  			log.info ("La causa es: " + e.getCause ().toString ());
+
+  			String msg = "Prueba de el requerimiento funcional de consulta 1 incompleta. No se pudo conectar a la base de datos !!.\n";
+  			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
+  			System.out.println (msg);
+  			fail (msg);
+  		}
+  		
+  		// Ahora si se pueden probar las operaciones
+      	try
+  		{
+      		Timestamp fechaLlegada = new Timestamp(2020-1900, 5-1, 14, 0,0,0,0);
+			
+			Timestamp fechaSalida = new Timestamp(2020-1900, 11-1, 26, 0,0,0,0);
+			
+			
+			Reserva l = alohandes.adicionarReserva(fechaLlegada, fechaSalida, 3638722, "CE", 1 , 554832);
+			List<GananciaProveedor> lis = alohandes.gananciaProveedores();
+			assertEquals ("Debe haber un único proveedor con ingresos!!", 1 , lis.size());
+			assertEquals ("Debe haber un único proveedor con ingresos!!", 554832 , lis.get(0).getGanancia());
+			alohandes.eliminarReserva(alohandes.darReservas().get(0).getId());
+			
+
+  		}
+  		catch (Exception e)
+  		{
+  			e.printStackTrace();
+  			String msg = "Error en la ejecución de las pruebas de operaciones sobre la tabla.\n";
+  			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
+  			System.out.println (msg);
+
+      		fail ("Error en las pruebas.");
+  		}
+  		finally
+  		{
+//  			alohandes.limpiarAlohandes();
+      		alohandes.cerrarUnidadPersistencia ();    		
+  		}
+  	}  
+    
+    
+    
     /**
      * Lee datos de configuración para la aplicación, a partir de un archivo JSON o con valores por defecto si hay errores.
      * @param tipo - El tipo de configuración deseada
