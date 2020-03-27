@@ -5,6 +5,9 @@ import java.sql.Timestamp;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
+
+import javax.crypto.Cipher;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
@@ -14,6 +17,9 @@ import iteracion2.Alohandes.negocio.Alojamiento;
 import iteracion2.Alohandes.negocio.AlojamientosPopulares;
 import iteracion2.Alohandes.negocio.Cliente;
 import iteracion2.Alohandes.negocio.GananciaProveedor;
+import iteracion2.Alohandes.negocio.Hostal;
+import iteracion2.Alohandes.negocio.Hotel;
+import iteracion2.Alohandes.negocio.InmueblePersona;
 import iteracion2.Alohandes.negocio.Reserva;
 import iteracion2.Alohandes.negocio.TiempoOcupacion;
 import iteracion2.Alohandes.persistencia.PersistenciaAlohandes;
@@ -38,6 +44,7 @@ public class Controller {
 		view = new AlohandesVIEW();
 		modelo = new ALOHANDES();
 	}
+	
 
 	public void run() throws JsonIOException, JsonSyntaxException, FileNotFoundException 
 	{
@@ -91,14 +98,159 @@ public class Controller {
 				Timestamp fechaSalida = new Timestamp(año2-1900, mes2-1, dia2, 0,0,0,0);
 				
 				System.out.println("Ingrese los datos correspondientes a su usuario (tiene que estar registrado como cliente)");
+				System.out.println("\n");
+				System.out.println("Si desea conocer la lista de clientes del sistema, presione 1, de lo contrario presione 0.");
+				int auxx = lector.nextInt();
+				if(auxx == 1){
+					List<Cliente> clientes2 = modelo.darClientes();
+					System.out.println("Hasta el momento hay " + clientes2.size() + " clientes registrados");
+					for (Cliente alojamiento : clientes2) {
+						System.out.println(alojamiento);
+					}
+				}
+				else
+				{}
+				System.out.println("\n");
 				System.out.println("Ingrese su tipo de documento (CE, TI, CC)");
 				String tipoDoc = lector.next();
 				System.out.println("Ingrese su documento");
 				long numDoc = lector.nextLong();
+				String aloja = "";
+				boolean cierto = true;
+				while(cierto){
+				System.out.println("A continuación ingrese el tipo de alojamiento en el cual desea hospedarse. Escribalo sin ningún espacio:");
+				System.out.println("Escriba: Hostal, Hotel, ViviendaUniversitaria o InmueblePersona. Por favor escriba el alojamiento sin nungún espacio o caracter extra.");
+				aloja = lector.next();
+				aloja = aloja.toLowerCase();
+				aloja = aloja.replace(" ", "");
 				
-				System.out.println("Ingrese el ID del alojamiento en el cual se desea hospedar (este debe existir)");
+				if(aloja.equals("hostal"))
+				{
+					boolean activo = true;
+					while(activo){
+					System.out.println("¿Desea escoger preferencias de Servicios? Escoga 1 para activarlas, 0 para pasar");
+					int valor1 = lector.nextInt();
+					if(valor1 == 1)
+					{
+						System.out.println("Ingrese los servicios que desea para su Hostal. Escriba los servicios separados por coma sin espacio entre ellos y mayuscula inicial (Ej:Restaurante,Piscina)");
+						System.out.println("Los posibles servicios que puede escoger son:");
+						System.out.println("- Restaurante");
+						System.out.println("- Piscina");
+						System.out.println("- Parqueadero");
+						System.out.println("- Internet");
+						String serviciosHos = lector.next();
+						List<Hostal> hos = modelo.darHostalesPorServicio(serviciosHos);
+						if(hos.size()!= 0){
+						System.out.println("Hasta el momento hay " + hos.size() + " hostales disponibles con las especificaciones dadas");
+						for (Hostal alojamiento : hos) {
+							System.out.println(alojamiento);
+						}activo = false; cierto = false;}
+						else{System.out.println("No hay hostales con las especificaciones recibidas");}
+					}
+					else {
+						System.out.println("Los posibles hostales que puede escoger son:");
+						List<Hostal> hos = modelo.darHostales();
+						System.out.println("Hasta el momento hay " + hos.size() + " hostales disponibles");
+						for (Hostal alojamiento : hos) {
+							System.out.println(alojamiento);
+						}
+						activo = false; cierto = false;
+					}
+					}
+				}
+				else if (aloja.equals("hotel"))
+				{
+					boolean activo = true;
+					while(activo){
+					System.out.println("¿Desea escoger preferencias de Servicios? Escoga 1 para activarlas, 0 para pasar");
+					int valor1 = lector.nextInt();
+					if(valor1 == 1)
+					{
+						System.out.println("Ingrese los servicios que desea para su Hotel. Escriba los servicios separados por coma sin espacio entre ellos y mayuscula inicial (Ej:Restaurante,Piscina)");
+						System.out.println("Tenga en cuenta que, por defecto, todos los hoteles tienen atención en portería las 24 horas");
+						System.out.println("Los posibles servicios que puede escoger son:");
+						System.out.println("- Restaurante");
+						System.out.println("- Piscina");
+						System.out.println("- Parqueadero");
+						System.out.println("- Internet");
+						String serviciosHos = lector.next();
+						List<Hotel> hos = modelo.darHotelesPorServicio(serviciosHos);
+						if(hos.size()!= 0){
+						System.out.println("Hasta el momento hay " + hos.size() + " hoteles disponibles con las especificaciones dadas");
+						for (Hotel alojamiento : hos) {
+							System.out.println(alojamiento);
+						} activo = false;cierto = false;
+						}
+						else{System.out.println("No hay hoteles con las especificaciones recibidas");}
+					}
+					else {
+						System.out.println("Los posibles hoteles que puede escoger son:");
+						List<Hostal> hos = modelo.darHostales();
+						System.out.println("Hasta el momento hay " + hos.size() + " hostales disponibles");
+						for (Hostal alojamiento : hos) {
+							System.out.println(alojamiento);
+						}
+					} activo = false;cierto = false;
+					}
+				}
+				else if (aloja.equals("viviendauniversitaria"))
+				{
+					cierto = false;
+				}
+				else if (aloja.equals("inmueblepersona"))
+				{
+					boolean activo = true;
+					while(activo){
+					System.out.println("¿Desea escoger preferencias de Servicios? Escoga 1 para activarlas, 0 para pasar");
+					int valor1 = lector.nextInt();
+					if(valor1 == 1)
+					{
+						System.out.println("Ingrese los servicios que desea para su inmueble. Escriba los servicios separados por comas sin ningun espacio y exactamente igual a como están escritos (Ej:Bañera,TVCable,ServiciosPublicos)");
+						System.out.println("Los posibles servicios que puede escoger son:");
+						System.out.println("- Cocineta");
+						System.out.println("- TVCable");
+						System.out.println("- Parqueadero");
+						System.out.println("- ServiciosPublicos");
+						System.out.println("- ServicioDeAseo");
+						System.out.println("- Comidas");
+						System.out.println("- BañoPrivado");
+						System.out.println("- Internet");
+						System.out.println("- Bañera");
+						String serviciosHos = lector.next();
+						List<InmueblePersona> hos = modelo.darInmueblesPorServicio(serviciosHos.toLowerCase());
+						if(hos.size()!= 0){
+							System.out.println("Hasta el momento hay " + hos.size() + " inmuebles disponibles con las especificaciones dadas");
+							for (InmueblePersona alojamiento : hos) {
+								System.out.println(alojamiento);
+							} activo = false;cierto = false;
+							}
+							else{System.out.println("No hay hoteles con las especificaciones recibidas");}
+					}
+					else {
+						System.out.println("Los posibles Inmuebles que puede escoger son:");
+						List<InmueblePersona> hos = modelo.darInmueblesPersona();
+						System.out.println("Hasta el momento hay " + hos.size() + " inmuebles disponibles");
+						for (InmueblePersona alojamiento : hos) {
+							System.out.println(alojamiento);
+						}
+						activo = false;cierto = false;
+					}
+				}}
+				else 
+					System.out.println("no ingresó un nombre correcto");
+				
+			}
+				Reserva l = null;
+				
+				if(!aloja.equals("viviendauniversitaria")){
+					
+				System.out.println("Ingrese el ID del " + aloja + " en el cual se desea hospedar (este debe existir)");
 				long idAl = lector.nextLong();
-				Reserva l = modelo.adicionarReserva(fechaLlegada, fechaSalida, numDoc, tipoDoc, idAl , 554832);
+				l = modelo.adicionarReserva(fechaLlegada, fechaSalida, numDoc, tipoDoc, idAl , 554832);
+				}
+				else{
+					l = modelo.adicionarReserva(fechaLlegada, fechaSalida, numDoc, tipoDoc, 23 , 554832);
+					}
 				if (l != null){
 				System.out.println("Los datos de su reserva son:");
 				System.out.println(l);}
@@ -175,6 +327,7 @@ public class Controller {
 					System.out.println(alo);
 				}
 				}
+				System.out.println("\n");
 				break;
 				
 			case 9:

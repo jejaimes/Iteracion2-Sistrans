@@ -40,9 +40,9 @@ INSERT INTO ALOJAMIENTO (DIRECCION, PROVEEDOR_TIPO_DOC, PROVEEDOR_NUM_DOC) VALUE
 --from ALOJAMIENTO
 --ORDER BY ID;
 
-select * from reserva;
+--select * from reserva;
 
-select * from tiempo_ocupacion;
+--select * from tiempo_ocupacion;
 ----------------------------------------------------------POBLAR TABLA CLIENTE-----------------------------------------------------------------
 
 INSERT ALL
@@ -69,7 +69,7 @@ INSERT ALL
 SELECT * FROM DUAL;
 
 --select * from cliente;
-select * from reserva;
+--select * from reserva;
 ------------------------------------------------------------POBLAR TABLA EMPRESA --------------------------------------------------------------
 
 INSERT INTO EMPRESA (ID_ALOJAMIENTO, NOMBRE) VALUES (1,'Torres de la Floresta');
@@ -98,7 +98,7 @@ INSERT INTO EMPRESA (ID_ALOJAMIENTO,NOMBRE) VALUES (23,'Livinn');
 
 --select * from empresa;
 
-select * from reserva;
+--select * from reserva;
 
 
 -----------------------------------------------------------POBLAR TABLA HABITACION ---------------------------------------------------------------------------------------------------------------
@@ -410,6 +410,7 @@ INSERT ALL
     INTO ALOJAMIENTO_SERVICIO(NOMBRE_SERVICIO,ID_ALOJAMIENTO,COSTO) VALUES ('Piscina',20,0)
     INTO ALOJAMIENTO_SERVICIO(NOMBRE_SERVICIO,ID_ALOJAMIENTO,COSTO) VALUES ('Internet',20,12000)
     INTO ALOJAMIENTO_SERVICIO(NOMBRE_SERVICIO,ID_ALOJAMIENTO,COSTO) VALUES ('Restaurante',20,70000)
+    INTO ALOJAMIENTO_SERVICIO(NOMBRE_SERVICIO,ID_ALOJAMIENTO,COSTO) VALUES ('Parqueadero',20,30000)
     INTO ALOJAMIENTO_SERVICIO(NOMBRE_SERVICIO,ID_ALOJAMIENTO,COSTO) VALUES ('Piscina',21,0)
     INTO ALOJAMIENTO_SERVICIO(NOMBRE_SERVICIO,ID_ALOJAMIENTO,COSTO) VALUES ('Internet',21,12000)
     INTO ALOJAMIENTO_SERVICIO(NOMBRE_SERVICIO,ID_ALOJAMIENTO,COSTO) VALUES ('Restaurante',21,70000)
@@ -447,6 +448,27 @@ INSERT ALL
     INTO ALOJAMIENTO_SERVICIO(NOMBRE_SERVICIO,ID_ALOJAMIENTO,COSTO) VALUES ('Bañera',27,60000)
     INTO ALOJAMIENTO_SERVICIO(NOMBRE_SERVICIO,ID_ALOJAMIENTO,COSTO) VALUES ('Servicios públicos',27,120000)
 SELECT * FROM DUAL;
+
+SELECT * FROM ALOJAMIENTO_SERVICIO AL, HOSTAL H
+WHERE H.ID_EMPRESA = AL.ID_ALOJAMIENTO
+AND AL.NOMBRE_SERVICIO = 'Restaurante' AND AL.NOMBRE_SERVICIO = 'Internet';
+
+delete from alojamiento_servicio;
+
+SELECT * FROM ALOJAMIENTO_SERVICIO AL
+left outer join hostal h
+on h.id_empresa = al.id_alojamiento
+where nombre_servicio = 'Piscina';
+
+select * from hostal 
+inner join
+(select count(*), id_alojamiento
+from alojamiento_servicio
+where nombre_servicio = 'Internet' or nombre_servicio = 'Piscina'  or nombre_servicio = 'Parqueadero'
+group by id_alojamiento
+having count(*) = 3
+order by id_alojamiento) t
+on t.id_alojamiento = hostal.id_empresa;
 
 
 --------------------------------------------------------------------------POBLAR TABLA HABITACION_SERVICIO  ----------------------------------------------------------------------

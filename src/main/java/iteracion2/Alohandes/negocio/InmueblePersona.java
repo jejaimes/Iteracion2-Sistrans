@@ -36,7 +36,7 @@ public class InmueblePersona extends Alojamiento implements VOInmueblePersona
 	/**
 	 * El id del alojamiento del inmueble
 	 */
-	private int idAlojamiento;
+	private long idAlojamiento;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -63,7 +63,7 @@ public class InmueblePersona extends Alojamiento implements VOInmueblePersona
 	 * @param idAlojamiento
 	 */
 	public InmueblePersona(String tipoPropietario, int numHabitaciones, boolean amoblado, String tipoInmueble,
-			int precio, int idAlojamiento) {
+			 long idAlojamiento) {
 		this.tipoPropietario = tipoPropietario;
 		this.numHabitaciones = numHabitaciones;
 		this.amoblado = amoblado;
@@ -131,14 +131,14 @@ public class InmueblePersona extends Alojamiento implements VOInmueblePersona
 	/**
 	 * @return El id del alojamiento del inmueble
 	 */
-	public int getIdAlojamiento() {
+	public long getIdAlojamiento() {
 		return idAlojamiento;
 	}
 
 	/**
 	 * @param El nuevo id del alojamiento del inmueble
 	 */
-	public void setIdAlojamiento(int idAlojamiento) {
+	public void setIdAlojamiento(long idAlojamiento) {
 		this.idAlojamiento = idAlojamiento;
 	}
 

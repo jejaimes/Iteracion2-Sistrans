@@ -34,7 +34,7 @@ public interface VOInmueblePersona
 	/**
 	 * @return El id del alojamiento del inmueble
 	 */
-	public int getIdAlojamiento();
+	public long getIdAlojamiento();
 	
 	/** 
 	 * @return Una cadena con la información básica

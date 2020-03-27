@@ -134,6 +134,39 @@ public class ALOHANDES
         return tiposBebida;
 	}
 	
+	public List<Hostal> darHostalesPorServicio (String serv)
+	{
+		log.info ("Consultando Hostales por servicio");
+        List<Hostal> tiposBebida = pp.darHostalesPorServicio(serv);	
+        log.info ("Consultando los hostales por servicio: " + tiposBebida.size() );
+        return tiposBebida;
+	}
+	
+	public List<Hostal> darHostales ( )
+	{
+		log.info ("Consultando Hostales ");
+        List<Hostal> tiposBebida = pp.darHostales();
+        log.info ("Consultando los hostales : " + tiposBebida.size() );
+        return tiposBebida;
+	}
+	
+	
+	public List<Hotel> darHotelesPorServicio (String serv)
+	{
+		log.info ("Consultando Hoteles por servicio");
+        List<Hotel> tiposBebida = pp.darHotelesPorServicio(serv);	
+        log.info ("Consultando los hostales por servicio: " + tiposBebida.size() );
+        return tiposBebida;
+	}
+	
+	public List<Hotel> darHoteles ( )
+	{
+		log.info ("Consultando Hoteles ");
+        List<Hotel> tiposBebida = pp.darHoteles();
+        log.info ("Consultando los hostales : " + tiposBebida.size() );
+        return tiposBebida;
+	}
+	
 	
 	public List<Reserva> darReservas ()
 	{
@@ -156,6 +189,22 @@ public class ALOHANDES
 		log.info ("Consultando Alojamientos");
         List<Alojamiento> tiposBebida = pp.darAlojamientos();
         log.info ("Consultando los alojamientos: " + tiposBebida.size() );
+        return tiposBebida;
+	}
+	
+	public List<InmueblePersona> darInmueblesPorServicio (String serv)
+	{
+		log.info ("Consultando Inmuebles por servicio");
+        List<InmueblePersona> tiposBebida = pp.darInmueblesPorServicio(serv);
+        log.info ("Consultando los Inmuebles por servicio: " + tiposBebida.size() );
+        return tiposBebida;
+	}
+	
+	public List<InmueblePersona> darInmueblesPersona ( )
+	{
+		log.info ("Consultando Inmuebles ");
+        List<InmueblePersona> tiposBebida = pp.darInmuebles();
+        log.info ("Consultando los Inmuebles : " + tiposBebida.size() );
         return tiposBebida;
 	}
 	

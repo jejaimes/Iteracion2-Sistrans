@@ -18,6 +18,7 @@ import com.google.gson.stream.JsonReader;
 
 import iteracion2.Alohandes.negocio.ALOHANDES;
 import iteracion2.Alohandes.negocio.Alojamiento;
+import iteracion2.Alohandes.negocio.AlojamientosPopulares;
 import iteracion2.Alohandes.negocio.Cliente;
 import iteracion2.Alohandes.negocio.GananciaProveedor;
 import iteracion2.Alohandes.negocio.Reserva;
@@ -235,6 +236,87 @@ public class TablasTest
   		}
   	}  
     
+    
+    @Test
+  	public void verificarRFC2() 
+  	{
+      	// Probar primero la conexión a la base de datos
+  		try
+  		{
+  			log.info ("Probando el requerimiento funcional de consulta 2");
+  			alohandes = new ALOHANDES (openConfig (CONFIG_TABLAS_A));
+  		}
+  		catch (Exception e)
+  		{
+//  		e.printStackTrace();
+  			log.info ("Prueba de el requerimiento funcional de consulta 2 incompleta. No se pudo conectar a la base de datos !!. La excepción generada es: " + e.getClass ().getName ());
+  			log.info ("La causa es: " + e.getCause ().toString ());
+
+  			String msg = "Prueba de el requerimiento funcional de consulta 2 incompleta. No se pudo conectar a la base de datos !!.\n";
+  			
+  			
+  			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
+  			System.out.println (msg);
+  			fail (msg);
+  		}
+  		
+  		// Ahora si se pueden probar las operaciones
+      	try
+  		{
+      		
+			List<Cliente> clientes = alohandes.darClientes();
+			List<Alojamiento> alojamientos = alohandes.darAlojamientos();
+			int k = 10;
+			for (int i = 0; i < 20; i++) {
+				while(k>0) {
+					Timestamp fechaLlegada = new Timestamp(2020-1900, 5-1, i+1, 0,0,0,0);
+					Timestamp fechaSalida = new Timestamp(2020-1900, 11-1, i+1, 0,0,0,0);
+					Reserva l = alohandes.adicionarReserva(fechaLlegada, fechaSalida, clientes.get(k).getNumDocumento(), clientes.get(k).getTipoDocumento(), alojamientos.get(i).getId() , 554832);
+					k--;
+				}
+				k = 9;
+				k-=i;
+				if (k <= 0){
+					Timestamp fechaLlegada = new Timestamp(2020-1900, 5-1, i+1, 0,0,0,0);
+					Timestamp fechaSalida = new Timestamp(2020-1900, 11-1, i+1, 0,0,0,0);
+					Reserva l = alohandes.adicionarReserva(fechaLlegada, fechaSalida, clientes.get(i).getNumDocumento(), clientes.get(i).getTipoDocumento(), alojamientos.get(i).getId() , 554832);
+				}
+				
+			}
+			for (int i = 20; i < 27; i++) {
+				int j = 1;
+				Timestamp fechaLlegada = new Timestamp(2020-1900, 5-1, i+1, 0,0,0,0);
+				Timestamp fechaSalida = new Timestamp(2020-1900, 11-1, i+1, 0,0,0,0);
+				Reserva l = alohandes.adicionarReserva(fechaLlegada, fechaSalida, clientes.get(j).getNumDocumento(), clientes.get(j).getTipoDocumento(), alojamientos.get(i).getId() , 554832);
+				j ++;
+			}
+			List<AlojamientosPopulares> popu = alohandes.alojamientosPopulares();
+			assertEquals ("No muestra los 20 establecimientos mas populares!!", 20 , popu.size());
+			for (int i = 0; i < popu.size()-1; i++) {
+				assertTrue("El método está mal implementado", popu.get(i).getCantidad()>=popu.get(i+1).getCantidad());
+			}
+			List<Reserva> reservas = alohandes.darReservas();
+			for (Reserva reserva : reservas) {
+				alohandes.eliminarReserva(reserva.getId());
+			}
+
+
+  		}
+  		catch (Exception e)
+  		{
+  			e.printStackTrace();
+  			String msg = "Error en la ejecución de las pruebas de operaciones sobre la tabla.\n";
+  			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
+  			System.out.println (msg);
+
+      		fail ("Error en las pruebas.");
+  		}
+  		finally
+  		{
+//  			alohandes.limpiarAlohandes();
+      		alohandes.cerrarUnidadPersistencia ();    		
+  		}
+  	}  
     
     
     /**

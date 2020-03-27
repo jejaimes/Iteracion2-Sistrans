@@ -1,10 +1,13 @@
 package iteracion2.Alohandes.persistencia;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import iteracion2.Alohandes.negocio.Hostal;
 import iteracion2.Alohandes.negocio.Hotel;
 
 public class SQLHotel
@@ -90,10 +93,55 @@ public class SQLHotel
 	 * @param pm - El manejador de persistencia
 	 * @return Una lista de objetos AlojamientoServicio
 	 */
-	public List<Hotel> darHotels (PersistenceManager pm)
+	public List<Hotel> darHoteles (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHotel() );
-		q.setResultClass(Hotel.class);
-		return (List<Hotel>) q.executeList();
+		
+		List<Object[]> aux = (List<Object[]>) q.executeList();
+		List<Hotel> lista =  new ArrayList<>();
+		for (Object[] datos : aux)
+		{
+				long id = ((BigDecimal)datos[0]).longValue();
+				String idSuper = datos[1].toString();
+				String idCam = datos[2].toString();
+				lista.add( new Hotel(id, idSuper, idCam));
+		}
+		return lista;
+	}
+	
+	public List<Hotel> darHotelesPorServicio (PersistenceManager pm, String servicios)
+	{
+		String[] serv = servicios.split(",");
+		Query q = null;
+		if (serv.length==1){
+			q = pm.newQuery(SQL, "SELECT ID_EMPRESA, ID_SUPERINTENDENCIA, ID_CAMARA FROM " + pp.darTablaHotel() + " inner join (SELECT COUNT(*), ID_ALOJAMIENTO"
+					+ " FROM " + pp.darTablaAlojamientoServicio() + " WHERE NOMBRE_SERVICIO = '" + serv[0] + "' GROUP BY ID_ALOJAMIENTO "
+							+ " HAVING COUNT (*) = 1 ORDER BY ID_ALOJAMIENTO) T ON T.ID_ALOJAMIENTO = HOTEL.ID_EMPRESA");
+		}
+		if (serv.length == 2){
+			q = pm.newQuery(SQL, "SELECT ID_EMPRESA, ID_SUPERINTENDENCIA, ID_CAMARA FROM " + pp.darTablaHotel() + " inner join (SELECT COUNT(*), ID_ALOJAMIENTO"
+					+ " FROM " + pp.darTablaAlojamientoServicio() + " WHERE NOMBRE_SERVICIO = '" + serv[0] + "' OR NOMBRE_SERVICIO = '" + serv[1] + "'  GROUP BY ID_ALOJAMIENTO "
+							+ " HAVING COUNT (*) = 2 ORDER BY ID_ALOJAMIENTO) T ON T.ID_ALOJAMIENTO = HOTEL.ID_EMPRESA");
+		}
+		if (serv.length == 3){
+			q = pm.newQuery(SQL, "SELECT ID_EMPRESA, ID_SUPERINTENDENCIA, ID_CAMARA FROM " + pp.darTablaHotel() + " inner join (SELECT COUNT(*), ID_ALOJAMIENTO"
+					+ " FROM " + pp.darTablaAlojamientoServicio() + " WHERE NOMBRE_SERVICIO = '" + serv[0] + "' OR NOMBRE_SERVICIO = '" + serv[1] + "' OR NOMBRE_SERVICIO = '" + serv[2] + "' GROUP BY ID_ALOJAMIENTO "
+							+ " HAVING COUNT (*) = 3 ORDER BY ID_ALOJAMIENTO) T ON T.ID_ALOJAMIENTO = HOTEL.ID_EMPRESA");
+		}
+		if (serv.length == 4){
+			q = pm.newQuery(SQL, "SELECT ID_EMPRESA, ID_SUPERINTENDENCIA, ID_CAMARA FROM " + pp.darTablaHotel() + " inner join (SELECT COUNT(*), ID_ALOJAMIENTO"
+					+ " FROM " + pp.darTablaAlojamientoServicio() + " WHERE NOMBRE_SERVICIO = '" + serv[0] + "' OR NOMBRE_SERVICIO = '" + serv[1] + "' OR NOMBRE_SERVICIO = '" + serv[2] + "' OR NOMBRE_SERVICIO = '" + serv[3] + "' GROUP BY ID_ALOJAMIENTO "
+							+ " HAVING COUNT (*) = 4 ORDER BY ID_ALOJAMIENTO) T ON T.ID_ALOJAMIENTO = HOTEL.ID_EMPRESA");
+		}
+		List<Object[]> aux = (List<Object[]>) q.executeList();
+		List<Hotel> lista =  new ArrayList<>();
+		for (Object[] datos : aux)
+		{
+				long id = ((BigDecimal)datos[0]).longValue();
+				String idSuper = datos[1].toString();
+				String idCam = datos[2].toString();
+				lista.add( new Hotel(id, idSuper, idCam));
+		}
+		return lista;
 	}
 }

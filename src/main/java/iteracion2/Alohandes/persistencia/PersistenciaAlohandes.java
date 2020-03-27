@@ -31,6 +31,8 @@ import iteracion2.Alohandes.negocio.Habitacion;
 import iteracion2.Alohandes.negocio.HabitacionServicio;
 import iteracion2.Alohandes.negocio.HabitacionTiempoOcupada;
 import iteracion2.Alohandes.negocio.Hostal;
+import iteracion2.Alohandes.negocio.Hotel;
+import iteracion2.Alohandes.negocio.InmueblePersona;
 import iteracion2.Alohandes.negocio.Reserva;
 import iteracion2.Alohandes.negocio.TiempoOcupacion;
 
@@ -715,6 +717,16 @@ public class PersistenciaAlohandes
 		return sqlReserva.verificarReserva (pmf.getPersistenceManager(), idAlojamiento);
 	}
 	
+	public List<Hostal> darHostalesPorServicio(String servicios)
+	{
+		return sqlHostal.darHostalesPorServicio(pmf.getPersistenceManager(), servicios);
+	}
+	
+	public List<Hostal> darHostales()
+	{
+		return sqlHostal.darHostales(pmf.getPersistenceManager());
+	}
+	
 	/**
 	 * RFC2 - Método que retorna los 20 Alojamientos más popolares en Alohandes
 	 * @return La lista de objetos AlojamientosPopulares
@@ -722,6 +734,26 @@ public class PersistenciaAlohandes
 	public List<AlojamientosPopulares> alojamientosPopulares ()
 	{
 		return sqlReserva.alojamientosPopulares(pmf.getPersistenceManager());
+	}
+	
+	public List<Hotel> darHotelesPorServicio(String servicios)
+	{
+		return sqlHotel.darHotelesPorServicio(pmf.getPersistenceManager(), servicios);
+	}
+	
+	public List<Hotel> darHoteles()
+	{
+		return sqlHotel.darHoteles(pmf.getPersistenceManager());
+	}
+	
+	public List<InmueblePersona> darInmueblesPorServicio(String servicios)
+	{
+		return sqlInmueblePersona.darInmueblesPorServicio(pmf.getPersistenceManager(), servicios);
+	}
+	
+	public List<InmueblePersona> darInmuebles()
+	{
+		return sqlInmueblePersona.darInmueblePersonas(pmf.getPersistenceManager());
 	}
 	
 	
