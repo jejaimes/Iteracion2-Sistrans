@@ -117,6 +117,6 @@ public class Hotel extends Empresa implements VOHotel
 	@Override
 	public String toString() 
 	{
-		return "Hostal [idEmpresa=" + idEmpresa + ", idSuperintendencia=" + idSuperintendencia + ", idCamara=" + idCamara+ "]";
+		return "Hotel [idEmpresa=" + idEmpresa + ", idSuperintendencia=" + idSuperintendencia + ", idCamara=" + idCamara+ "]";
 	}
 }

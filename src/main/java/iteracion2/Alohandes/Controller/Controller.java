@@ -189,8 +189,8 @@ public class Controller {
 						System.out.println("Hasta el momento hay " + hos.size() + " hostales disponibles");
 						for (Hostal alojamiento : hos) {
 							System.out.println(alojamiento);
-						}
-					} activo = false;cierto = false;
+						}activo = false;cierto = false;
+					} 
 					}
 				}
 				else if (aloja.equals("viviendauniversitaria"))

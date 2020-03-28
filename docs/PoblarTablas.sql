@@ -35,14 +35,7 @@ INSERT INTO ALOJAMIENTO (DIRECCION, PROVEEDOR_TIPO_DOC, PROVEEDOR_NUM_DOC) VALUE
 INSERT INTO ALOJAMIENTO (DIRECCION, PROVEEDOR_TIPO_DOC, PROVEEDOR_NUM_DOC) VALUES ('cll rosa # 46-13','CC',1111681111);
 INSERT INTO ALOJAMIENTO (DIRECCION, PROVEEDOR_TIPO_DOC, PROVEEDOR_NUM_DOC) VALUES ('avenida panda #88-30','CE',1111611111);
 INSERT INTO ALOJAMIENTO (DIRECCION, PROVEEDOR_TIPO_DOC, PROVEEDOR_NUM_DOC) VALUES ('avenida panda #44-35','CE',1111611111);
- select * from alojamiento;
---select * 
---from ALOJAMIENTO
---ORDER BY ID;
 
---select * from reserva;
-
---select * from tiempo_ocupacion;
 ----------------------------------------------------------POBLAR TABLA CLIENTE-----------------------------------------------------------------
 
 INSERT ALL
@@ -68,8 +61,6 @@ INSERT ALL
    INTO CLIENTE (NOMBRE, TIPO_PERSONA, TIPO_DOCUMENTO, NUM_DOCUMENTO) VALUES ('Esteman Francisco', 'pariente', 'CE', 222244763)
 SELECT * FROM DUAL;
 
---select * from cliente;
---select * from reserva;
 ------------------------------------------------------------POBLAR TABLA EMPRESA --------------------------------------------------------------
 
 INSERT INTO EMPRESA (ID_ALOJAMIENTO, NOMBRE) VALUES (1,'Torres de la Floresta');
@@ -95,10 +86,6 @@ INSERT INTO EMPRESA (ID_ALOJAMIENTO,NOMBRE) VALUES (20,'Rubi Hostal');
 INSERT INTO EMPRESA (ID_ALOJAMIENTO,NOMBRE) VALUES (21,'Musgravite Hostal');
 INSERT INTO EMPRESA (ID_ALOJAMIENTO,NOMBRE) VALUES (22,'Sandalo Hostal');
 INSERT INTO EMPRESA (ID_ALOJAMIENTO,NOMBRE) VALUES (23,'Livinn');
-
---select * from empresa;
-
---select * from reserva;
 
 
 -----------------------------------------------------------POBLAR TABLA HABITACION ---------------------------------------------------------------------------------------------------------------
@@ -206,7 +193,6 @@ INSERT INTO HABITACION (EMPRESA,NUM_HABITACION,TIPO,UBICACION,CAPACIDAD,COMPARTI
 INSERT INTO HABITACION (EMPRESA,NUM_HABITACION,TIPO,UBICACION,CAPACIDAD,COMPARTIDA,TAMANIO) VALUES (23,401,'NA','CON VISTA A LA CALLE',4,1,22);
 INSERT INTO HABITACION (EMPRESA,NUM_HABITACION,TIPO,UBICACION,CAPACIDAD,COMPARTIDA,TAMANIO) VALUES (23,401,'NA','CON VISTA A LOS CERROS',2,1,63);
 
---select * from habitacion order by id;
 
 
 ------------------------------------------------------POBLAR TABLA VIVIENDA_UNIVERSITARIA------------------------------------------------------------------------------
@@ -229,7 +215,6 @@ INSERT ALL
     INTO HOTEL (ID_EMPRESA, ID_SUPERINTENDENCIA, ID_CAMARA) VALUES (10,'QPOSZJH223' , '62JW2SK')
 SELECT * FROM DUAL;
 
---SELECT * FROM HOTEL;
 
 ---------------------------------------------------------------------------------POBLAR TABLA HOSTAL-------------------------------------------------------------------------
 
@@ -248,7 +233,6 @@ INSERT ALL
     INTO HOSTAL (ID_EMPRESA,HORARIO_ATENCION,ID_SUPERINTENDENCIA,ID_CAMARA) VALUES (22,'8:00-21:30','MBO943D','0F3K3033Q')
 SELECT * FROM DUAL;
 
---SELECT * FROM HOSTAL;
 
 ------------------------------------------------------------POBLAR TABLA INMUEBLE_PERSONA-------------------------------------------------------------------------------------------
 
@@ -259,7 +243,6 @@ INSERT ALL
     INTO INMUEBLE_PERSONA (TIPO_PROPIETARIO, NUM_HABITACIONES, AMOBLADO, TIPO_INMUEBLE, ID_ALOJAMIENTO) VALUES ('VECINO',2,1,'APARTAMENTO',27)
 SELECT * FROM DUAL;
 
---select * from INMUEBLE_PERSONA;
 
 -------------------------------------------------------------- POBLAR TABLA MENAJE ---------------------------------------------------------------------------------------
 INSERT ALL
@@ -277,7 +260,6 @@ INSERT ALL
     INTO MENAJE (NOMBRE) VALUES ('Escritorio')
     INTO MENAJE (NOMBRE) VALUES ('Ventilador')
 SELECT * FROM DUAL;
-
 
 
 --------------------------------------------------------------------------POBLAR TABLA MENAJE_INMUEBLE  ----------------------------------------------------------------------
@@ -299,7 +281,7 @@ INSERT ALL
     INTO MENAJE_INMUEBLE (ID_INMUEBLE, NOMBRE_MENAJE, CANTIDAD) VALUES (27,'Televisión',2) 
 SELECT * FROM DUAL;
 
---SELECT * FROM MENAJE_INMUEBLE;
+
 
 --------------------------------------------------------------------------POBLAR TABLA MENAJE_VIVIENDAU  ----------------------------------------------------------------------
 
@@ -319,7 +301,6 @@ INSERT ALL
     INTO MENAJE_VIVIENDAU (ID_VIVIENDAU, NOMBRE_MENAJE, CANTIDAD) VALUES (23,'Ventilador',20)
 SELECT * FROM DUAL;
 
---SELECT * FROM MENAJE_VIVIENDAU;
 
 --------------------------------------------------------------------------POBLAR TABLA SERVICIO  ----------------------------------------------------------------------
 
@@ -340,9 +321,6 @@ INSERT ALL
     INTO SERVICIO (NOMBRE, DESCRIPCION) VALUES ('Comidas','Servicio de comidas incluido')
     INTO SERVICIO (NOMBRE, DESCRIPCION) VALUES ('Baño privado','Servicio de baño privado en el inmueble')
 SELECT * FROM DUAL;
-
-
---SELECT * FROM SERVICIO;
 
 
 --------------------------------------------------------------------------POBLAR TABLA ALOJAMIENTO_SERVICIO  ----------------------------------------------------------------------
@@ -448,28 +426,6 @@ INSERT ALL
     INTO ALOJAMIENTO_SERVICIO(NOMBRE_SERVICIO,ID_ALOJAMIENTO,COSTO) VALUES ('Bañera',27,60000)
     INTO ALOJAMIENTO_SERVICIO(NOMBRE_SERVICIO,ID_ALOJAMIENTO,COSTO) VALUES ('Servicios públicos',27,120000)
 SELECT * FROM DUAL;
-
-SELECT * FROM ALOJAMIENTO_SERVICIO AL, HOSTAL H
-WHERE H.ID_EMPRESA = AL.ID_ALOJAMIENTO
-AND AL.NOMBRE_SERVICIO = 'Restaurante' AND AL.NOMBRE_SERVICIO = 'Internet';
-
-delete from alojamiento_servicio;
-
-SELECT * FROM ALOJAMIENTO_SERVICIO AL
-left outer join hostal h
-on h.id_empresa = al.id_alojamiento
-where nombre_servicio = 'Piscina';
-
-select * from hostal 
-inner join
-(select count(*), id_alojamiento
-from alojamiento_servicio
-where nombre_servicio = 'Internet' or nombre_servicio = 'Piscina'  or nombre_servicio = 'Parqueadero'
-group by id_alojamiento
-having count(*) = 3
-order by id_alojamiento) t
-on t.id_alojamiento = hostal.id_empresa;
-
 
 --------------------------------------------------------------------------POBLAR TABLA HABITACION_SERVICIO  ----------------------------------------------------------------------
 INSERT ALL
@@ -870,17 +826,5 @@ INSERT ALL
     INTO HABITACION_SERVICIO (NOMBRE_SERVICIO, ID_HABITACION, COSTO) VALUES ('Baño privado',32,0)
 SELECT * FROM DUAL;
 
-
---INSERT INTO TIEMPO_OCUPACION (FECHA_LLEGADA,FECHA_SALIDA,ID) VALUES ('05/05/2020','06/05/2020',1);
---INSERT INTO TIEMPO_OCUPACION (FECHA_LLEGADA,FECHA_SALIDA,ID) VALUES ('06/05/2020','07/05/2020',2);
---INSERT INTO TIEMPO_OCUPACION (FECHA_LLEGADA,FECHA_SALIDA,ID) VALUES ('06/05/2020','09/05/2020',3);
---INSERT INTO TIEMPO_OCUPACION (FECHA_LLEGADA,FECHA_SALIDA,ID) VALUES ('06/05/2020','08/05/2020',4);
---
---INSERT ALL
---    INTO RESERVA (ESTADO,FECHA,ID,CLIENTE_NUM_DOC,CLIENTE_TIPO_DOC,ALOJAMIENTO,ID_TIEMPO,PRECIO) VALUES ('A',CURRENT_DATE,1,1111111111,'TI',2,1,1)
---    INTO RESERVA (ESTADO,FECHA,ID,CLIENTE_NUM_DOC,CLIENTE_TIPO_DOC,ALOJAMIENTO,ID_TIEMPO,PRECIO) VALUES ('A',CURRENT_DATE,2,1111222222,'CC',3,2,2)
---    INTO RESERVA (ESTADO,FECHA,ID,CLIENTE_NUM_DOC,CLIENTE_TIPO_DOC,ALOJAMIENTO,ID_TIEMPO,PRECIO) VALUES ('A',CURRENT_DATE,3,11113333,'CE',3,3,3)
---    INTO RESERVA (ESTADO,FECHA,ID,CLIENTE_NUM_DOC,CLIENTE_TIPO_DOC,ALOJAMIENTO,ID_TIEMPO,PRECIO) VALUES ('A',CURRENT_DATE,4,1111222222,'TI',2,4,4)
---SELECT * FROM DUAL;
 
 COMMIT;
