@@ -79,23 +79,23 @@ public class Controller {
 			case 3:
 				System.out.println("Ingrese los datos correspondientes a la fecha de llegada al alojamiento: ");
 				System.out.println("Ingrese el año");
-				int año = lector.nextInt();
+				int anio = lector.nextInt();
 				System.out.println("Ingrese el mes (en numero, Ej: Enero sería 01.)");
 				int mes = lector.nextInt();
 				System.out.println("Ingrese el día");
 				int dia = lector.nextInt();
 				
-				Timestamp fechaLlegada = new Timestamp(año-1900, mes-1, dia, 0,0,0,0);
+				Timestamp fechaLlegada = new Timestamp(anio-1900, mes-1, dia, 0,0,0,0);
 				
 				System.out.println("Ingrese los datos correspondientes a la fecha de salida del alojamiento: ");
 				System.out.println("Ingrese el año");
-				int año2 = lector.nextInt();
+				int anio2 = lector.nextInt();
 				System.out.println("Ingrese el mes (en numero, Ej: Enero sería 01.)");
 				int mes2 = lector.nextInt();
 				System.out.println("Ingrese el día");
 				int dia2 = lector.nextInt();
 				
-				Timestamp fechaSalida = new Timestamp(año2-1900, mes2-1, dia2, 0,0,0,0);
+				Timestamp fechaSalida = new Timestamp(anio2-1900, mes2-1, dia2, 0,0,0,0);
 				
 				System.out.println("Ingrese los datos correspondientes a su usuario (tiene que estar registrado como cliente)");
 				System.out.println("\n");
