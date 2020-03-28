@@ -717,11 +717,20 @@ public class PersistenciaAlohandes
 		return sqlReserva.verificarReserva (pmf.getPersistenceManager(), idAlojamiento);
 	}
 	
+	/**
+	 * Retorna la lista de hostales que tienen los servicios que se piden por parametro
+	 * @param servicios - lista de servicios
+	 * @return Lista de hostales
+	 */
 	public List<Hostal> darHostalesPorServicio(String servicios)
 	{
 		return sqlHostal.darHostalesPorServicio(pmf.getPersistenceManager(), servicios);
 	}
 	
+	/**
+	 * Retorna todos los hostales regitrados en alohandes
+	 * @return Lista de hostales
+	 */
 	public List<Hostal> darHostales()
 	{
 		return sqlHostal.darHostales(pmf.getPersistenceManager());
@@ -736,29 +745,46 @@ public class PersistenciaAlohandes
 		return sqlReserva.alojamientosPopulares(pmf.getPersistenceManager());
 	}
 	
+	/**
+	 * Retorna la lista de hoteles que tienen una lista de servicios especificada por parametro
+	 * @param serv - lista de servicios
+	 * @return Lista de hoteles
+	 */
 	public List<Hotel> darHotelesPorServicio(String servicios)
 	{
 		return sqlHotel.darHotelesPorServicio(pmf.getPersistenceManager(), servicios);
 	}
 	
+	/**
+	 * Retorna la lista de hoteles registrados en Alohandes
+	 * @return
+	 */
 	public List<Hotel> darHoteles()
 	{
 		return sqlHotel.darHoteles(pmf.getPersistenceManager());
 	}
 	
+	/**
+	 * Retorna la lista de los inmueblepersona que tengan los servicios dados por parametro
+	 * @param servicios - lista de servicios
+	 * @return Lista de inmueblepersona
+	 */
 	public List<InmueblePersona> darInmueblesPorServicio(String servicios)
 	{
 		return sqlInmueblePersona.darInmueblesPorServicio(pmf.getPersistenceManager(), servicios);
 	}
 	
+	/**
+	 * Retorna la lista de inmueblepersona
+	 * @return Lista de inmueblepersona
+	 */
 	public List<InmueblePersona> darInmuebles()
 	{
 		return sqlInmueblePersona.darInmueblePersonas(pmf.getPersistenceManager());
 	}
 	
-	
 	/**
-	 * 
+	 * Retorna la lista de reservas registradas en la base de datos de Alohandes
 	 * @return La lista de objetos RESERVA, construidos con base en las tuplas de la tabla RESERVA
 	 */
 	public List<Reserva> darReservas ()
@@ -766,6 +792,10 @@ public class PersistenciaAlohandes
 		return sqlReserva.darReservas(pmf.getPersistenceManager());
 	}
 	
+	/**
+	 * Retorna la lista de TiempoOcupacion
+	 * @return Lista de tiempoocupacion
+	 */
 	public List<TiempoOcupacion> darTiempos ()
 	{
 		return sqlTiempoOcupacion.darTiempos(pmf.getPersistenceManager());
@@ -780,24 +810,43 @@ public class PersistenciaAlohandes
 		return sqlReserva.gananciaProveedores(pmf.getPersistenceManager());
 	}
 	
-	
+	/**
+	 * Retorna la lista de alojamientos registrados en Alohandes
+	 * @return Lista de alojamientos
+	 */
 	public List<Alojamiento> darAlojamientos()
 	{
 		return sqlAlojamiento.darAlojamientos(pmf.getPersistenceManager());
 	}
 	
-	
+	/**
+	 * Retorna la lista de clientes registrados en Alohandes
+	 * @return Lista de clientes
+	 */
 	public List<Cliente> darClientes()
 	{
 		return sqlCliente.darClientes(pmf.getPersistenceManager());
 	}
 	
+	/**
+	 * Retorna el alojamiento con el id dado
+	 * @param id - id del alojamiento
+	 * @return Alojamiento con el id dado. Null en caso de no encontrarlo
+	 */
 	public Alojamiento darAlojamientoId(long id)
 	{
 		return (Alojamiento) sqlAlojamiento.darAlojamientoId(pmf.getPersistenceManager(), id);
 		
 	}
 	
+	/**
+	 * Crea un hostal en la base de datos de Alohandes
+	 * @param id_empresa - id del hostal. Debe existir en la tabla empresa
+	 * @param horario - horario de atencion del hostal
+	 * @param idSuperI - id ante la superintendencia
+	 * @param idCamara - id ante la camara de comercio
+	 * @return Numero de hostales creados
+	 */
 	public long crearHostal(long id_empresa, String horario, String idSuperI, String idCamara)
 	{
 		return sqlHostal.crearHostal(pmf.getPersistenceManager(), id_empresa, horario, idSuperI, idCamara);

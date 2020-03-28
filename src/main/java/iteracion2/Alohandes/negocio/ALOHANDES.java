@@ -125,7 +125,10 @@ public class ALOHANDES
         return resp;
 	}
 	
-	
+	/**
+	 * Retorna la lista de los alojamientos mas populares
+	 * @return Lista de alojamientos populares
+	 */
 	public List<AlojamientosPopulares> alojamientosPopulares ()
 	{
 		log.info ("Consultando Alojamientos populares");
@@ -134,6 +137,11 @@ public class ALOHANDES
         return tiposBebida;
 	}
 	
+	/**
+	 * Retorna la lista de hostales que tienen una lista de servicios especificada por parametro
+	 * @param serv - lista de servicios
+	 * @return Lista de hostales
+	 */
 	public List<Hostal> darHostalesPorServicio (String serv)
 	{
 		log.info ("Consultando Hostales por servicio");
@@ -142,6 +150,10 @@ public class ALOHANDES
         return tiposBebida;
 	}
 	
+	/**
+	 * Retorna la lista de hostales registrados en Alohandes
+	 * @return Lista de hostales
+	 */
 	public List<Hostal> darHostales ( )
 	{
 		log.info ("Consultando Hostales ");
@@ -150,7 +162,11 @@ public class ALOHANDES
         return tiposBebida;
 	}
 	
-	
+	/**
+	 * Retorna la lista de hoteles que tienen una lista de servicios especificada por parametro
+	 * @param serv - lista de servicios
+	 * @return Lista de hoteles
+	 */
 	public List<Hotel> darHotelesPorServicio (String serv)
 	{
 		log.info ("Consultando Hoteles por servicio");
@@ -159,6 +175,10 @@ public class ALOHANDES
         return tiposBebida;
 	}
 	
+	/**
+	 * Retorna la lista de hoteles registrados en alohanes
+	 * @return Lista de hoteles
+	 */
 	public List<Hotel> darHoteles ( )
 	{
 		log.info ("Consultando Hoteles ");
@@ -167,7 +187,10 @@ public class ALOHANDES
         return tiposBebida;
 	}
 	
-	
+	/**
+	 * Retorna la lista de reservas de Alohandes
+	 * @return Lista de reservas
+	 */
 	public List<Reserva> darReservas ()
 	{
 		log.info ("Consultando Reservas");
@@ -176,6 +199,10 @@ public class ALOHANDES
         return tiposBebida;
 	}
 	
+	/**
+	 * Retorna la lista de TiempoOcupacion registrados en Alohandes
+	 * @return Lista de TiempoOcupacion
+	 */
 	public List<TiempoOcupacion> darTiempos ()
 	{
 		log.info ("Consultando tiempos de ocupacion");
@@ -184,6 +211,10 @@ public class ALOHANDES
         return tiposBebida;
 	}
 	
+	/**
+	 * Retorna la lista de alojamientos registrados en alohandes
+	 * @return Lista de alojamientos
+	 */
 	public List<Alojamiento> darAlojamientos()
 	{
 		log.info ("Consultando Alojamientos");
@@ -192,6 +223,11 @@ public class ALOHANDES
         return tiposBebida;
 	}
 	
+	/**
+	 * Retorna la lista de inmuebles que tienen una lista de servicios especificada por parametro
+	 * @param serv - lista de servicios
+	 * @return Lista de inmueblepersona
+	 */
 	public List<InmueblePersona> darInmueblesPorServicio (String serv)
 	{
 		log.info ("Consultando Inmuebles por servicio");
@@ -200,6 +236,10 @@ public class ALOHANDES
         return tiposBebida;
 	}
 	
+	/**
+	 * Retorna la lista de inmueblepersona registrados en alohandes
+	 * @return Lista de inmueblepersona
+	 */
 	public List<InmueblePersona> darInmueblesPersona ( )
 	{
 		log.info ("Consultando Inmuebles ");
@@ -208,6 +248,10 @@ public class ALOHANDES
         return tiposBebida;
 	}
 	
+	/**
+	 * Retorna la lista de clientes registrados en Alohandes
+	 * @return Lista de clientes
+	 */
 	public List<Cliente> darClientes()
 	{
 		log.info ("Consultando Clientes");
@@ -215,6 +259,11 @@ public class ALOHANDES
         log.info ("Consultando los clientes: " + tiposBebida.size() );
         return tiposBebida;
 	}
+	
+	/**
+	 * Retorna los proveedores con sus ganancias en el año actual. Solo si han ganado más que 0.
+	 * @return Lista con los proveedores y sus ganancias
+	 */
 	public List<GananciaProveedor> gananciaProveedores()
 	{
 		log.info ("Consultando ganancias");
@@ -225,7 +274,11 @@ public class ALOHANDES
         return tiposBebida;
 	}
 	
-	
+	/**
+	 * Retorna el alojamiento con el id dado
+	 * @param id - id del alojamiento
+	 * @return El alojamiento con el id dado. Null si no existe un id con ese id.
+	 */
 	public Alojamiento darAlojamientoId(long id)
 	{
 		log.info ("Consultando Alojamientos");
@@ -234,6 +287,14 @@ public class ALOHANDES
         return tiposBebida;
 	}
 	
+	/**
+	 * Crea un hostal en la base datos de AlohAndes
+	 * @param id_empresa - id del hostal. Debe existir en empresa
+	 * @param horario - horario de atencion del hostal
+	 * @param idSuperI - identificacion ante la superintendencia
+	 * @param idCamara - identificacion ante la camara de comercio
+	 * @return El numero de hostales creados
+	 */
 	public long crearHostal(long id_empresa, String horario, String idSuperI, String idCamara)
 	{
 		log.info ("Creando hostal");
@@ -242,6 +303,10 @@ public class ALOHANDES
         return numCreados;
 	}
 	
+	/**
+	 * Limpia la base de datos de AlohAndes
+	 * @return Arreglo con las tuplas borradas para cada tabla
+	 */
 	public long [] limpiarAlohandes ()
 	{
         log.info ("Limpiando la BD de Parranderos");

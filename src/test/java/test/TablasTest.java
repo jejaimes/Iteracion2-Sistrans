@@ -27,8 +27,7 @@ import iteracion2.Alohandes.negocio.VOHabitacionServicio;
 import iteracion2.Alohandes.negocio.VOReserva;
 
 /**
- * Clase con los métdos de prueba de funcionalidad sobre TIPOBEBIDA
- * @author Germán Bravo
+ * Clase con los métdos de prueba de funcionalidad sobre las tablas
  *
  */
 public class TablasTest
@@ -341,7 +340,7 @@ public class TablasTest
 		{
 //			e.printStackTrace ();
 			log.info ("NO se encontró un archivo de configuración válido");			
-			JOptionPane.showMessageDialog(null, "No se encontró un archivo de configuración de tablas válido: ", "TipoBebidaTest", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "No se encontró un archivo de configuración de tablas válido: ", "TablasTest", JOptionPane.ERROR_MESSAGE);
 		}	
         return config;
     }	
